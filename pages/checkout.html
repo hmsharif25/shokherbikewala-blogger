@@ -1,0 +1,310 @@
+<!--
+  CHECKOUT PAGE
+  =====================================================================
+  Paste this entire snippet into a new Blogger Page (HTML mode):
+    Blogger Dashboard -> Pages -> New Page -> click the "</>" HTML view
+    button -> paste everything below -> set the page URL slug to
+    "checkout" (the URL becomes /p/checkout.html) -> Publish.
+
+  Notes:
+  -  The theme.xml already loads Tailwind + brand tokens, so this page
+     can use Tailwind classes freely.
+  -  Orders are submitted to the Supabase `inquiries` table via the
+     public anon key. The key is meant to be public; Row-Level
+     Security (see supabase/migrations/0001_init.sql in the main repo)
+     restricts what the public can do.
+  -  Pre-filled product info comes from the Buy Now button on a
+     product post (theme.xml passes it via the URL query string).
+-->
+
+<div class="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+
+  <div class="flex items-center gap-2 text-xs uppercase tracking-wider text-fg-soft mb-3">
+    <a href="/" class="hover:text-primary">Home</a><span>/</span><span class="text-primary">Checkout</span>
+  </div>
+
+  <h1 class="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold mb-1">Complete your order</h1>
+  <p class="text-fg-muted text-sm sm:text-base mb-6">Cash on delivery available across Bangladesh. We will confirm by phone or WhatsApp.</p>
+
+  <div class="grid lg:grid-cols-[1fr,360px] gap-6 lg:gap-8 items-start">
+
+    <!-- Form -->
+    <form id="sb-checkout-form" class="space-y-4 rounded-2xl glass border border-line p-4 sm:p-6">
+
+      <div>
+        <label for="cf-product" class="text-xs font-bold uppercase tracking-wider text-fg-soft">Product</label>
+        <input id="cf-product" name="product" type="text" required
+          class="mt-1 w-full px-4 py-3 rounded-xl bg-surface-soft border border-line text-fg outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
+          placeholder="Product name (auto-filled when coming from a product page)"/>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label for="cf-name" class="text-xs font-bold uppercase tracking-wider text-fg-soft">Your name *</label>
+          <input id="cf-name" name="name" type="text" required
+            class="mt-1 w-full px-4 py-3 rounded-xl bg-surface-soft border border-line text-fg outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
+            placeholder="Md. Rahim"/>
+        </div>
+        <div>
+          <label for="cf-phone" class="text-xs font-bold uppercase tracking-wider text-fg-soft">Phone *</label>
+          <input id="cf-phone" name="phone" type="tel" required inputmode="tel"
+            class="mt-1 w-full px-4 py-3 rounded-xl bg-surface-soft border border-line text-fg outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
+            placeholder="01XXXXXXXXX"/>
+        </div>
+      </div>
+
+      <div>
+        <label for="cf-address" class="text-xs font-bold uppercase tracking-wider text-fg-soft">Delivery address *</label>
+        <textarea id="cf-address" name="address" required rows="3"
+          class="mt-1 w-full px-4 py-3 rounded-xl bg-surface-soft border border-line text-fg outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 resize-none"
+          placeholder="House / road / area, district"></textarea>
+      </div>
+
+      <div class="grid sm:grid-cols-[140px,1fr] gap-4">
+        <div>
+          <label for="cf-qty" class="text-xs font-bold uppercase tracking-wider text-fg-soft">Quantity</label>
+          <div class="mt-1 flex items-stretch rounded-xl bg-surface-soft border border-line overflow-hidden">
+            <button type="button" data-qty="-1" class="px-3 text-lg text-fg-muted hover:text-primary">-</button>
+            <input id="cf-qty" name="qty" type="number" min="1" max="99" value="1"
+              class="flex-1 w-full bg-transparent text-center text-fg outline-none"/>
+            <button type="button" data-qty="1" class="px-3 text-lg text-fg-muted hover:text-primary">+</button>
+          </div>
+        </div>
+        <div>
+          <label for="cf-notes" class="text-xs font-bold uppercase tracking-wider text-fg-soft">Notes (optional)</label>
+          <input id="cf-notes" name="notes" type="text"
+            class="mt-1 w-full px-4 py-3 rounded-xl bg-surface-soft border border-line text-fg outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
+            placeholder="Color / size preference, etc."/>
+        </div>
+      </div>
+
+      <div id="cf-error" class="hidden px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-600 text-sm"></div>
+
+      <button id="cf-submit" type="submit"
+        class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-primary hover:bg-primary-600 text-white font-bold min-h-[56px] transition disabled:opacity-60 disabled:cursor-not-allowed">
+        <span id="cf-submit-text">Place Order</span>
+      </button>
+
+      <p class="text-xs text-fg-soft text-center">
+        By placing this order you agree to be contacted by phone or WhatsApp to confirm details.
+      </p>
+    </form>
+
+    <!-- Order summary -->
+    <aside class="rounded-2xl glass border border-line p-4 sm:p-6 lg:sticky lg:top-28 self-start">
+      <p class="text-xs font-bold uppercase tracking-wider text-fg-soft mb-3">Order summary</p>
+      <div id="cf-summary" class="space-y-2 text-sm">
+        <div class="flex items-baseline justify-between gap-2">
+          <span class="text-fg-muted">Product</span>
+          <span id="cf-sum-product" class="text-fg font-medium text-right">—</span>
+        </div>
+        <div class="flex items-baseline justify-between gap-2">
+          <span class="text-fg-muted">Unit price</span>
+          <span id="cf-sum-unit" class="text-fg font-medium">—</span>
+        </div>
+        <div class="flex items-baseline justify-between gap-2">
+          <span class="text-fg-muted">Quantity</span>
+          <span id="cf-sum-qty" class="text-fg font-medium">1</span>
+        </div>
+        <div class="border-t border-line my-3"></div>
+        <div class="flex items-baseline justify-between gap-2">
+          <span class="text-fg-muted">Subtotal</span>
+          <span id="cf-sum-subtotal" class="text-fg font-bold">—</span>
+        </div>
+        <div class="flex items-baseline justify-between gap-2">
+          <span class="text-fg-muted">Delivery</span>
+          <span class="text-fg-muted text-xs">Paid on delivery</span>
+        </div>
+        <div class="border-t border-line my-3"></div>
+        <div class="flex items-baseline justify-between gap-2 text-base">
+          <span class="font-bold">Total</span>
+          <span id="cf-sum-total" class="text-primary font-extrabold text-lg">—</span>
+        </div>
+      </div>
+
+      <a id="cf-wa" href="https://wa.me/8801518934708" target="_blank" rel="noopener"
+        class="mt-4 w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white font-bold min-h-[48px] transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Order via WhatsApp instead
+      </a>
+    </aside>
+
+  </div>
+
+  <!-- Success state -->
+  <div id="cf-success" class="hidden mt-6">
+    <div class="rounded-2xl glass border border-green-500/30 bg-green-500/5 p-6 sm:p-8 text-center">
+      <div class="w-14 h-14 mx-auto mb-3 rounded-full bg-green-500/15 grid place-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-green-600"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2 class="text-xl sm:text-2xl font-display font-bold mb-1">Order placed!</h2>
+      <p class="text-fg-muted text-sm sm:text-base mb-4">আমরা শীঘ্রই কল করে confirm করব। ধন্যবাদ!</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a id="cf-success-wa" href="https://wa.me/8801518934708" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white font-bold min-h-[48px]">
+          Confirm on WhatsApp
+        </a>
+        <a href="/" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-surface-soft border border-line text-fg-muted hover:text-primary min-h-[48px]">
+          Continue shopping
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+//<![CDATA[
+(function () {
+  // ===== Supabase config =====
+  // The anon key is intentionally public — Row-Level Security
+  // (supabase/migrations/0001_init.sql) protects what the public can do.
+  // If you ever rotate keys, just paste the new anon key here.
+  var SUPABASE_URL = 'https://pfegrhsefyqqjzmbgurs.supabase.co';
+  var SUPABASE_ANON_KEY = 'sb_publishable_rveVU0CB7uUT_pGjzaDVow_hHWaqSLj';
+
+  function fmtBDT(n) {
+    if (n == null || isNaN(n)) return '—';
+    return 'BDT ' + Number(n).toLocaleString();
+  }
+
+  var qs = new URLSearchParams(location.search);
+  var productSlug = qs.get('product') || '';
+  var productTitle = qs.get('title') || '';
+  var unitPrice = Number(qs.get('price')) || null;
+
+  var $product  = document.getElementById('cf-product');
+  var $name     = document.getElementById('cf-name');
+  var $phone    = document.getElementById('cf-phone');
+  var $address  = document.getElementById('cf-address');
+  var $qty      = document.getElementById('cf-qty');
+  var $notes    = document.getElementById('cf-notes');
+  var $err      = document.getElementById('cf-error');
+  var $form     = document.getElementById('sb-checkout-form');
+  var $submit   = document.getElementById('cf-submit');
+  var $submitTx = document.getElementById('cf-submit-text');
+  var $success  = document.getElementById('cf-success');
+  var $sucWa    = document.getElementById('cf-success-wa');
+
+  var $sumProd  = document.getElementById('cf-sum-product');
+  var $sumUnit  = document.getElementById('cf-sum-unit');
+  var $sumQty   = document.getElementById('cf-sum-qty');
+  var $sumSub   = document.getElementById('cf-sum-subtotal');
+  var $sumTot   = document.getElementById('cf-sum-total');
+  var $wa       = document.getElementById('cf-wa');
+
+  if (productTitle) $product.value = productTitle;
+
+  function refreshSummary() {
+    var name = $product.value || '—';
+    var qty = Math.max(1, parseInt($qty.value, 10) || 1);
+    $sumProd.textContent = name;
+    $sumQty.textContent  = qty;
+    if (unitPrice != null) {
+      $sumUnit.textContent = fmtBDT(unitPrice);
+      $sumSub.textContent  = fmtBDT(unitPrice * qty);
+      $sumTot.textContent  = fmtBDT(unitPrice * qty);
+    } else {
+      $sumUnit.textContent = 'To confirm';
+      $sumSub.textContent  = 'To confirm';
+      $sumTot.textContent  = 'To confirm';
+    }
+  }
+  refreshSummary();
+
+  $product.addEventListener('input', refreshSummary);
+  $qty.addEventListener('input', refreshSummary);
+
+  document.querySelectorAll('button[data-qty]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var delta = parseInt(btn.getAttribute('data-qty'), 10) || 0;
+      var next = Math.max(1, Math.min(99, (parseInt($qty.value, 10) || 1) + delta));
+      $qty.value = next;
+      refreshSummary();
+    });
+  });
+
+  function buildMessage() {
+    var qty = Math.max(1, parseInt($qty.value, 10) || 1);
+    var line = [
+      'Product: ' + ($product.value || ''),
+      'Quantity: ' + qty,
+      unitPrice != null ? 'Unit price: ' + fmtBDT(unitPrice) : null,
+      unitPrice != null ? 'Total: ' + fmtBDT(unitPrice * qty) : null,
+      'Address: ' + ($address.value || ''),
+      $notes.value ? 'Notes: ' + $notes.value : null,
+    ].filter(Boolean).join('\n');
+    return line;
+  }
+
+  function updateWa() {
+    var msg = 'Hi! I want to order:\n\n' + buildMessage();
+    $wa.href = 'https://wa.me/8801518934708?text=' + encodeURIComponent(msg);
+  }
+  $product.addEventListener('input', updateWa);
+  $qty.addEventListener('input', updateWa);
+  $address.addEventListener('input', updateWa);
+  $notes.addEventListener('input', updateWa);
+  updateWa();
+
+  function showError(msg) {
+    $err.textContent = msg;
+    $err.classList.remove('hidden');
+  }
+  function hideError() { $err.classList.add('hidden'); }
+
+  $form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    hideError();
+
+    var product = $product.value.trim();
+    var name    = $name.value.trim();
+    var phone   = $phone.value.trim();
+    var address = $address.value.trim();
+    if (!product || !name || !phone || !address) {
+      showError('Please fill in product, name, phone and address.');
+      return;
+    }
+    if (!/^[0-9+\-\s]{7,}$/.test(phone)) {
+      showError('Please enter a valid phone number.');
+      return;
+    }
+
+    $submit.disabled = true;
+    $submitTx.textContent = 'Placing order...';
+
+    var payload = {
+      customer_name: name,
+      phone: phone,
+      product_name: product,
+      message: buildMessage(),
+      status: 'new',
+    };
+
+    fetch(SUPABASE_URL + '/rest/v1/inquiries', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify(payload),
+    }).then(function (res) {
+      if (!res.ok) {
+        return res.text().then(function (t) { throw new Error(t || ('HTTP ' + res.status)); });
+      }
+      var waMsg = 'Hi! I just placed an order on the website:\n\n' + buildMessage() + '\n\nName: ' + name + '\nPhone: ' + phone;
+      $sucWa.href = 'https://wa.me/8801518934708?text=' + encodeURIComponent(waMsg);
+      $form.classList.add('hidden');
+      $success.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }).catch(function (err) {
+      console.error(err);
+      showError('Could not place the order. Please try again or use the WhatsApp option below. (' + (err.message || 'network error') + ')');
+      $submit.disabled = false;
+      $submitTx.textContent = 'Place Order';
+    });
+  });
+})();
+//]]>
+</script>

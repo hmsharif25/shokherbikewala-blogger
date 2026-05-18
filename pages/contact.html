@@ -1,0 +1,148 @@
+<!--
+  CONTACT PAGE
+  =====================================================================
+  Paste this entire snippet into a new Blogger Page (HTML mode), set
+  the URL slug to "contact" so it becomes /p/contact.html, then Publish.
+-->
+
+<div class="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+
+  <div class="flex items-center gap-2 text-xs uppercase tracking-wider text-fg-soft mb-3">
+    <a href="/" class="hover:text-primary">Home</a><span>/</span><span class="text-primary">Contact</span>
+  </div>
+
+  <header class="text-center mb-8">
+    <p class="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-2">Get in touch</p>
+    <h1 class="text-3xl sm:text-4xl font-display font-extrabold mb-2">We are here to help.</h1>
+    <p class="text-fg-muted">Phone, WhatsApp or form — whichever is easier for you.</p>
+  </header>
+
+  <div class="grid lg:grid-cols-[1fr,360px] gap-6 lg:gap-8 items-start">
+
+    <form id="sb-contact-form" class="space-y-4 rounded-2xl glass border border-line p-4 sm:p-6">
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label for="ct-name" class="text-xs font-bold uppercase tracking-wider text-fg-soft">Your name *</label>
+          <input id="ct-name" name="name" type="text" required
+            class="mt-1 w-full px-4 py-3 rounded-xl bg-surface-soft border border-line text-fg outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"/>
+        </div>
+        <div>
+          <label for="ct-phone" class="text-xs font-bold uppercase tracking-wider text-fg-soft">Phone *</label>
+          <input id="ct-phone" name="phone" type="tel" required inputmode="tel"
+            class="mt-1 w-full px-4 py-3 rounded-xl bg-surface-soft border border-line text-fg outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"/>
+        </div>
+      </div>
+      <div>
+        <label for="ct-product" class="text-xs font-bold uppercase tracking-wider text-fg-soft">Product / topic</label>
+        <input id="ct-product" name="product" type="text"
+          class="mt-1 w-full px-4 py-3 rounded-xl bg-surface-soft border border-line text-fg outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
+          placeholder="e.g. Steelbird helmet enquiry"/>
+      </div>
+      <div>
+        <label for="ct-message" class="text-xs font-bold uppercase tracking-wider text-fg-soft">Message *</label>
+        <textarea id="ct-message" name="message" required rows="5"
+          class="mt-1 w-full px-4 py-3 rounded-xl bg-surface-soft border border-line text-fg outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 resize-none"></textarea>
+      </div>
+
+      <div id="ct-error" class="hidden px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-600 text-sm"></div>
+
+      <button id="ct-submit" type="submit"
+        class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary hover:bg-primary-600 text-white font-bold min-h-[52px] disabled:opacity-60 disabled:cursor-not-allowed">
+        <span id="ct-submit-text">Send message</span>
+      </button>
+    </form>
+
+    <aside class="space-y-4">
+      <a href="https://wa.me/8801518934708" target="_blank" rel="noopener"
+         class="block rounded-2xl glass border border-line p-5 hover:border-green-500/40 transition">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-full bg-green-500/15 text-green-600 grid place-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-fg-soft">WhatsApp</p>
+            <p class="text-fg font-bold">+880 1518 934708</p>
+          </div>
+        </div>
+      </a>
+
+      <div class="rounded-2xl glass border border-line p-5">
+        <p class="text-xs font-bold uppercase tracking-wider text-fg-soft mb-2">Hours</p>
+        <p class="text-sm text-fg-muted">Sat – Thu: 10:00 AM – 9:00 PM<br/>Friday: 4:00 PM – 9:00 PM</p>
+      </div>
+
+      <div class="rounded-2xl glass border border-line p-5">
+        <p class="text-xs font-bold uppercase tracking-wider text-fg-soft mb-3">Follow us</p>
+        <div class="flex items-center gap-2">
+          <a href="https://www.facebook.com/share/1CvH4aQ5kU/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 grid place-items-center rounded-full bg-bg border border-line text-fg-muted hover:text-primary hover:border-primary/40">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/shokherbikewala" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 grid place-items-center rounded-full bg-bg border border-line text-fg-muted hover:text-primary hover:border-primary/40">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@shokherbikewala" target="_blank" rel="noopener" aria-label="TikTok" class="w-9 h-9 grid place-items-center rounded-full bg-bg border border-line text-fg-muted hover:text-primary hover:border-primary/40">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div id="ct-success" class="hidden mt-6 rounded-2xl glass border border-green-500/30 bg-green-500/5 p-5 text-center">
+    <p class="text-green-600 font-bold">Message sent — we will reply shortly. Thank you!</p>
+  </div>
+</div>
+
+<script>
+//<![CDATA[
+(function () {
+  var SUPABASE_URL = 'https://pfegrhsefyqqjzmbgurs.supabase.co';
+  var SUPABASE_ANON_KEY = 'sb_publishable_rveVU0CB7uUT_pGjzaDVow_hHWaqSLj';
+
+  var $form = document.getElementById('sb-contact-form');
+  var $err  = document.getElementById('ct-error');
+  var $btn  = document.getElementById('ct-submit');
+  var $btnT = document.getElementById('ct-submit-text');
+  var $suc  = document.getElementById('ct-success');
+
+  function showError(m) { $err.textContent = m; $err.classList.remove('hidden'); }
+  function hideError() { $err.classList.add('hidden'); }
+
+  $form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    hideError();
+    var name = document.getElementById('ct-name').value.trim();
+    var phone = document.getElementById('ct-phone').value.trim();
+    var product = document.getElementById('ct-product').value.trim();
+    var message = document.getElementById('ct-message').value.trim();
+    if (!name || !phone || !message) { showError('Please fill in name, phone and message.'); return; }
+    if (!/^[0-9+\-\s]{7,}$/.test(phone)) { showError('Please enter a valid phone number.'); return; }
+
+    $btn.disabled = true; $btnT.textContent = 'Sending...';
+
+    fetch(SUPABASE_URL + '/rest/v1/inquiries', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify({
+        customer_name: name, phone: phone,
+        product_name: product || 'General enquiry',
+        message: message, status: 'new',
+      }),
+    }).then(function (res) {
+      if (!res.ok) return res.text().then(function (t) { throw new Error(t); });
+      $form.classList.add('hidden');
+      $suc.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }).catch(function (err) {
+      showError('Could not send. Please WhatsApp us instead. (' + (err.message || 'network error') + ')');
+      $btn.disabled = false; $btnT.textContent = 'Send message';
+    });
+  });
+})();
+//]]>
+</script>

@@ -1,0 +1,62 @@
+<!--
+  CATEGORIES PAGE
+  =====================================================================
+  Paste this entire snippet into a new Blogger Page (HTML mode), set
+  the URL slug to "categories" so it becomes /p/categories.html, then
+  Publish.
+
+  Edit the CATEGORIES array below to add / remove / rename the
+  categories your shop carries. Each `slug` must match the Blogger
+  label you use on product posts in that category.
+-->
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+
+  <div class="flex items-center gap-2 text-xs uppercase tracking-wider text-fg-soft mb-3">
+    <a href="/" class="hover:text-primary">Home</a><span>/</span><span class="text-primary">Categories</span>
+  </div>
+
+  <header class="mb-8">
+    <p class="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-1">Shop</p>
+    <h1 class="text-3xl sm:text-4xl font-display font-extrabold">Browse by category</h1>
+    <p class="text-fg-muted mt-2">Click a category to see all products with that label.</p>
+  </header>
+
+  <div id="sb-categories-page" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+    <!-- filled by JS -->
+  </div>
+</div>
+
+<script>
+//<![CDATA[
+(function () {
+  // Edit this list to control what shows up on /p/categories.html.
+  // `slug` is the Blogger label you apply to product posts in that
+  // category. e.g. add label `helmets` to a post and it appears in
+  // the /search/label/helmets collection.
+  var CATEGORIES = [
+    { name: 'Helmets',          slug: 'helmets',           image: 'https://images.unsplash.com/photo-1622185135505-2d795003994a?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Gloves',           slug: 'gloves',            image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Riding Jackets',   slug: 'jackets',           image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Bike Lights',      slug: 'led-lights',        image: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Exhaust Systems',  slug: 'exhaust-systems',   image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=600&q=80' },
+    { name: 'All Products',     slug: 'product',           image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=600&q=80' },
+  ];
+
+  var grid = document.getElementById('sb-categories-page');
+  grid.innerHTML = CATEGORIES.map(function (c) {
+    var url = '/search/label/' + encodeURIComponent(c.slug);
+    return ''
+      + '<a href="' + url + '" class="group block rounded-2xl glass border border-line overflow-hidden hover:shadow-lg hover:-translate-y-1 transition">'
+      +   '<div class="aspect-[4/3] bg-bg-2 overflow-hidden">'
+      +     '<img alt="' + c.name + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="' + c.image + '"/>'
+      +   '</div>'
+      +   '<div class="p-3 sm:p-4 text-center">'
+      +     '<div class="font-bold text-fg text-sm sm:text-base">' + c.name + '</div>'
+      +     '<div class="text-[11px] text-fg-soft mt-0.5">Shop now &#8594;</div>'
+      +   '</div>'
+      + '</a>';
+  }).join('');
+})();
+//]]>
+</script>

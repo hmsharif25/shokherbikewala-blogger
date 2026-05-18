@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie.xml' b:templateVersion='1.3.6' b:version='2' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+  <head>
+    <meta charset='utf-8'/>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+    <meta content='width=device-width, initial-scale=1, viewport-fit=cover' name='viewport'/>
+    <meta content='#FF6A1A' name='theme-color'/>
+
+    <b:include data='blog' name='all-head-content'/>
+
+    <title><data:blog.pageTitle/></title>
+
+    <b:if cond='data:view.isSingleItem'>
+      <meta expr:content='data:blog.metaDescription' name='description'/>
+    <b:else/>
+      <meta content='Shokher Bikewala — premium bike accessories. Helmets, gloves, jackets, lights and more. Cash on delivery across Bangladesh.' name='description'/>
+    </b:if>
+
+    <!-- Fonts: preconnect + non-blocking load -->
+    <link href='https://fonts.googleapis.com' rel='preconnect'/>
+    <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+    <link href='https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Orbitron:wght@500;700;800&amp;family=Rajdhani:wght@500;600;700&amp;display=swap' rel='stylesheet'/>
+
+    <!-- Tailwind CDN (with JIT). For production, swap to a hosted build. -->
+    <script src='https://cdn.tailwindcss.com'/>
+    <script>
+    //<![CDATA[
+    window.tailwind = window.tailwind || {};
+    tailwind.config = {
+      darkMode: ['class', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          colors: {
+            bg: 'rgb(var(--c-bg) / <alpha-value>)',
+            'bg-2': 'rgb(var(--c-bg-2) / <alpha-value>)',
+            'surface-soft': 'rgb(var(--c-surface-soft) / <alpha-value>)',
+            line: 'rgb(var(--c-line) / <alpha-value>)',
+            fg: 'rgb(var(--c-fg) / <alpha-value>)',
+            'fg-muted': 'rgb(var(--c-fg-muted) / <alpha-value>)',
+            'fg-soft': 'rgb(var(--c-fg-soft) / <alpha-value>)',
+            primary: {
+              DEFAULT: 'rgb(var(--c-primary) / <alpha-value>)',
+              600: 'rgb(var(--c-primary-600) / <alpha-value>)',
+              soft: 'rgb(var(--c-primary-soft) / <alpha-value>)',
+            },
+            cyan: 'rgb(var(--c-cyan) / <alpha-value>)',
+            gold: 'rgb(var(--c-gold) / <alpha-value>)',
+          },
+          fontFamily: {
+            sans: ['Sora', 'Inter', 'system-ui', 'sans-serif'],
+            display: ['Orbitron', 'Rajdhani', 'sans-serif'],
+            head: ['Rajdhani', 'Sora', 'sans-serif'],
+          },
+          boxShadow: {
+            soft: '0 6px 24px -8px rgba(17,24,39,0.10), 0 2px 6px -2px rgba(17,24,39,0.05)',
+            card: '0 1px 2px rgba(17,24,39,0.04), 0 4px 16px -4px rgba(17,24,39,0.06)',
+          },
+        },
+      },
+    };
+    //]]>
+    </script>
+
+    <style>
+    /*<![CDATA[*/
+
+    /* ===== Theme tokens ===== */
+    :root, :root[data-theme='light'] {
+      --c-bg: 255 255 255;
+      --c-bg-2: 250 250 252;
+      --c-surface-soft: 245 245 248;
+      --c-line: 226 226 230;
+      --c-fg: 17 24 39;
+      --c-fg-muted: 75 85 99;
+      --c-fg-soft: 107 114 128;
+      --c-primary: 255 106 26;
+      --c-primary-600: 232 88 12;
+      --c-primary-soft: 255 226 204;
+      --c-cyan: 0 145 180;
+      --c-gold: 200 145 0;
+      --glass-bg: 255 255 255;
+      --glass-bg-alpha: 0.78;
+      --glass-border: 17 24 39;
+      --glass-border-alpha: 0.06;
+    }
+    :root[data-theme='dark'] {
+      --c-bg: 10 10 14;
+      --c-bg-2: 18 18 28;
+      --c-surface-soft: 22 22 36;
+      --c-line: 255 255 255;
+      --c-fg: 244 244 248;
+      --c-fg-muted: 200 200 215;
+      --c-fg-soft: 150 150 170;
+      --c-primary: 255 106 26;
+      --c-primary-600: 232 88 12;
+      --c-primary-soft: 60 30 10;
+      --c-cyan: 0 212 255;
+      --c-gold: 255 215 0;
+      --glass-bg: 18 18 28;
+      --glass-bg-alpha: 0.72;
+      --glass-border: 255 255 255;
+      --glass-border-alpha: 0.08;
+    }
+
+    html, body {
+      background: rgb(var(--c-bg));
+      color: rgb(var(--c-fg));
+    }
+    body {
+      font-family: 'Sora', 'Inter', 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    ::selection { background: rgb(var(--c-primary) / 0.35); color: rgb(var(--c-fg)); }
+
+    /* Blogger admin chrome cleanup — hide stock widgets we replace */
+    .widget.HTML > .widget-content > .title,
+    .post-footer,
+    .blog-pager,
+    .feed-links,
+    #Attribution1 { display: none; }
+
+    .glass {
+      background: rgb(var(--glass-bg) / var(--glass-bg-alpha));
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgb(var(--glass-border) / var(--glass-border-alpha));
+    }
+
+    .sb-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgb(var(--c-primary) / 0.5), rgb(var(--c-cyan) / 0.4), transparent);
+    }
+
+    /* hero gradient orbs */
+    .sb-orb {
+      position: absolute; border-radius: 9999px; filter: blur(80px); opacity: 0.55;
+      pointer-events: none;
+    }
+
+    /* product card hover */
+    .sb-product-card { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+    .sb-product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px -12px rgba(255,106,26,0.25); }
+
+    /* page loader */
+    #sb-loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgb(var(--c-bg));
+      display: grid; place-items: center;
+      transition: opacity .4s ease, visibility .4s ease;
+    }
+    #sb-loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+    .sb-loader-spin {
+      width: 56px; height: 56px; border-radius: 9999px;
+      border: 3px solid rgb(var(--c-line));
+      border-top-color: rgb(var(--c-primary));
+      animation: sb-spin 0.9s linear infinite;
+    }
+    @keyframes sb-spin { to { transform: rotate(360deg); } }
+
+    /* nav active */
+    .sb-nav-link.active { color: rgb(var(--c-primary)); }
+    .sb-nav-link.active::after {
+      content: ''; position: absolute; left: 50%; bottom: -4px;
+      transform: translateX(-50%);
+      width: 6px; height: 6px; border-radius: 9999px;
+      background: rgb(var(--c-primary));
+    }
+
+    /* reveal animations */
+    .sb-reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+    .sb-reveal.show { opacity: 1; transform: translateY(0); }
+
+    /* product description / page body styling for Blogger-rendered content */
+    .sb-prose h1,.sb-prose h2,.sb-prose h3 { color: rgb(var(--c-fg)); font-family: 'Rajdhani','Sora',sans-serif; font-weight: 700; }
+    .sb-prose h2 { font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    .sb-prose h3 { font-size: 1.25rem; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+    .sb-prose p { margin: 0.75rem 0; color: rgb(var(--c-fg-muted)); line-height: 1.7; }
+    .sb-prose ul,.sb-prose ol { margin: 0.75rem 0 0.75rem 1.5rem; color: rgb(var(--c-fg-muted)); }
+    .sb-prose li { margin: 0.25rem 0; }
+    .sb-prose a { color: rgb(var(--c-primary)); text-decoration: underline; text-underline-offset: 3px; }
+    .sb-prose img { border-radius: 0.75rem; margin: 0.75rem 0; }
+    .sb-prose code,.sb-prose pre { background: rgb(var(--c-surface-soft)); border-radius: 0.5rem; padding: 0.15rem 0.4rem; font-size: 0.92em; }
+
+    /* hide raw product-meta block (rendered by JS into pretty layout) */
+    .sb-product-meta-raw { display: none !important; }
+
+    /* mobile bottom nav */
+    .sb-mobile-tab.active { color: rgb(var(--c-primary)); }
+
+    /*]]>*/
+    </style>
+
+    <b:skin><![CDATA[
+    /* Blogger-required skin block (kept minimal — real styles above) */
+    body { font-family: 'Sora', sans-serif; }
+    ]]></b:skin>
+  </head>
+
+  <body>
+    <!-- ===================== Page loader ===================== -->
+    <div id='sb-loader'>
+      <div class='sb-loader-spin'/>
+    </div>
+
+    <!-- ===================== Navbar ===================== -->
+    <header id='sb-header' class='fixed top-0 left-0 right-0 z-40 transition-all duration-300'>
+      <div class='max-w-7xl mx-auto px-3 sm:px-4 pt-3'>
+        <div class='glass rounded-full pl-3 pr-2 sm:pl-5 sm:pr-3 py-1.5 sm:py-2 flex items-center gap-3 sm:gap-4'>
+          <a class='flex items-center gap-2 flex-shrink-0' expr:href='data:blog.homepageUrl'>
+            <div class='w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/20 p-1 flex items-center justify-center'>
+              <img alt='Shokher Bikewala' class='w-full h-full object-contain' src='https://www.shokherbikewala.com/logo.png'/>
+            </div>
+            <div class='hidden sm:flex flex-col leading-none'>
+              <span class='font-head text-[13px] lg:text-sm font-bold text-fg tracking-wide'>SHOKHER</span>
+              <span class='font-head text-[9px] lg:text-[10px] font-bold text-primary tracking-[0.32em]'>BIKE WALA</span>
+            </div>
+          </a>
+
+          <nav class='hidden lg:flex items-center justify-center flex-1 gap-1' id='sb-nav-links'>
+            <a class='sb-nav-link relative px-3.5 py-2 text-[12px] font-bold uppercase tracking-[0.18em] text-fg-muted hover:text-fg' data-path='/' expr:href='data:blog.homepageUrl'>Home</a>
+            <a class='sb-nav-link relative px-3.5 py-2 text-[12px] font-bold uppercase tracking-[0.18em] text-fg-muted hover:text-fg' data-path='/search/label/product' expr:href='data:blog.homepageUrl + &quot;search/label/product&quot;'>Shop</a>
+            <a class='sb-nav-link relative px-3.5 py-2 text-[12px] font-bold uppercase tracking-[0.18em] text-fg-muted hover:text-fg' data-path='/p/categories.html' expr:href='data:blog.homepageUrl + &quot;p/categories.html&quot;'>Categories</a>
+            <a class='sb-nav-link relative px-3.5 py-2 text-[12px] font-bold uppercase tracking-[0.18em] text-fg-muted hover:text-fg' data-path='/p/about.html' expr:href='data:blog.homepageUrl + &quot;p/about.html&quot;'>About</a>
+            <a class='sb-nav-link relative px-3.5 py-2 text-[12px] font-bold uppercase tracking-[0.18em] text-fg-muted hover:text-fg' data-path='/p/contact.html' expr:href='data:blog.homepageUrl + &quot;p/contact.html&quot;'>Contact</a>
+          </nav>
+
+          <form id='sb-search-form' action='/search' method='get' class='hidden md:flex items-center bg-surface-soft border border-line rounded-full px-4 py-1.5 w-56 lg:w-64'>
+            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='text-fg-soft mr-2'><circle cx='11' cy='11' r='8'/><line x1='21' y1='21' x2='16.65' y2='16.65'/></svg>
+            <input type='text' name='q' placeholder='Search products...' class='flex-1 bg-transparent text-sm placeholder:text-fg-soft text-fg outline-none' aria-label='Search'/>
+          </form>
+
+          <div class='flex items-center gap-1.5 sm:gap-2 ml-auto lg:ml-0'>
+            <button id='sb-theme-toggle' aria-label='Toggle theme' class='w-9 h-9 grid place-items-center rounded-full bg-surface-soft border border-line text-fg-muted hover:text-primary hover:border-primary/40'>
+              <svg id='sb-icon-sun' xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='5'/><line x1='12' y1='1' x2='12' y2='3'/><line x1='12' y1='21' x2='12' y2='23'/><line x1='4.22' y1='4.22' x2='5.64' y2='5.64'/><line x1='18.36' y1='18.36' x2='19.78' y2='19.78'/><line x1='1' y1='12' x2='3' y2='12'/><line x1='21' y1='12' x2='23' y2='12'/><line x1='4.22' y1='19.78' x2='5.64' y2='18.36'/><line x1='18.36' y1='5.64' x2='19.78' y2='4.22'/></svg>
+              <svg id='sb-icon-moon' xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' style='display:none'><path d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/></svg>
+            </button>
+            <a expr:href='data:blog.homepageUrl + &quot;p/checkout.html&quot;' aria-label='Cart' class='hidden sm:inline-flex w-9 h-9 grid place-items-center rounded-full bg-surface-soft border border-line text-fg-muted hover:text-primary hover:border-primary/40'>
+              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'/><line x1='3' y1='6' x2='21' y2='6'/><path d='M16 10a4 4 0 0 1-8 0'/></svg>
+            </a>
+            <button id='sb-burger' aria-label='Open menu' class='lg:hidden w-9 h-9 grid place-items-center rounded-full bg-surface-soft border border-line text-fg-muted'>
+              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='3' y1='6' x2='21' y2='6'/><line x1='3' y1='12' x2='21' y2='12'/><line x1='3' y1='18' x2='21' y2='18'/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile drawer -->
+    <div id='sb-drawer' class='fixed inset-0 z-50 hidden'>
+      <div class='absolute inset-0 bg-black/40' data-close='1'/>
+      <div class='absolute right-3 top-3 bottom-3 w-[78vw] max-w-xs glass rounded-3xl p-5 pt-16 overflow-y-auto'>
+        <div class='absolute top-4 left-5 right-5 flex items-center gap-2.5'>
+          <div class='w-9 h-9 rounded-lg bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/20 p-1'>
+            <img alt='Logo' class='w-full h-full object-contain' src='https://www.shokherbikewala.com/logo.png'/>
+          </div>
+          <div class='flex flex-col leading-tight'>
+            <span class='font-head text-xs font-bold text-fg'>SHOKHER</span>
+            <span class='font-head text-[9px] text-primary tracking-[0.32em]'>BIKE WALA</span>
+          </div>
+          <button data-close='1' class='ml-auto w-8 h-8 grid place-items-center rounded-full bg-surface-soft border border-line'>
+            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'/><line x1='6' y1='6' x2='18' y2='18'/></svg>
+          </button>
+        </div>
+        <div class='flex flex-col gap-1' id='sb-drawer-links'>
+          <a class='block px-4 py-3 rounded-2xl text-base font-head font-bold uppercase tracking-wider text-fg-muted hover:bg-primary/10 hover:text-primary' expr:href='data:blog.homepageUrl'>Home</a>
+          <a class='block px-4 py-3 rounded-2xl text-base font-head font-bold uppercase tracking-wider text-fg-muted hover:bg-primary/10 hover:text-primary' expr:href='data:blog.homepageUrl + &quot;search/label/product&quot;'>Shop</a>
+          <a class='block px-4 py-3 rounded-2xl text-base font-head font-bold uppercase tracking-wider text-fg-muted hover:bg-primary/10 hover:text-primary' expr:href='data:blog.homepageUrl + &quot;p/categories.html&quot;'>Categories</a>
+          <a class='block px-4 py-3 rounded-2xl text-base font-head font-bold uppercase tracking-wider text-fg-muted hover:bg-primary/10 hover:text-primary' expr:href='data:blog.homepageUrl + &quot;p/about.html&quot;'>About</a>
+          <a class='block px-4 py-3 rounded-2xl text-base font-head font-bold uppercase tracking-wider text-fg-muted hover:bg-primary/10 hover:text-primary' expr:href='data:blog.homepageUrl + &quot;p/contact.html&quot;'>Contact</a>
+          <a class='block px-4 py-3 rounded-2xl text-base font-head font-bold uppercase tracking-wider text-fg-muted hover:bg-primary/10 hover:text-primary' expr:href='data:blog.homepageUrl + &quot;p/checkout.html&quot;'>Checkout</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Main ===================== -->
+    <main class='pt-24 sm:pt-28'>
+
+      <!-- HOMEPAGE -->
+      <b:if cond='data:view.isHomepage'>
+        <!-- Hero -->
+        <section class='relative overflow-hidden'>
+          <div class='sb-orb bg-primary/40' style='width:480px;height:480px;top:-160px;left:-120px'/>
+          <div class='sb-orb bg-cyan/30' style='width:420px;height:420px;top:120px;right:-140px'/>
+          <div class='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 grid lg:grid-cols-2 gap-10 items-center'>
+            <div class='space-y-5'>
+              <span class='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-bold tracking-wider uppercase'>
+                <span class='w-1.5 h-1.5 rounded-full bg-primary animate-pulse'/>
+                Premium Bike Accessories
+              </span>
+              <h1 class='text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold leading-[1.05] tracking-tight'>
+                Ride Bold.<br/>
+                <span class='text-primary'>Ride Premium.</span>
+              </h1>
+              <p class='text-fg-muted text-base sm:text-lg max-w-xl'>
+                Helmets, gloves, jackets, lights and exhaust systems for every Bangladeshi rider. Cash on delivery nationwide.
+              </p>
+              <div class='flex flex-col sm:flex-row gap-3 pt-2'>
+                <a expr:href='data:blog.homepageUrl + &quot;search/label/product&quot;' class='inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/25 hover:bg-primary-600 transition min-h-[48px]'>
+                  Shop Now
+                  <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><line x1='5' y1='12' x2='19' y2='12'/><polyline points='12 5 19 12 12 19'/></svg>
+                </a>
+                <a href='https://wa.me/8801518934708' target='_blank' rel='noopener' class='inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-green-600 hover:bg-green-700 text-white font-bold transition min-h-[48px]'>
+                  <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z'/></svg>
+                  WhatsApp Order
+                </a>
+              </div>
+            </div>
+            <div class='relative'>
+              <div class='aspect-square rounded-3xl glass overflow-hidden border border-line p-6 flex items-center justify-center'>
+                <img alt='Hero bike accessory' class='w-full h-full object-contain drop-shadow-2xl' src='https://images.unsplash.com/photo-1622185135505-2d795003994a?auto=format&amp;fit=crop&amp;w=900&amp;q=80'/>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class='sb-divider my-2'/>
+
+        <!-- Categories -->
+        <section class='py-12 sm:py-16'>
+          <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+            <div class='flex items-end justify-between gap-4 mb-6'>
+              <div>
+                <p class='text-xs font-bold uppercase tracking-[0.3em] text-primary mb-1'>Categories</p>
+                <h2 class='text-2xl sm:text-3xl font-display font-bold'>Shop by category</h2>
+              </div>
+              <a expr:href='data:blog.homepageUrl + &quot;p/categories.html&quot;' class='hidden sm:inline-flex items-center gap-1 text-sm font-bold text-primary'>View all
+                <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='9 18 15 12 9 6'/></svg>
+              </a>
+            </div>
+            <div id='sb-categories-grid' class='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4'>
+              <!-- Filled by JS -->
+            </div>
+          </div>
+        </section>
+
+        <div class='sb-divider my-2'/>
+
+        <!-- Featured products -->
+        <section class='py-12 sm:py-16'>
+          <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+            <div class='flex items-end justify-between gap-4 mb-6'>
+              <div>
+                <p class='text-xs font-bold uppercase tracking-[0.3em] text-primary mb-1'>Top picks</p>
+                <h2 class='text-2xl sm:text-3xl font-display font-bold'>Featured products</h2>
+              </div>
+              <a expr:href='data:blog.homepageUrl + &quot;search/label/product&quot;' class='hidden sm:inline-flex items-center gap-1 text-sm font-bold text-primary'>See all
+                <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='9 18 15 12 9 6'/></svg>
+              </a>
+            </div>
+            <div id='sb-products-grid' class='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5'>
+              <!-- Filled by JS -->
+            </div>
+          </div>
+        </section>
+
+        <div class='sb-divider my-2'/>
+
+        <!-- Brand story -->
+        <section class='py-12 sm:py-16'>
+          <div class='max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
+            <p class='text-xs font-bold uppercase tracking-[0.3em] text-primary mb-2'>Our story</p>
+            <h2 class='text-2xl sm:text-3xl font-display font-bold mb-3'>Built for Bangladeshi riders</h2>
+            <p class='text-fg-muted max-w-3xl mx-auto'>
+              Shokher Bikewala curates premium, road-tested bike accessories — from full-face helmets to LED kits — and delivers nationwide with cash on delivery. We obsess over fit, finish and price so every ride feels just a little better.
+            </p>
+            <div class='grid grid-cols-3 gap-3 sm:gap-6 mt-8 max-w-2xl mx-auto'>
+              <div class='p-4 rounded-2xl glass border border-line'>
+                <div class='text-2xl sm:text-3xl font-display font-extrabold text-primary'>2K+</div>
+                <div class='text-xs sm:text-sm text-fg-muted mt-1'>Happy riders</div>
+              </div>
+              <div class='p-4 rounded-2xl glass border border-line'>
+                <div class='text-2xl sm:text-3xl font-display font-extrabold text-primary'>100+</div>
+                <div class='text-xs sm:text-sm text-fg-muted mt-1'>Products</div>
+              </div>
+              <div class='p-4 rounded-2xl glass border border-line'>
+                <div class='text-2xl sm:text-3xl font-display font-extrabold text-primary'>64</div>
+                <div class='text-xs sm:text-sm text-fg-muted mt-1'>Districts served</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </b:if>
+
+      <!-- LABEL SEARCH (category / shop) -->
+      <b:if cond='data:view.isLabelSearch'>
+        <section class='py-8 sm:py-12'>
+          <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+            <p class='text-xs font-bold uppercase tracking-[0.3em] text-primary mb-1'>Collection</p>
+            <h1 class='text-2xl sm:text-3xl font-display font-bold mb-6'>
+              <data:blog.pageName/>
+            </h1>
+            <div id='sb-label-grid' class='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5'>
+              <!-- Filled by JS -->
+            </div>
+          </div>
+        </section>
+      </b:if>
+
+      <!-- SEARCH (text query) -->
+      <b:if cond='data:view.isSearch'>
+        <b:if cond='!data:view.isLabelSearch'>
+          <section class='py-8 sm:py-12'>
+            <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+              <p class='text-xs font-bold uppercase tracking-[0.3em] text-primary mb-1'>Search results</p>
+              <h1 class='text-2xl sm:text-3xl font-display font-bold mb-6'>
+                <data:blog.pageName/>
+              </h1>
+              <div id='sb-search-grid' class='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5'>
+                <!-- Filled by JS -->
+              </div>
+            </div>
+          </section>
+        </b:if>
+      </b:if>
+
+      <!-- POST / PAGE / DETAIL -->
+      <b:section class='main' id='main' name='Main' showaddelement='no'>
+        <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+            <b:widget-setting name='postsPerAd'>0</b:widget-setting>
+            <b:widget-setting name='showAuthor'>false</b:widget-setting>
+            <b:widget-setting name='showLabels'>false</b:widget-setting>
+            <b:widget-setting name='showCommentLink'>false</b:widget-setting>
+            <b:widget-setting name='showLocation'>false</b:widget-setting>
+            <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+            <b:widget-setting name='showInlineAds'>false</b:widget-setting>
+            <b:widget-setting name='showTimestamp'>false</b:widget-setting>
+            <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <b:if cond='data:view.isSingleItem'>
+              <b:loop values='data:posts' var='post'>
+                <b:include data='post' name='postArticle'/>
+              </b:loop>
+            </b:if>
+          </b:includable>
+
+          <b:includable id='postArticle' var='post'>
+            <article class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
+              <b:if cond='data:view.isPost'>
+                <!-- Product detail layout (post body should contain a .sb-product-meta-raw block) -->
+                <div class='grid lg:grid-cols-2 gap-8 sm:gap-10'>
+                  <div>
+                    <div id='sb-product-gallery' class='aspect-square rounded-2xl overflow-hidden glass border border-line grid place-items-center p-4'>
+                      <img alt='Product' class='w-full h-full object-contain' id='sb-product-main-image' src='https://www.shokherbikewala.com/logo.png'/>
+                    </div>
+                    <div class='grid grid-cols-4 gap-2 mt-3' id='sb-product-thumbs'>
+                      <!-- JS fills -->
+                    </div>
+                  </div>
+                  <div class='space-y-4'>
+                    <div class='flex items-center gap-2 text-xs uppercase tracking-wider text-fg-soft'>
+                      <a expr:href='data:blog.homepageUrl' class='hover:text-primary'>Home</a>
+                      <span>/</span>
+                      <a expr:href='data:blog.homepageUrl + &quot;search/label/product&quot;' class='hover:text-primary'>Shop</a>
+                    </div>
+                    <h1 class='text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold leading-tight'><data:post.title/></h1>
+
+                    <div class='flex items-baseline gap-3 flex-wrap' id='sb-product-price'>
+                      <!-- JS fills -->
+                    </div>
+
+                    <div class='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-600 text-xs font-bold' id='sb-product-stock'>
+                      In stock
+                    </div>
+
+                    <div class='sb-prose'>
+                      <data:post.body/>
+                    </div>
+
+                    <div class='pt-2 flex flex-col sm:flex-row gap-3'>
+                      <a id='sb-whatsapp-order' href='https://wa.me/8801518934708' target='_blank' rel='noopener' class='flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-green-600 hover:bg-green-700 text-white font-bold min-h-[52px]'>
+                        <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z'/></svg>
+                        Order via WhatsApp
+                      </a>
+                      <a id='sb-buy-now' expr:href='data:blog.homepageUrl + &quot;p/checkout.html&quot;' class='inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary hover:bg-primary-600 text-white font-bold min-h-[52px]'>
+                        <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'/><line x1='3' y1='6' x2='21' y2='6'/><path d='M16 10a4 4 0 0 1-8 0'/></svg>
+                        Buy Now
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </b:if>
+
+              <b:if cond='data:view.isPage'>
+                <h1 class='text-2xl sm:text-3xl font-display font-bold mb-6'><data:post.title/></h1>
+                <div class='sb-prose max-w-4xl'>
+                  <data:post.body/>
+                </div>
+              </b:if>
+            </article>
+          </b:includable>
+        </b:widget>
+      </b:section>
+
+    </main>
+
+    <!-- ===================== Footer ===================== -->
+    <footer class='mt-16 border-t border-line bg-surface-soft'>
+      <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-8'>
+        <div>
+          <div class='flex items-center gap-2 mb-3'>
+            <div class='w-9 h-9 rounded-lg bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/20 p-1'>
+              <img alt='Logo' class='w-full h-full object-contain' src='https://www.shokherbikewala.com/logo.png'/>
+            </div>
+            <div class='flex flex-col leading-tight'>
+              <span class='font-head text-sm font-bold'>SHOKHER</span>
+              <span class='font-head text-[10px] text-primary tracking-[0.32em]'>BIKE WALA</span>
+            </div>
+          </div>
+          <p class='text-sm text-fg-muted'>Premium bike accessories with cash on delivery across Bangladesh.</p>
+        </div>
+        <div>
+          <p class='text-xs font-bold uppercase tracking-wider text-fg-soft mb-3'>Shop</p>
+          <ul class='space-y-2 text-sm'>
+            <li><a expr:href='data:blog.homepageUrl + &quot;search/label/product&quot;' class='text-fg-muted hover:text-primary'>All products</a></li>
+            <li><a expr:href='data:blog.homepageUrl + &quot;search/label/helmets&quot;' class='text-fg-muted hover:text-primary'>Helmets</a></li>
+            <li><a expr:href='data:blog.homepageUrl + &quot;search/label/gloves&quot;' class='text-fg-muted hover:text-primary'>Gloves</a></li>
+            <li><a expr:href='data:blog.homepageUrl + &quot;search/label/jackets&quot;' class='text-fg-muted hover:text-primary'>Jackets</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class='text-xs font-bold uppercase tracking-wider text-fg-soft mb-3'>Pages</p>
+          <ul class='space-y-2 text-sm'>
+            <li><a expr:href='data:blog.homepageUrl + &quot;p/about.html&quot;' class='text-fg-muted hover:text-primary'>About</a></li>
+            <li><a expr:href='data:blog.homepageUrl + &quot;p/contact.html&quot;' class='text-fg-muted hover:text-primary'>Contact</a></li>
+            <li><a expr:href='data:blog.homepageUrl + &quot;p/checkout.html&quot;' class='text-fg-muted hover:text-primary'>Checkout</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class='text-xs font-bold uppercase tracking-wider text-fg-soft mb-3'>Follow</p>
+          <div class='flex items-center gap-2'>
+            <a href='https://wa.me/8801518934708' target='_blank' rel='noopener' aria-label='WhatsApp' class='w-9 h-9 grid place-items-center rounded-full bg-bg border border-line hover:border-primary/40 hover:text-primary text-fg-muted'>
+              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z'/></svg>
+            </a>
+            <a href='https://www.facebook.com/share/1CvH4aQ5kU/?mibextid=wwXIfr' target='_blank' rel='noopener' aria-label='Facebook' class='w-9 h-9 grid place-items-center rounded-full bg-bg border border-line hover:border-primary/40 hover:text-primary text-fg-muted'>
+              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z'/></svg>
+            </a>
+            <a href='https://www.instagram.com/shokherbikewala' target='_blank' rel='noopener' aria-label='Instagram' class='w-9 h-9 grid place-items-center rounded-full bg-bg border border-line hover:border-primary/40 hover:text-primary text-fg-muted'>
+              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='2' y='2' width='20' height='20' rx='5' ry='5'/><path d='M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z'/><line x1='17.5' y1='6.5' x2='17.51' y2='6.5'/></svg>
+            </a>
+            <a href='https://www.tiktok.com/@shokherbikewala' target='_blank' rel='noopener' aria-label='TikTok' class='w-9 h-9 grid place-items-center rounded-full bg-bg border border-line hover:border-primary/40 hover:text-primary text-fg-muted'>
+              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5'/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class='border-t border-line py-4 text-center text-xs text-fg-soft'>
+        &#169; <span id='sb-year'>2025</span> Shokher Bikewala. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- ===================== Floating WhatsApp ===================== -->
+    <a href='https://wa.me/8801518934708' target='_blank' rel='noopener' aria-label='Chat on WhatsApp'
+       class='fixed bottom-5 right-4 z-30 w-14 h-14 grid place-items-center rounded-full bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-500/30 transition'>
+      <svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z'/></svg>
+    </a>
+
+    <!-- ===================== Hidden config (read by JS) ===================== -->
+    <script id='sb-config' type='application/json'>
+    {
+      "blogId": "BLOG_ID_HERE",
+      "feedUrl": "/feeds/posts/summary",
+      "productLabel": "product",
+      "categories": [
+        { "name": "Helmets", "slug": "helmets", "image": "https://images.unsplash.com/photo-1622185135505-2d795003994a?auto=format&amp;fit=crop&amp;w=600&amp;q=80" },
+        { "name": "Gloves", "slug": "gloves", "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&amp;fit=crop&amp;w=600&amp;q=80" },
+        { "name": "Jackets", "slug": "jackets", "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&amp;fit=crop&amp;w=600&amp;q=80" },
+        { "name": "Lights", "slug": "led-lights", "image": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&amp;fit=crop&amp;w=600&amp;q=80" },
+        { "name": "Exhaust", "slug": "exhaust-systems", "image": "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&amp;fit=crop&amp;w=600&amp;q=80" }
+      ]
+    }
+    </script>
+
+    <!-- ===================== App logic ===================== -->
+    <script>
+    //<![CDATA[
+    (function () {
+      var CONFIG = {};
+      try { CONFIG = JSON.parse(document.getElementById('sb-config').textContent); } catch (e) {}
+
+      // ===== Theme =====
+      var root = document.documentElement;
+      var saved = localStorage.getItem('sb-theme') || 'light';
+      root.setAttribute('data-theme', saved);
+      function syncThemeIcons() {
+        var theme = root.getAttribute('data-theme');
+        var sun = document.getElementById('sb-icon-sun');
+        var moon = document.getElementById('sb-icon-moon');
+        if (sun && moon) {
+          sun.style.display = theme === 'dark' ? 'none' : '';
+          moon.style.display = theme === 'dark' ? '' : 'none';
+        }
+      }
+      document.addEventListener('click', function (e) {
+        if (e.target.closest('#sb-theme-toggle')) {
+          var t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          root.setAttribute('data-theme', t);
+          localStorage.setItem('sb-theme', t);
+          syncThemeIcons();
+        }
+      });
+      syncThemeIcons();
+
+      // ===== Loader =====
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          var el = document.getElementById('sb-loader');
+          if (el) el.classList.add('hide');
+        }, 200);
+      });
+
+      // ===== Scrolled navbar shadow =====
+      var hdr = document.getElementById('sb-header');
+      function onScroll() { if (hdr) hdr.classList.toggle('shadow-lg', window.scrollY > 30); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // ===== Mobile drawer =====
+      var drawer = document.getElementById('sb-drawer');
+      function setDrawer(open) {
+        if (!drawer) return;
+        drawer.classList.toggle('hidden', !open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+      document.addEventListener('click', function (e) {
+        if (e.target.closest('#sb-burger')) setDrawer(true);
+        if (e.target.closest('[data-close="1"]')) setDrawer(false);
+      });
+
+      // ===== Active nav link =====
+      var path = location.pathname;
+      document.querySelectorAll('.sb-nav-link').forEach(function (a) {
+        var dp = a.getAttribute('data-path') || '';
+        if (path === '/' && dp === '/') a.classList.add('active');
+        else if (dp !== '/' && path.indexOf(dp) === 0) a.classList.add('active');
+      });
+
+      // ===== Year =====
+      var yearEl = document.getElementById('sb-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // ===== Reveal on scroll =====
+      var io = ('IntersectionObserver' in window)
+        ? new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) en.target.classList.add('show');
+          });
+        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 })
+        : null;
+      function watch(el) { if (io) io.observe(el); else el.classList.add('show'); }
+
+      // ===== Render utilities =====
+      function fmtPrice(n) {
+        if (n == null || isNaN(n)) return '';
+        return 'BDT ' + Number(n).toLocaleString();
+      }
+
+      function extractMeta(html) {
+        // Try parsing a hidden <pre class="sb-product-meta-raw"> JSON block first.
+        try {
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(html, 'text/html');
+          var raw = doc.querySelector('.sb-product-meta-raw');
+          if (raw) {
+            var json = raw.textContent.trim();
+            if (json) return JSON.parse(json);
+          }
+        } catch (e) {}
+        // Fallback: try [key: value] markers in the content
+        var meta = {};
+        var rx = /\[(\w+)\s*:\s*([^\]]+)\]/g, m;
+        while ((m = rx.exec(html)) !== null) meta[m[1].toLowerCase()] = m[2].trim();
+        if (meta.price) meta.price = Number(meta.price);
+        if (meta.discount_price) meta.discount_price = Number(meta.discount_price);
+        return meta;
+      }
+
+      function postToProduct(entry) {
+        var title = (entry.title && entry.title.$t) || '';
+        var url = '';
+        (entry.link || []).forEach(function (l) { if (l.rel === 'alternate') url = l.href; });
+        var thumb = (entry.media$thumbnail && entry.media$thumbnail.url) || '';
+        if (thumb) thumb = thumb.replace(/\/s72-c\//, '/s600/');
+        var summary = (entry.summary && entry.summary.$t) || (entry.content && entry.content.$t) || '';
+        var meta = extractMeta(summary);
+        var labels = (entry.category || []).map(function (c) { return c.term; });
+        return {
+          title: title,
+          url: url,
+          image: meta.image || thumb,
+          images: meta.images || (thumb ? [thumb] : []),
+          price: meta.price,
+          discount_price: meta.discount_price,
+          badge: meta.badge,
+          category: meta.category,
+          labels: labels,
+          summary: summary,
+        };
+      }
+
+      function fetchFeed(label, max, cb) {
+        var url = (location.origin) + (CONFIG.feedUrl || '/feeds/posts/summary') +
+          (label ? '/-/' + encodeURIComponent(label) : '') +
+          '?alt=json&max-results=' + (max || 12);
+        fetch(url, { credentials: 'omit' })
+          .then(function (r) { return r.json(); })
+          .then(function (j) {
+            var entries = (j && j.feed && j.feed.entry) || [];
+            cb(entries.map(postToProduct));
+          })
+          .catch(function () { cb([]); });
+      }
+
+      function productCard(p) {
+        var price = p.discount_price != null ? p.discount_price : p.price;
+        var hasDiscount = p.discount_price != null && p.price != null && p.discount_price < p.price;
+        var badge = p.badge ? '<span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-primary text-white text-[10px] font-bold uppercase tracking-wider">' + p.badge + '</span>' : '';
+        var img = p.image || 'https://www.shokherbikewala.com/logo.png';
+        return (
+          '<a href="' + p.url + '" class="sb-product-card sb-reveal group block rounded-2xl glass border border-line overflow-hidden">' +
+            '<div class="relative aspect-square bg-bg-2 overflow-hidden">' +
+              badge +
+              '<img alt="' + p.title.replace(/"/g, '&quot;') + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="' + img + '"/>' +
+            '</div>' +
+            '<div class="p-3 sm:p-4">' +
+              '<h3 class="text-sm sm:text-base font-bold leading-snug line-clamp-2 text-fg min-h-[2.5em]">' + p.title + '</h3>' +
+              '<div class="mt-1.5 flex items-baseline gap-2">' +
+                (price != null ? '<span class="text-primary font-extrabold">' + fmtPrice(price) + '</span>' : '<span class="text-fg-soft text-xs">Price on request</span>') +
+                (hasDiscount ? '<span class="text-xs text-fg-soft line-through">' + fmtPrice(p.price) + '</span>' : '') +
+              '</div>' +
+            '</div>' +
+          '</a>'
+        );
+      }
+
+      function categoryCard(c) {
+        var labelUrl = location.origin + '/search/label/' + encodeURIComponent(c.slug);
+        return (
+          '<a href="' + labelUrl + '" class="sb-product-card sb-reveal group block rounded-2xl glass border border-line overflow-hidden">' +
+            '<div class="aspect-[4/3] bg-bg-2 overflow-hidden">' +
+              '<img alt="' + c.name + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="' + c.image + '"/>' +
+            '</div>' +
+            '<div class="p-3 text-center">' +
+              '<div class="font-bold text-fg text-sm sm:text-base">' + c.name + '</div>' +
+              '<div class="text-[11px] text-fg-soft mt-0.5">Shop now &#8594;</div>' +
+            '</div>' +
+          '</a>'
+        );
+      }
+
+      function renderGrid(targetId, items, renderer, emptyMsg) {
+        var grid = document.getElementById(targetId);
+        if (!grid) return;
+        if (!items.length) {
+          grid.innerHTML = '<p class="col-span-full text-center text-fg-soft py-12">' + (emptyMsg || 'Nothing here yet — check back soon.') + '</p>';
+          return;
+        }
+        grid.innerHTML = items.map(renderer).join('');
+        grid.querySelectorAll('.sb-reveal').forEach(watch);
+      }
+
+      // ===== Homepage =====
+      var catGrid = document.getElementById('sb-categories-grid');
+      if (catGrid && Array.isArray(CONFIG.categories)) {
+        renderGrid('sb-categories-grid', CONFIG.categories, categoryCard);
+      }
+      var prodGrid = document.getElementById('sb-products-grid');
+      if (prodGrid) {
+        fetchFeed(CONFIG.productLabel || 'product', 8, function (items) {
+          renderGrid('sb-products-grid', items, productCard, 'No products yet — add a Blogger post with label "product".');
+        });
+      }
+
+      // ===== Label search =====
+      var labelGrid = document.getElementById('sb-label-grid');
+      if (labelGrid) {
+        // Extract label from URL
+        var m = location.pathname.match(/\/search\/label\/([^/?]+)/);
+        var label = m ? decodeURIComponent(m[1]) : (CONFIG.productLabel || 'product');
+        fetchFeed(label, 24, function (items) {
+          renderGrid('sb-label-grid', items, productCard, 'No products in this collection yet.');
+        });
+      }
+
+      // ===== Search query =====
+      var searchGrid = document.getElementById('sb-search-grid');
+      if (searchGrid) {
+        var q = new URLSearchParams(location.search).get('q') || '';
+        var qLower = q.toLowerCase();
+        fetchFeed(CONFIG.productLabel || 'product', 50, function (items) {
+          var filtered = items.filter(function (p) {
+            return p.title.toLowerCase().indexOf(qLower) !== -1;
+          });
+          renderGrid('sb-search-grid', filtered, productCard, 'No results for "' + q + '".');
+        });
+      }
+
+      // ===== Product detail enrichment =====
+      var galleryMain = document.getElementById('sb-product-main-image');
+      if (galleryMain) {
+        // Parse meta from the rendered post body in the DOM
+        var bodyEl = document.querySelector('.sb-prose');
+        var meta = bodyEl ? extractMeta(bodyEl.innerHTML) : {};
+        // Title is rendered by Blogger; price/images/etc come from meta.
+        var firstImg = bodyEl && bodyEl.querySelector('img');
+        var images = (meta.images && meta.images.length)
+          ? meta.images
+          : (meta.image ? [meta.image] : (firstImg ? [firstImg.src] : []));
+        if (images.length) {
+          galleryMain.src = images[0];
+          var thumbs = document.getElementById('sb-product-thumbs');
+          if (thumbs && images.length > 1) {
+            thumbs.innerHTML = images.map(function (src, i) {
+              return '<button type="button" data-src="' + src + '" class="aspect-square rounded-lg overflow-hidden border border-line bg-bg-2 hover:border-primary/60' + (i === 0 ? ' ring-2 ring-primary' : '') + '"><img src="' + src + '" alt="" class="w-full h-full object-cover"/></button>';
+            }).join('');
+            thumbs.addEventListener('click', function (e) {
+              var b = e.target.closest('button[data-src]');
+              if (!b) return;
+              galleryMain.src = b.getAttribute('data-src');
+              thumbs.querySelectorAll('button').forEach(function (x) { x.classList.remove('ring-2', 'ring-primary'); });
+              b.classList.add('ring-2', 'ring-primary');
+            });
+          }
+        }
+
+        // Price
+        var priceEl = document.getElementById('sb-product-price');
+        if (priceEl) {
+          var p = meta.price, dp = meta.discount_price;
+          if (dp != null && p != null && dp < p) {
+            priceEl.innerHTML =
+              '<span class="text-3xl font-display font-extrabold text-primary">' + fmtPrice(dp) + '</span>' +
+              '<span class="text-base text-fg-soft line-through">' + fmtPrice(p) + '</span>' +
+              '<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-bold">' + Math.round(((p - dp) / p) * 100) + '% off</span>';
+          } else if (p != null) {
+            priceEl.innerHTML = '<span class="text-3xl font-display font-extrabold text-primary">' + fmtPrice(p) + '</span>';
+          } else {
+            priceEl.innerHTML = '<span class="text-fg-soft">Price on request</span>';
+          }
+        }
+
+        // Stock
+        if (String(meta.in_stock).toLowerCase() === 'false') {
+          var stockEl = document.getElementById('sb-product-stock');
+          if (stockEl) {
+            stockEl.className = 'inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 text-red-600 text-xs font-bold';
+            stockEl.textContent = 'Out of stock';
+          }
+        }
+
+        // Hook Buy Now -> /p/checkout.html?product=<slug>
+        var slugFromUrl = (location.pathname.split('/').pop() || '').replace(/\.html$/, '');
+        var buyBtn = document.getElementById('sb-buy-now');
+        if (buyBtn) {
+          var sep = buyBtn.href.indexOf('?') === -1 ? '?' : '&';
+          buyBtn.href = buyBtn.href + sep + 'product=' + encodeURIComponent(slugFromUrl) +
+            '&title=' + encodeURIComponent(document.title.split(' - ')[0]) +
+            (meta.price != null ? '&price=' + encodeURIComponent(meta.discount_price != null ? meta.discount_price : meta.price) : '');
+        }
+
+        // Hook WhatsApp text
+        var wa = document.getElementById('sb-whatsapp-order');
+        if (wa) {
+          var title = document.title.split(' - ')[0];
+          var price = meta.discount_price != null ? meta.discount_price : meta.price;
+          var msg = 'Hi! I want to order: ' + title + (price != null ? ' (' + fmtPrice(price) + ')' : '') + '\nLink: ' + location.href;
+          wa.href = 'https://wa.me/8801518934708?text=' + encodeURIComponent(msg);
+        }
+      }
+    })();
+    //]]>
+    </script>
+  </body>
+</html>
