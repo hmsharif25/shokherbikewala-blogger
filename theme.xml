@@ -1,877 +1,1235 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie.xml' b:templateVersion='1.3.6' b:version='2' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
-  <head>
-    <meta charset='utf-8'/>
-    <meta content='IE=edge' http-equiv='X-UA-Compatible'/>
-    <meta content='width=device-width, initial-scale=1, viewport-fit=cover' name='viewport'/>
-    <meta content='#FF6A1A' name='theme-color'/>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:templateVersion='1.3.0' expr:dir='data:blog.languageDirection' lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+<meta content='width=device-width, initial-scale=1, viewport-fit=cover' name='viewport'/>
+<meta content='#FF6A1A' name='theme-color'/>
+<b:include data='blog' name='all-head-content'/>
+<title><data:blog.pageTitle/></title>
+<b:skin><![CDATA[/* skin reserved for Blogger */]]></b:skin>
 
-    <b:include data='blog' name='all-head-content'/>
-
-    <title><data:blog.pageTitle/></title>
-
-    <b:if cond='data:view.isSingleItem'>
-      <meta expr:content='data:blog.metaDescription' name='description'/>
-    <b:else/>
-      <meta content='Shokher Bikewala — premium bike accessories. Helmets, gloves, jackets, lights and more. Cash on delivery across Bangladesh.' name='description'/>
-    </b:if>
-
-    <!-- Fonts: preconnect + non-blocking load -->
-    <link href='https://fonts.googleapis.com' rel='preconnect'/>
-    <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
-    <link href='https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Orbitron:wght@500;700;800&amp;family=Rajdhani:wght@500;600;700&amp;display=swap' rel='stylesheet'/>
-
-    <!-- Tailwind CDN (with JIT). For production, swap to a hosted build. -->
-    <script src='https://cdn.tailwindcss.com'/>
-    <script>
-    //<![CDATA[
-    window.tailwind = window.tailwind || {};
-    tailwind.config = {
-      darkMode: ['class', '[data-theme="dark"]'],
-      theme: {
-        extend: {
-          colors: {
-            bg: 'rgb(var(--c-bg) / <alpha-value>)',
-            'bg-2': 'rgb(var(--c-bg-2) / <alpha-value>)',
-            'surface-soft': 'rgb(var(--c-surface-soft) / <alpha-value>)',
-            line: 'rgb(var(--c-line) / <alpha-value>)',
-            fg: 'rgb(var(--c-fg) / <alpha-value>)',
-            'fg-muted': 'rgb(var(--c-fg-muted) / <alpha-value>)',
-            'fg-soft': 'rgb(var(--c-fg-soft) / <alpha-value>)',
-            primary: {
-              DEFAULT: 'rgb(var(--c-primary) / <alpha-value>)',
-              600: 'rgb(var(--c-primary-600) / <alpha-value>)',
-              soft: 'rgb(var(--c-primary-soft) / <alpha-value>)',
-            },
-            cyan: 'rgb(var(--c-cyan) / <alpha-value>)',
-            gold: 'rgb(var(--c-gold) / <alpha-value>)',
-          },
-          fontFamily: {
-            sans: ['Sora', 'Inter', 'system-ui', 'sans-serif'],
-            display: ['Orbitron', 'Rajdhani', 'sans-serif'],
-            head: ['Rajdhani', 'Sora', 'sans-serif'],
-          },
-          boxShadow: {
-            soft: '0 6px 24px -8px rgba(17,24,39,0.10), 0 2px 6px -2px rgba(17,24,39,0.05)',
-            card: '0 1px 2px rgba(17,24,39,0.04), 0 4px 16px -4px rgba(17,24,39,0.06)',
-          },
-        },
+<link rel='preconnect' href='https://fonts.googleapis.com'/>
+<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin='anonymous'/>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Orbitron:wght@500;600;700;800;900&amp;family=Rajdhani:wght@500;600;700&amp;family=Sora:wght@500;600;700&amp;display=swap' rel='stylesheet'/>
+<script src='https://cdn.tailwindcss.com'></script>
+<script src='https://unpkg.com/lucide@latest'></script>
+<script>/*<![CDATA[*/
+tailwind.config = {
+  darkMode: ['class', '[data-theme="dark"]'],
+  theme: {
+    extend: {
+      colors: {
+        primary: { DEFAULT: '#FF6A1A', 50:'#FFF3EC',100:'#FFE0CC',200:'#FFC299',300:'#FFA266',400:'#FF8B3D',500:'#FF6A1A',600:'#E05500',700:'#B34400',800:'#803000',900:'#4D1D00' },
+        cyan: { DEFAULT:'#00B7E5',50:'#E6FAFF',100:'#B3F0FF',200:'#80E6FF',300:'#4DDBFF',400:'#1AD1FF',500:'#00B7E5',600:'#0093B8',700:'#006F8A' },
+        gold: '#E0A500',
+        dark: '#0a0a0a',
+        bg: 'rgb(var(--c-bg) / <alpha-value>)',
+        'bg-2': 'rgb(var(--c-bg-2) / <alpha-value>)',
+        surface: 'rgb(var(--c-surface-soft) / <alpha-value>)',
+        'surface-hover': 'rgb(var(--c-surface-hover) / <alpha-value>)',
+        line: 'rgb(var(--c-line) / <alpha-value>)',
+        fg: 'rgb(var(--c-fg) / <alpha-value>)',
+        'fg-muted': 'rgb(var(--c-fg-muted) / <alpha-value>)',
+        'fg-soft': 'rgb(var(--c-fg-soft) / <alpha-value>)',
       },
-    };
-    //]]>
-    </script>
+      fontFamily: {
+        display: ['Orbitron','sans-serif'],
+        headline: ['Orbitron','sans-serif'],
+        body: ['Inter','sans-serif'],
+        racing: ['Rajdhani','sans-serif'],
+        ui: ['Rajdhani','sans-serif'],
+        sora: ['Sora','sans-serif'],
+      },
+    },
+  },
+};
+/*]]>*/</script>
+<style type='text/css'><![CDATA[
+:root, :root[data-theme="light"] {
+  --c-bg:255 255 255; --c-bg-2:250 250 252; --c-surface-soft:245 245 248; --c-surface-hover:240 240 245;
+  --c-line:226 226 230; --c-fg:17 24 39; --c-fg-muted:75 85 99; --c-fg-soft:107 114 128;
+  --c-primary:255 106 26; --c-primary-soft:255 226 204; --c-cyan:0 145 180; --c-gold:200 145 0;
+  --glass-bg:255 255 255; --glass-bg-alpha:0.78; --glass-border:17 24 39; --glass-border-alpha:0.06;
+  --shadow-card: 0 12px 36px -16px rgba(255,106,26,0.18), 0 22px 60px -28px rgba(17,24,39,0.18);
+}
+:root[data-theme="dark"], .dark {
+  --c-bg:10 10 14; --c-bg-2:18 18 28; --c-surface-soft:22 22 36; --c-surface-hover:30 30 46;
+  --c-line:255 255 255; --c-fg:244 244 248; --c-fg-muted:200 200 215; --c-fg-soft:150 150 170;
+  --c-primary:255 106 26; --c-primary-soft:60 30 10; --c-cyan:0 212 255; --c-gold:255 215 0;
+  --glass-bg:18 18 28; --glass-bg-alpha:0.72; --glass-border:255 255 255; --glass-border-alpha:0.08;
+  --shadow-card: 0 18px 48px -16px rgba(0,0,0,0.5), 0 28px 64px -22px rgba(0,0,0,0.7);
+}
+html { scroll-behavior:smooth; }
+body { font-family:'Inter','Sora',system-ui,sans-serif; background:rgb(var(--c-bg)); color:rgb(var(--c-fg)); transition:background-color .4s ease,color .4s ease; -webkit-font-smoothing:antialiased; }
+.font-display,.font-headline { font-family:'Orbitron','Inter',sans-serif; letter-spacing:-0.01em; }
+.font-racing,.font-ui { font-family:'Rajdhani','Inter',sans-serif; }
+.font-body { font-family:'Inter','Sora',sans-serif; }
+.font-sora { font-family:'Sora','Inter',sans-serif; }
+img { max-width:100%; height:auto; display:block; }
+a { color:inherit; text-decoration:none; }
+button { font:inherit; cursor:pointer; }
+*:focus { outline:none; }
+*:focus-visible { outline:2px solid rgb(var(--c-primary)); outline-offset:2px; border-radius:6px; }
+::selection { background:rgb(var(--c-primary)/0.25); color:rgb(var(--c-fg)); }
+/* Animated mesh + gradient orbs */
+.premium-mesh-bg {
+  background-image:
+    radial-gradient(at 22% 18%, rgba(255,106,26,0.18) 0px, transparent 55%),
+    radial-gradient(at 78% 28%, rgba(0,145,180,0.14) 0px, transparent 55%),
+    radial-gradient(at 18% 82%, rgba(224,165,0,0.10) 0px, transparent 55%),
+    radial-gradient(at 82% 88%, rgba(255,106,26,0.12) 0px, transparent 55%);
+  background-size:200% 200%; animation:meshDrift 22s ease-in-out infinite alternate;
+}
+:root[data-theme="dark"] .premium-mesh-bg {
+  background-image:
+    radial-gradient(at 22% 18%, rgba(255,106,26,0.22) 0px, transparent 55%),
+    radial-gradient(at 78% 28%, rgba(0,183,229,0.18) 0px, transparent 55%),
+    radial-gradient(at 18% 82%, rgba(255,215,0,0.14) 0px, transparent 55%),
+    radial-gradient(at 82% 88%, rgba(255,106,26,0.16) 0px, transparent 55%);
+}
+@keyframes meshDrift { 0% { background-position:0% 0%,100% 0%,0% 100%,100% 100%; } 100% { background-position:20% 10%,80% 20%,10% 90%,90% 80%; } }
+.glass { background:rgb(var(--glass-bg) / var(--glass-bg-alpha)); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid rgb(var(--glass-border) / var(--glass-border-alpha)); box-shadow:var(--shadow-card); }
+.text-gradient-primary { background:linear-gradient(100deg,#FF6A1A 0%,#FFB347 35%,#FFD700 60%,#FF6A1A 100%); background-size:200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shimmer 6s ease-in-out infinite; }
+.text-gradient-fire { background:linear-gradient(100deg,#FF4500 0%,#FF8B3D 25%,#FFD700 50%,#FF8B3D 75%,#FF4500 100%); background-size:200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shimmer 5s linear infinite; }
+.text-gradient-headline { background:linear-gradient(180deg,rgb(var(--c-fg)) 0%,rgb(var(--c-fg-muted)) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+:root[data-theme="dark"] .text-gradient-headline { background:linear-gradient(180deg,#fff 0%,#b8b8c5 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+@keyframes shimmer { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
+.chrome-chip { display:inline-flex; align-items:center; gap:.5rem; padding:.4rem .9rem; border-radius:999px; font-family:'Rajdhani',sans-serif; font-weight:600; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:rgb(var(--c-primary)); background:linear-gradient(180deg,rgba(255,106,26,.10),rgba(255,106,26,.04)); border:1px solid rgba(255,106,26,.25); box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 6px 18px -10px rgba(255,106,26,.4); }
+:root[data-theme="dark"] .chrome-chip { background:linear-gradient(180deg,rgba(255,106,26,.18),rgba(255,106,26,.06)); border:1px solid rgba(255,106,26,.35); }
+.chrome-chip.cyan { color:rgb(var(--c-cyan)); background:linear-gradient(180deg,rgba(0,183,229,.10),rgba(0,183,229,.04)); border-color:rgba(0,183,229,.30); }
+.chrome-chip.gold { color:rgb(var(--c-gold)); background:linear-gradient(180deg,rgba(224,165,0,.12),rgba(224,165,0,.04)); border-color:rgba(224,165,0,.32); }
+]]></style>
+<style type='text/css'><![CDATA[
+/* === Velocity capsule navbar === */
+.v-capsule { background:rgb(var(--c-bg) / 0.78); backdrop-filter:blur(20px) saturate(150%); -webkit-backdrop-filter:blur(20px) saturate(150%); border:1px solid rgb(var(--c-line) / 0.7); box-shadow:0 10px 40px -12px rgba(17,24,39,.10),0 2px 6px -2px rgba(17,24,39,.04),inset 0 1px 0 rgba(255,255,255,.6); }
+:root[data-theme="dark"] .v-capsule { background:rgba(18,18,28,.72); border-color:rgba(255,255,255,.08); box-shadow:0 18px 60px -18px rgba(0,0,0,.55),0 2px 12px -2px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.04); }
+.v-capsule-soft { background:rgb(var(--c-bg) / 0.55); backdrop-filter:blur(18px) saturate(140%); border:1px solid rgb(var(--c-line) / 0.5); }
+.v-headline { font-family:'Orbitron','Inter',sans-serif; font-weight:800; letter-spacing:-0.02em; line-height:1.05; font-style:italic; padding-bottom:.08em; }
+.v-headline em { font-style:italic; display:inline-block; padding-bottom:.12em; margin-bottom:-.12em; background:linear-gradient(135deg,#ff7a1f 0%,#ff5a00 50%,#ff8a3a 100%); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 0 50px rgba(255,106,26,.28); }
+:root[data-theme="light"] .v-headline { color:#0e0f12; }
+:root[data-theme="dark"] .v-headline { color:#f5f6fa; }
+/* Pill CTAs */
+.v-pill-cta { position:relative; display:inline-flex; align-items:center; gap:.75rem; padding:.95rem 1.6rem; border-radius:999px; font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#fff; background:linear-gradient(135deg,#ff7a1f 0%,#ff5a00 100%); box-shadow:0 14px 32px -10px rgba(255,90,0,.55),0 4px 12px -4px rgba(255,90,0,.4),inset 0 1px 0 rgba(255,255,255,.35); transition:transform .25s ease,box-shadow .3s ease; overflow:hidden; isolation:isolate; }
+.v-pill-cta::before { content:''; position:absolute; inset:0; border-radius:inherit; background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%); transform:translateX(-150%); transition:transform .7s ease; z-index:-1; }
+.v-pill-cta:hover { transform:translateY(-2px); }
+.v-pill-cta:hover::before { transform:translateX(150%); }
+.v-pill-ghost { display:inline-flex; align-items:center; gap:.5rem; padding:.7rem 1.25rem; border-radius:999px; font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:rgb(var(--c-fg)); background:rgb(var(--c-bg) / 0.7); border:1px solid rgb(var(--c-line)); transition:all .25s ease; }
+.v-pill-ghost:hover { background:rgb(var(--c-bg)); border-color:rgb(var(--c-primary) / 0.5); color:rgb(var(--c-primary)); transform:translateY(-2px); }
+/* Product / category cards */
+.v-product-card { position:relative; background:rgb(var(--c-bg) / 0.92); backdrop-filter:blur(12px); border:1px solid rgb(var(--c-line)); border-radius:1.5rem; box-shadow:0 8px 28px -12px rgba(17,24,39,.12),inset 0 1px 0 rgba(255,255,255,.7); transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease,border-color .4s ease; overflow:hidden; isolation:isolate; }
+.v-product-card:hover { transform:translateY(-6px); box-shadow:0 22px 50px -18px rgba(255,90,0,.25),0 8px 18px -6px rgba(17,24,39,.1),inset 0 1px 0 rgba(255,255,255,.7); }
+:root[data-theme="dark"] .v-product-card { background:rgba(22,22,36,.85); border-color:rgba(255,255,255,.06); }
+:root[data-theme="dark"] .v-product-card:hover { box-shadow:0 28px 70px -22px rgba(255,90,0,.3),0 10px 22px -8px rgba(0,0,0,.6); }
+.v-cat-card { position:relative; background:rgb(var(--c-bg) / 0.92); border:1px solid rgb(var(--c-line)); border-radius:1.5rem; box-shadow:0 8px 28px -14px rgba(17,24,39,.1),inset 0 1px 0 rgba(255,255,255,.6); overflow:hidden; isolation:isolate; transition:all .4s cubic-bezier(.22,1,.36,1); }
+.v-cat-card::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(255,122,31,.12),transparent 65%); opacity:0; transition:opacity .4s ease; pointer-events:none; z-index:0; }
+.v-cat-card:hover { transform:translateY(-6px); border-color:rgb(var(--c-primary) / 0.4); box-shadow:0 22px 50px -18px rgba(255,90,0,.25); }
+.v-cat-card:hover::before { opacity:1; }
+:root[data-theme="dark"] .v-cat-card { background:rgba(22,22,36,.85); border-color:rgba(255,255,255,.06); }
+/* Eyebrow / discount / dots / stars */
+.v-eyebrow { display:inline-flex; align-items:center; gap:.6rem; font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.32em; text-transform:uppercase; font-size:.7rem; color:rgb(var(--c-primary)); }
+.v-eyebrow::before,.v-eyebrow::after { content:''; width:28px; height:1px; background:linear-gradient(90deg,transparent,rgb(var(--c-primary))); }
+.v-eyebrow::after { background:linear-gradient(90deg,rgb(var(--c-primary)),transparent); }
+.v-eyebrow-long { display:inline-flex; align-items:center; justify-content:center; gap:.8rem; font-family:'Rajdhani',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:rgb(var(--c-primary)); }
+.v-eyebrow-long::before,.v-eyebrow-long::after { content:''; flex:1; max-width:5rem; height:1px; background:linear-gradient(90deg,transparent,rgb(var(--c-primary))); }
+.v-eyebrow-long::after { background:linear-gradient(90deg,rgb(var(--c-primary)),transparent); }
+.v-tagline-pill { display:inline-flex; align-items:center; gap:.55rem; padding:.45rem .95rem; border-radius:9999px; background:rgb(var(--c-bg) / 0.6); border:1px solid rgb(var(--c-line) / 0.7); backdrop-filter:blur(10px); font-family:'Sora','Rajdhani',sans-serif; font-weight:600; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:rgb(var(--c-fg-muted)); white-space:nowrap; }
+.v-tagline-pill-dot { width:.4rem; height:.4rem; border-radius:9999px; background:rgb(var(--c-primary)); box-shadow:0 0 8px 1px rgba(255,122,31,.6); animation:pulseDot 2s ease-in-out infinite; }
+@keyframes pulseDot { 0%,100% { transform:scale(1); opacity:1; } 50% { transform:scale(1.4); opacity:.7; } }
+.v-discount-chip { position:absolute; top:.75rem; left:.75rem; display:inline-flex; align-items:center; gap:.25rem; padding:.3rem .55rem; border-radius:.6rem; font-family:'Rajdhani',sans-serif; font-weight:700; font-size:.7rem; letter-spacing:.04em; background:linear-gradient(135deg,#ff4500,#ff8b3d); color:#fff; box-shadow:0 6px 20px -8px rgba(255,69,0,.6); z-index:3; }
+.v-stars { display:inline-flex; gap:.15rem; }
+.v-star-fill { color:#ff8a3a; }
+.v-star-empty { color:rgb(var(--c-fg-soft) / 0.35); }
+.v-dot-field { background-image:radial-gradient(rgba(255,122,31,.18) 1px,transparent 1px); background-size:18px 18px; }
+.v-badge-dot { display:inline-flex; align-items:center; gap:.4rem; padding:.3rem .6rem; border-radius:.5rem; font-family:'Rajdhani',sans-serif; font-weight:700; font-size:.65rem; letter-spacing:.12em; text-transform:uppercase; background:rgba(0,183,229,.15); color:rgb(var(--c-cyan)); border:1px solid rgba(0,183,229,.25); }
+]]></style>
+<style type='text/css'><![CDATA[
+/* === SB cinematic hero === */
+.sb-cinematic-hero { position:relative; isolation:isolate; min-height:88vh; padding:6rem 1.25rem 4rem; overflow:hidden; }
+.sb-hero-floor { position:absolute; left:50%; bottom:-10%; width:140%; height:55%; transform:translateX(-50%) perspective(700px) rotateX(58deg); background:repeating-linear-gradient(90deg,transparent 0 60px,rgba(255,122,31,.15) 61px 62px),repeating-linear-gradient(0deg,transparent 0 50px,rgba(0,183,229,.08) 51px 52px); mask-image:linear-gradient(to top,#000 0%,transparent 70%); opacity:.35; pointer-events:none; z-index:0; }
+.sb-cinematic-title { font-family:'Orbitron','Inter',sans-serif; font-weight:900; letter-spacing:-0.02em; line-height:.95; }
+.sb-cinematic-title-md { font-family:'Orbitron','Inter',sans-serif; font-weight:800; letter-spacing:-0.01em; line-height:1; }
+.sb-cinematic-line { display:block; }
+.sb-cinematic-line-mid { color:rgb(var(--c-fg)); }
+.sb-cinematic-line-accent { background:linear-gradient(120deg,#ff4500 0%,#ff8b3d 35%,#ffd700 60%,#ff6a1a 100%); background-size:200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shimmer 5s linear infinite; }
+.sb-cinematic-copy { color:rgb(var(--c-fg-muted)); font-family:'Sora','Inter',sans-serif; max-width:48ch; }
+.sb-eyebrow-bar { display:inline-flex; align-items:center; gap:1rem; }
+.sb-eyebrow-bar-line { width:48px; height:1px; background:linear-gradient(90deg,transparent,rgb(var(--c-primary))); }
+.sb-flicker { animation:flicker 6s ease-in-out infinite; }
+@keyframes flicker { 0%,18%,22%,25%,53%,57%,100% { opacity:1; text-shadow:0 0 8px rgba(255,106,26,.6); } 20%,24%,55% { opacity:.85; text-shadow:none; } }
+.sb-shimmer-text { background:linear-gradient(110deg,rgba(255,106,26,.8) 0%,#fff 50%,rgba(255,106,26,.8) 100%); background-size:200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shimmer 3s ease-in-out infinite; }
+.sb-pulse-dot { animation:pulseDot 1.6s ease-in-out infinite; }
+.sb-typewriter-cursor { display:inline-block; width:2px; background:rgb(var(--c-primary)); margin-left:2px; animation:blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity:0; } }
+/* Ambient orb */
+.sb-ambient-orb { position:absolute; border-radius:50%; filter:blur(60px); opacity:.45; pointer-events:none; animation:floatY 8s ease-in-out infinite; }
+.sb-ambient-orb-1 { width:380px; height:380px; top:-100px; left:-100px; background:radial-gradient(circle,rgba(255,106,26,.5),transparent 70%); }
+.sb-ambient-orb-2 { width:320px; height:320px; top:30%; right:-100px; background:radial-gradient(circle,rgba(0,183,229,.4),transparent 70%); animation-delay:-2s; }
+.sb-ambient-orb-3 { width:280px; height:280px; bottom:-80px; left:30%; background:radial-gradient(circle,rgba(255,215,0,.3),transparent 70%); animation-delay:-4s; }
+@keyframes floatY { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-30px); } }
+/* Speed lines */
+.sb-speed-line { position:absolute; height:1px; background:linear-gradient(90deg,transparent,rgba(255,106,26,.6),transparent); opacity:0; animation:speedLine 2.6s linear infinite; }
+@keyframes speedLine { 0% { transform:translateX(-100%); opacity:0; } 20% { opacity:1; } 80% { opacity:1; } 100% { transform:translateX(120%); opacity:0; } }
+/* Section dividers */
+.sb-energy-divider { position:relative; height:1px; max-width:48rem; margin:0 auto; background:linear-gradient(90deg,transparent,rgb(var(--c-primary)/0.55),transparent); overflow:visible; }
+.sb-energy-divider::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:8px; height:8px; border-radius:50%; background:rgb(var(--c-primary)); box-shadow:0 0 14px 4px rgba(255,106,26,.6); }
+.sb-gaming-divider { position:relative; height:32px; margin:0 auto; overflow:hidden; }
+.sb-gaming-divider::before,.sb-gaming-divider::after { content:''; position:absolute; top:50%; height:1px; background:linear-gradient(90deg,transparent,rgb(var(--c-primary))); }
+.sb-gaming-divider::before { left:0; right:55%; background:linear-gradient(90deg,transparent,rgb(var(--c-primary))); }
+.sb-gaming-divider::after { right:0; left:55%; background:linear-gradient(90deg,rgb(var(--c-primary)),transparent); }
+.sb-gaming-divider span { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); padding:.25rem .8rem; font-family:'Rajdhani',sans-serif; font-weight:700; font-size:.65rem; letter-spacing:.3em; text-transform:uppercase; color:rgb(var(--c-primary)); border:1px solid rgba(255,106,26,.4); border-radius:999px; background:rgb(var(--c-bg)); }
+/* Hex pattern overlay */
+.sb-hex-pattern { background-image:repeating-linear-gradient(30deg,rgba(255,106,26,.06) 0 1px,transparent 1px 28px),repeating-linear-gradient(150deg,rgba(255,106,26,.06) 0 1px,transparent 1px 28px),repeating-linear-gradient(90deg,rgba(255,106,26,.06) 0 1px,transparent 1px 28px); }
+/* Scroll cue */
+.scroll-cue { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.4rem; color:rgb(var(--c-fg-soft)); animation:bobble 2s ease-in-out infinite; }
+.scroll-cue-tube { width:20px; height:32px; border:1.5px solid rgb(var(--c-fg-soft) / 0.5); border-radius:12px; position:relative; }
+.scroll-cue-tube::after { content:''; position:absolute; top:6px; left:50%; transform:translateX(-50%); width:3px; height:6px; border-radius:2px; background:rgb(var(--c-primary)); animation:scrollDot 1.6s ease-in-out infinite; }
+@keyframes scrollDot { 0%,100% { top:6px; opacity:1; } 50% { top:18px; opacity:.3; } }
+@keyframes bobble { 0%,100% { transform:translate(-50%,0); } 50% { transform:translate(-50%,6px); } }
+/* Premium product / feature cards */
+.premium-card { position:relative; border-radius:1.25rem; background:rgb(var(--glass-bg) / 0.85); backdrop-filter:blur(20px) saturate(1.4); border:1px solid rgb(var(--glass-border) / var(--glass-border-alpha)); box-shadow:var(--shadow-card); transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s cubic-bezier(.22,1,.36,1),border-color .3s ease; overflow:hidden; }
+.premium-card:hover { transform:translateY(-6px); border-color:rgba(255,106,26,.25); }
+:root[data-theme="light"] .premium-card { background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,250,245,.86)); border:1px solid rgba(255,255,255,.96); box-shadow:inset 0 1px 0 rgba(255,255,255,1),0 1px 2px rgba(17,24,39,.04),0 12px 36px -16px rgba(255,106,26,.18),0 22px 60px -28px rgba(17,24,39,.18); }
+:root[data-theme="dark"] .premium-card { background:linear-gradient(180deg,rgba(20,22,36,.78),rgba(14,14,26,.78)); border:1px solid rgba(255,255,255,.06); }
+.btn-premium { position:relative; display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.95rem 1.7rem; border-radius:.85rem; font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.04em; font-size:.95rem; color:#fff; background:linear-gradient(135deg,#FF6A1A 0%,#FF8B3D 50%,#FF6A1A 100%); background-size:200% 100%; border:1px solid rgba(255,255,255,.18); box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 28px -8px rgba(255,106,26,.55),0 18px 48px -16px rgba(255,106,26,.4); transition:background-position .6s ease,transform .25s,box-shadow .4s; overflow:hidden; isolation:isolate; }
+.btn-premium:hover { background-position:100% 0%; transform:translateY(-2px); }
+.btn-premium::before { content:''; position:absolute; inset:0; background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%); transform:translateX(-120%); transition:transform .8s cubic-bezier(.22,1,.36,1); }
+.btn-premium:hover::before { transform:translateX(120%); }
+.btn-ghost { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.9rem 1.6rem; border-radius:.85rem; font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.04em; font-size:.95rem; color:rgb(var(--c-fg)); background:rgb(var(--glass-bg) / 0.5); border:1px solid rgb(var(--c-line)); backdrop-filter:blur(14px); transition:all .25s ease; }
+.btn-ghost:hover { color:rgb(var(--c-primary)); border-color:rgba(255,106,26,.5); background:rgba(255,106,26,.08); transform:translateY(-2px); }
+]]></style>
+<style type='text/css'><![CDATA[
+/* === Mobile bottom dock === */
+.v-tabbar-safari-fix { position:fixed; left:0; right:0; bottom:0; padding-bottom:env(safe-area-inset-bottom,0px); z-index:50; transition:transform .4s ease; }
+.v-tabbar-safari-fix.hidden-down { transform:translateY(120%); }
+.v-tabbar { background:rgb(var(--c-bg) / 0.92); backdrop-filter:blur(20px) saturate(150%); -webkit-backdrop-filter:blur(20px) saturate(150%); border:1px solid rgb(var(--c-line) / 0.6); box-shadow:0 -10px 40px -12px rgba(17,24,39,.12),0 -2px 8px -2px rgba(17,24,39,.06); padding:.5rem .6rem; }
+:root[data-theme="dark"] .v-tabbar { background:rgba(18,18,28,.82); border-color:rgba(255,255,255,.08); box-shadow:0 -16px 50px -16px rgba(0,0,0,.55),0 -2px 14px -2px rgba(0,0,0,.35); }
+.v-mobile-nav-action { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.2rem; padding:.4rem .55rem; border-radius:1rem; color:rgb(var(--c-fg-muted)); transition:color .25s ease,background-color .25s ease,transform .25s ease; min-width:3.4rem; position:relative; }
+.v-mobile-nav-action.is-active { color:rgb(var(--c-primary)); }
+.v-mobile-nav-action.is-active::after { content:''; position:absolute; bottom:-.15rem; left:50%; transform:translateX(-50%); width:1.4rem; height:2px; border-radius:2px; background:rgb(var(--c-primary)); box-shadow:0 0 8px rgba(255,106,26,.6); }
+.v-mobile-nav-action:active { transform:scale(.95); }
+.v-fab { position:fixed; right:1rem; bottom:5.6rem; z-index:55; width:3.5rem; height:3.5rem; border-radius:9999px; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 14px 30px -10px rgba(37,211,102,.5),inset 0 1px 0 rgba(255,255,255,.35); transition:transform .25s ease,box-shadow .3s ease; }
+.v-fab-whatsapp { background:linear-gradient(135deg,#25d366,#128c7e); color:#fff; }
+.v-fab:hover { transform:translateY(-2px) scale(1.05); }
+@media (min-width:768px) { .v-fab { bottom:1.5rem; right:1.5rem; } }
+.v-sheet-backdrop { position:fixed; inset:0; background:rgba(0,0,0,.55); backdrop-filter:blur(6px); z-index:60; opacity:0; pointer-events:none; transition:opacity .35s ease; }
+.v-sheet-backdrop.open { opacity:1; pointer-events:auto; }
+.v-sheet { position:fixed; inset-inline:0; bottom:0; z-index:65; background:rgb(var(--c-bg)); border-top:1px solid rgb(var(--c-line)); border-radius:1.5rem 1.5rem 0 0; padding:1.25rem; transform:translateY(110%); transition:transform .45s cubic-bezier(.22,1,.36,1); max-height:88vh; overflow:auto; }
+.v-sheet.open { transform:translateY(0); }
+:root[data-theme="dark"] .v-sheet { background:rgb(var(--c-bg-2)); border-top-color:rgba(255,255,255,.08); }
+.v-reveal { opacity:0; transform:translateY(36px) scale(.94); transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1); }
+.v-reveal.in { opacity:1; transform:translateY(0) scale(1); }
+.v-reveal-left { transform:translateX(-36px) scale(.94); }
+.v-reveal-right { transform:translateX(36px) scale(.94); }
+.v-reveal-zoom { transform:scale(.9); }
+.sb-faq-card { background:rgb(var(--c-bg) / 0.92); border:1px solid rgb(var(--c-line)); border-radius:1.25rem; overflow:hidden; transition:border-color .3s ease,box-shadow .3s ease; }
+.sb-faq-card:hover { border-color:rgb(var(--c-primary) / 0.3); box-shadow:0 12px 36px -16px rgba(255,106,26,.18); }
+.sb-faq-trigger { display:flex; align-items:center; justify-content:space-between; gap:1rem; width:100%; padding:1rem 1.25rem; text-align:left; background:transparent; border:none; color:inherit; }
+.sb-faq-q { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1.02rem; color:rgb(var(--c-fg)); }
+.sb-faq-icon { width:1.75rem; height:1.75rem; border-radius:9999px; background:rgb(var(--c-primary) / 0.12); color:rgb(var(--c-primary)); display:inline-flex; align-items:center; justify-content:center; transition:transform .3s ease,background .3s ease; flex-shrink:0; }
+.sb-faq-card.open .sb-faq-icon { transform:rotate(45deg); background:rgb(var(--c-primary)); color:#fff; }
+.sb-faq-a { max-height:0; overflow:hidden; transition:max-height .45s ease,padding .3s ease; padding:0 1.25rem; color:rgb(var(--c-fg-muted)); font-size:.95rem; line-height:1.6; }
+.sb-faq-card.open .sb-faq-a { max-height:260px; padding:0 1.25rem 1.25rem 1.25rem; }
+.sb-social-card { position:relative; background:rgb(var(--c-bg) / 0.92); border:1px solid rgb(var(--c-line)); border-radius:1.5rem; padding:1rem; overflow:hidden; transition:transform .4s cubic-bezier(.22,1,.36,1),border-color .3s ease,box-shadow .3s ease; }
+.sb-social-card:hover { transform:translateY(-6px); border-color:rgb(var(--c-primary) / 0.4); box-shadow:0 22px 50px -18px rgba(255,90,0,.25); }
+:root[data-theme="dark"] .sb-social-card { background:rgba(22,22,36,.85); border-color:rgba(255,255,255,.06); }
+#sb-page-loader { position:fixed; inset:0; z-index:10000; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgb(var(--c-bg)); transition:opacity .55s ease; }
+#sb-page-loader.hide { opacity:0; pointer-events:none; }
+.sb-loader-shell { position:relative; display:flex; flex-direction:column; align-items:center; gap:1.4rem; max-width:24rem; padding:0 1.5rem; width:100%; }
+.sb-loader-ring { position:relative; width:6rem; height:6rem; border-radius:50%; border:1.5px solid rgba(255,106,26,.25); animation:spin 4s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.sb-loader-logo { position:absolute; inset:.6rem; border-radius:50%; background:rgba(255,106,26,.06); display:flex; align-items:center; justify-content:center; font-family:'Orbitron',sans-serif; font-weight:900; color:rgb(var(--c-primary)); font-size:1.6rem; }
+.sb-loader-bar { width:100%; height:4px; border-radius:9999px; background:rgb(var(--c-line) / 0.4); overflow:hidden; }
+.sb-loader-bar-fill { height:100%; width:0%; background:linear-gradient(90deg,#ff6a1a,#ffb347,#ff6a1a); animation:loaderFill 1.4s ease-out forwards; }
+@keyframes loaderFill { from { width:0%; } to { width:100%; } }
+.sb-trust-cell { display:flex; align-items:center; gap:.65rem; padding:.7rem .9rem; background:rgb(var(--c-bg) / 0.6); border:1px solid rgb(var(--c-line) / 0.5); border-radius:1rem; transition:border-color .3s ease,box-shadow .3s ease; }
+.sb-trust-cell:hover { border-color:rgb(var(--c-primary) / 0.35); box-shadow:0 8px 22px -10px rgba(255,106,26,.2); }
+.sb-trust-ico { width:2.2rem; height:2.2rem; border-radius:.7rem; background:linear-gradient(135deg,rgba(255,106,26,.18),rgba(255,106,26,.06)); color:rgb(var(--c-primary)); display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; }
+.sb-trust-label { font-family:'Rajdhani',sans-serif; font-weight:600; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:rgb(var(--c-fg)); }
+.sb-wishlist-btn { position:absolute; top:.6rem; right:.6rem; width:2.2rem; height:2.2rem; border-radius:9999px; background:rgb(var(--c-bg) / 0.85); border:1px solid rgb(var(--c-line) / 0.6); display:inline-flex; align-items:center; justify-content:center; color:rgb(var(--c-fg-muted)); transition:color .25s ease,background .25s ease,border-color .25s ease; z-index:3; }
+.sb-wishlist-btn:hover { color:#ff4500; border-color:rgba(255,69,0,.5); background:rgba(255,69,0,.06); }
+.sb-glow-underline { position:relative; padding-bottom:.25rem; }
+.sb-glow-underline::after { content:''; position:absolute; bottom:0; left:0; height:2px; width:0; background:linear-gradient(90deg,#ff6a1a,#ffb347); transition:width .35s ease; box-shadow:0 0 8px rgba(255,106,26,.45); }
+.sb-glow-underline:hover::after { width:100%; }
+.sb-section { padding:4rem 0; position:relative; }
+@media (min-width:768px) { .sb-section { padding:5.5rem 0; } }
+.sb-container { max-width:80rem; margin:0 auto; padding:0 1.25rem; }
+.sb-grid-products { display:grid; gap:1.25rem; grid-template-columns:repeat(2,minmax(0,1fr)); }
+@media (min-width:640px) { .sb-grid-products { grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem; } }
+@media (min-width:1024px) { .sb-grid-products { grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.75rem; } }
+.sb-grid-cats { display:grid; gap:1rem; grid-template-columns:repeat(2,minmax(0,1fr)); }
+@media (min-width:768px) { .sb-grid-cats { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media (min-width:1024px) { .sb-grid-cats { grid-template-columns:repeat(5,minmax(0,1fr)); } }
+body { padding-bottom:6rem; }
+@media (min-width:768px) { body { padding-bottom:1rem; } }
+.sb-product-detail { padding-top:5rem; }
+.sb-prod-grid { display:grid; gap:2rem; grid-template-columns:1fr; }
+@media (min-width:1024px) { .sb-prod-grid { grid-template-columns:1.1fr 1fr; gap:3rem; } }
+.sb-prod-gallery-main { position:relative; aspect-ratio:1/1; border-radius:1.5rem; overflow:hidden; background:rgb(var(--c-bg-2)); border:1px solid rgb(var(--c-line)); }
+.sb-prod-thumbs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.5rem; }
+.sb-prod-thumb { aspect-ratio:1/1; border-radius:.75rem; overflow:hidden; background:rgb(var(--c-bg-2)); border:1px solid rgb(var(--c-line)); cursor:pointer; transition:border-color .25s ease; }
+.sb-prod-thumb.active { border-color:rgb(var(--c-primary)); box-shadow:0 0 0 1px rgb(var(--c-primary)),0 8px 18px -8px rgba(255,106,26,.4); }
+.sb-prod-info { display:flex; flex-direction:column; gap:1.2rem; }
+.sb-prod-price { font-family:'Rajdhani',sans-serif; font-weight:800; color:rgb(var(--c-primary)); font-size:2rem; line-height:1; }
+.sb-prod-price-was { font-size:1.1rem; color:rgb(var(--c-fg-soft)); text-decoration:line-through; margin-left:.5rem; }
+.sb-prod-stock-ok { color:#16a34a; font-weight:600; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; }
+.sb-prod-stock-low { color:#dc2626; font-weight:600; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; }
+]]></style>
+</head>
+<body expr:class='&quot;font-body bg-bg text-fg has-mobile-tabbar&quot; + (data:view.isHomepage ? &quot; sb-view-home&quot; : (data:view.isPost ? &quot; sb-view-post&quot; : (data:view.isPage ? &quot; sb-view-page&quot; : &quot;&quot;)))'>
 
-    <style>
-    /*<![CDATA[*/
-
-    /* ===== Theme tokens ===== */
-    :root, :root[data-theme='light'] {
-      --c-bg: 255 255 255;
-      --c-bg-2: 250 250 252;
-      --c-surface-soft: 245 245 248;
-      --c-line: 226 226 230;
-      --c-fg: 17 24 39;
-      --c-fg-muted: 75 85 99;
-      --c-fg-soft: 107 114 128;
-      --c-primary: 255 106 26;
-      --c-primary-600: 232 88 12;
-      --c-primary-soft: 255 226 204;
-      --c-cyan: 0 145 180;
-      --c-gold: 200 145 0;
-      --glass-bg: 255 255 255;
-      --glass-bg-alpha: 0.78;
-      --glass-border: 17 24 39;
-      --glass-border-alpha: 0.06;
-    }
-    :root[data-theme='dark'] {
-      --c-bg: 10 10 14;
-      --c-bg-2: 18 18 28;
-      --c-surface-soft: 22 22 36;
-      --c-line: 255 255 255;
-      --c-fg: 244 244 248;
-      --c-fg-muted: 200 200 215;
-      --c-fg-soft: 150 150 170;
-      --c-primary: 255 106 26;
-      --c-primary-600: 232 88 12;
-      --c-primary-soft: 60 30 10;
-      --c-cyan: 0 212 255;
-      --c-gold: 255 215 0;
-      --glass-bg: 18 18 28;
-      --glass-bg-alpha: 0.72;
-      --glass-border: 255 255 255;
-      --glass-border-alpha: 0.08;
-    }
-
-    html, body {
-      background: rgb(var(--c-bg));
-      color: rgb(var(--c-fg));
-    }
-    body {
-      font-family: 'Sora', 'Inter', 'Segoe UI', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-    ::selection { background: rgb(var(--c-primary) / 0.35); color: rgb(var(--c-fg)); }
-
-    /* Blogger admin chrome cleanup — hide stock widgets we replace */
-    .widget.HTML > .widget-content > .title,
-    .post-footer,
-    .blog-pager,
-    .feed-links,
-    #Attribution1 { display: none; }
-
-    .glass {
-      background: rgb(var(--glass-bg) / var(--glass-bg-alpha));
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgb(var(--glass-border) / var(--glass-border-alpha));
-    }
-
-    .sb-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgb(var(--c-primary) / 0.5), rgb(var(--c-cyan) / 0.4), transparent);
-    }
-
-    /* hero gradient orbs */
-    .sb-orb {
-      position: absolute; border-radius: 9999px; filter: blur(80px); opacity: 0.55;
-      pointer-events: none;
-    }
-
-    /* product card hover */
-    .sb-product-card { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
-    .sb-product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px -12px rgba(255,106,26,0.25); }
-
-    /* page loader */
-    #sb-loader {
-      position: fixed; inset: 0; z-index: 9999;
-      background: rgb(var(--c-bg));
-      display: grid; place-items: center;
-      transition: opacity .4s ease, visibility .4s ease;
-    }
-    #sb-loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
-    .sb-loader-spin {
-      width: 56px; height: 56px; border-radius: 9999px;
-      border: 3px solid rgb(var(--c-line));
-      border-top-color: rgb(var(--c-primary));
-      animation: sb-spin 0.9s linear infinite;
-    }
-    @keyframes sb-spin { to { transform: rotate(360deg); } }
-
-    /* nav active */
-    .sb-nav-link.active { color: rgb(var(--c-primary)); }
-    .sb-nav-link.active::after {
-      content: ''; position: absolute; left: 50%; bottom: -4px;
-      transform: translateX(-50%);
-      width: 6px; height: 6px; border-radius: 9999px;
-      background: rgb(var(--c-primary));
-    }
-
-    /* reveal animations */
-    .sb-reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
-    .sb-reveal.show { opacity: 1; transform: translateY(0); }
-
-    /* product description / page body styling for Blogger-rendered content */
-    .sb-prose h1,.sb-prose h2,.sb-prose h3 { color: rgb(var(--c-fg)); font-family: 'Rajdhani','Sora',sans-serif; font-weight: 700; }
-    .sb-prose h2 { font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
-    .sb-prose h3 { font-size: 1.25rem; margin-top: 1.25rem; margin-bottom: 0.5rem; }
-    .sb-prose p { margin: 0.75rem 0; color: rgb(var(--c-fg-muted)); line-height: 1.7; }
-    .sb-prose ul,.sb-prose ol { margin: 0.75rem 0 0.75rem 1.5rem; color: rgb(var(--c-fg-muted)); }
-    .sb-prose li { margin: 0.25rem 0; }
-    .sb-prose a { color: rgb(var(--c-primary)); text-decoration: underline; text-underline-offset: 3px; }
-    .sb-prose img { border-radius: 0.75rem; margin: 0.75rem 0; }
-    .sb-prose code,.sb-prose pre { background: rgb(var(--c-surface-soft)); border-radius: 0.5rem; padding: 0.15rem 0.4rem; font-size: 0.92em; }
-
-    /* hide raw product-meta block (rendered by JS into pretty layout) */
-    .sb-product-meta-raw { display: none !important; }
-
-    /* mobile bottom nav */
-    .sb-mobile-tab.active { color: rgb(var(--c-primary)); }
-
-    /*]]>*/
-    </style>
-
-    <b:skin><![CDATA[
-    /* Blogger-required skin block (kept minimal — real styles above) */
-    body { font-family: 'Sora', sans-serif; }
-    ]]></b:skin>
-  </head>
-
-  <body>
-    <!-- ===================== Page loader ===================== -->
-    <div id='sb-loader'>
-      <div class='sb-loader-spin'/>
+<!-- Page loader (auto-hides) -->
+<div id='sb-page-loader' aria-hidden='true'>
+  <div class='sb-loader-shell'>
+    <div class='sb-loader-ring'>
+      <div class='sb-loader-logo'>SB</div>
     </div>
+    <div class='text-center'>
+      <div class='font-display font-extrabold text-xl text-fg tracking-tight'>Shokher Bikewala</div>
+      <div class='font-racing text-[10px] tracking-[0.28em] uppercase text-fg-soft mt-1'>Loading premium ride gear</div>
+    </div>
+    <div class='sb-loader-bar'><div class='sb-loader-bar-fill'></div></div>
+  </div>
+</div>
 
-    <!-- ===================== Navbar ===================== -->
-    <header id='sb-header' class='fixed top-0 left-0 right-0 z-40 transition-all duration-300'>
-      <div class='max-w-7xl mx-auto px-3 sm:px-4 pt-3'>
-        <div class='glass rounded-full pl-3 pr-2 sm:pl-5 sm:pr-3 py-1.5 sm:py-2 flex items-center gap-3 sm:gap-4'>
-          <a class='flex items-center gap-2 flex-shrink-0' expr:href='data:blog.homepageUrl'>
-            <div class='w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/20 p-1 flex items-center justify-center'>
-              <img alt='Shokher Bikewala' class='w-full h-full object-contain' src='https://www.shokherbikewala.com/logo.png'/>
-            </div>
-            <div class='hidden sm:flex flex-col leading-none'>
-              <span class='font-head text-[13px] lg:text-sm font-bold text-fg tracking-wide'>SHOKHER</span>
-              <span class='font-head text-[9px] lg:text-[10px] font-bold text-primary tracking-[0.32em]'>BIKE WALA</span>
-            </div>
-          </a>
+<!-- Site-wide animated background -->
+<div aria-hidden='true' class='fixed inset-0 -z-10 pointer-events-none overflow-hidden'>
+  <div class='absolute inset-0 premium-mesh-bg'></div>
+  <div class='sb-ambient-orb sb-ambient-orb-1'></div>
+  <div class='sb-ambient-orb sb-ambient-orb-2'></div>
+  <div class='sb-ambient-orb sb-ambient-orb-3'></div>
+  <div class='absolute inset-0 sb-hex-pattern opacity-30'></div>
+</div>
 
-          <nav class='hidden lg:flex items-center justify-center flex-1 gap-1' id='sb-nav-links'>
-            <a class='sb-nav-link relative px-3.5 py-2 text-[12px] font-bold uppercase tracking-[0.18em] text-fg-muted hover:text-fg' data-path='/' expr:href='data:blog.homepageUrl'>Home</a>
-            <a class='sb-nav-link relative px-3.5 py-2 text-[12px] font-bold uppercase tracking-[0.18em] text-fg-muted hover:text-fg' data-path='/search/label/product' expr:href='data:blog.homepageUrl + &quot;search/label/product&quot;'>Shop</a>
-            <a class='sb-nav-link relative px-3.5 py-2 text-[12px] font-bold uppercase tracking-[0.18em] text-fg-muted hover:text-fg' data-path='/p/categories.html' expr:href='data:blog.homepageUrl + &quot;p/categories.html&quot;'>Categories</a>
-            <a class='sb-nav-link relative px-3.5 py-2 text-[12px] font-bold uppercase tracking-[0.18em] text-fg-muted hover:text-fg' data-path='/p/about.html' expr:href='data:blog.homepageUrl + &quot;p/about.html&quot;'>About</a>
-            <a class='sb-nav-link relative px-3.5 py-2 text-[12px] font-bold uppercase tracking-[0.18em] text-fg-muted hover:text-fg' data-path='/p/contact.html' expr:href='data:blog.homepageUrl + &quot;p/contact.html&quot;'>Contact</a>
-          </nav>
-
-          <form id='sb-search-form' action='/search' method='get' class='hidden md:flex items-center bg-surface-soft border border-line rounded-full px-4 py-1.5 w-56 lg:w-64'>
-            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='text-fg-soft mr-2'><circle cx='11' cy='11' r='8'/><line x1='21' y1='21' x2='16.65' y2='16.65'/></svg>
-            <input type='text' name='q' placeholder='Search products...' class='flex-1 bg-transparent text-sm placeholder:text-fg-soft text-fg outline-none' aria-label='Search'/>
-          </form>
-
-          <div class='flex items-center gap-1.5 sm:gap-2 ml-auto lg:ml-0'>
-            <button id='sb-theme-toggle' aria-label='Toggle theme' class='w-9 h-9 grid place-items-center rounded-full bg-surface-soft border border-line text-fg-muted hover:text-primary hover:border-primary/40'>
-              <svg id='sb-icon-sun' xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='5'/><line x1='12' y1='1' x2='12' y2='3'/><line x1='12' y1='21' x2='12' y2='23'/><line x1='4.22' y1='4.22' x2='5.64' y2='5.64'/><line x1='18.36' y1='18.36' x2='19.78' y2='19.78'/><line x1='1' y1='12' x2='3' y2='12'/><line x1='21' y1='12' x2='23' y2='12'/><line x1='4.22' y1='19.78' x2='5.64' y2='18.36'/><line x1='18.36' y1='5.64' x2='19.78' y2='4.22'/></svg>
-              <svg id='sb-icon-moon' xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' style='display:none'><path d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/></svg>
-            </button>
-            <a expr:href='data:blog.homepageUrl + &quot;p/checkout.html&quot;' aria-label='Cart' class='hidden sm:inline-flex w-9 h-9 grid place-items-center rounded-full bg-surface-soft border border-line text-fg-muted hover:text-primary hover:border-primary/40'>
-              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'/><line x1='3' y1='6' x2='21' y2='6'/><path d='M16 10a4 4 0 0 1-8 0'/></svg>
-            </a>
-            <button id='sb-burger' aria-label='Open menu' class='lg:hidden w-9 h-9 grid place-items-center rounded-full bg-surface-soft border border-line text-fg-muted'>
-              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='3' y1='6' x2='21' y2='6'/><line x1='3' y1='12' x2='21' y2='12'/><line x1='3' y1='18' x2='21' y2='18'/></svg>
-            </button>
-          </div>
+<!-- ===================== Desktop Navbar (md+) ===================== -->
+<header class='fixed top-0 inset-x-0 z-40 hidden md:block pt-4'>
+  <div class='max-w-7xl mx-auto px-4'>
+    <div class='v-capsule rounded-full px-3 py-2 flex items-center gap-3'>
+      <a class='flex items-center gap-2.5 pl-2 pr-3 group' expr:href='data:blog.homepageUrl'>
+        <div class='relative w-9 h-9 rounded-full bg-gradient-to-br from-primary to-orange-500 flex items-center justify-center text-white font-display font-extrabold text-sm shadow-[0_8px_20px_-8px_rgba(255,106,26,0.6)] group-hover:scale-105 transition-transform'>SB</div>
+        <div class='leading-tight'>
+          <div class='font-display font-extrabold tracking-wider text-fg text-sm'>SHOKHER BIKEWALA</div>
+          <div class='font-racing text-[10px] tracking-[0.28em] uppercase text-fg-soft -mt-0.5'>Premium Ride Gear</div>
         </div>
+      </a>
+      <nav class='flex items-center gap-1 ml-2'>
+        <a expr:href='data:blog.homepageUrl' class='font-racing text-sm uppercase tracking-wide px-3 py-1.5 rounded-full text-fg hover:text-primary transition-colors sb-glow-underline'>Home</a>
+        <a href='/search/label/product' class='font-racing text-sm uppercase tracking-wide px-3 py-1.5 rounded-full text-fg hover:text-primary transition-colors sb-glow-underline'>Shop</a>
+        <a href='/p/categories.html' class='font-racing text-sm uppercase tracking-wide px-3 py-1.5 rounded-full text-fg hover:text-primary transition-colors sb-glow-underline'>Categories</a>
+        <a href='/p/about.html' class='font-racing text-sm uppercase tracking-wide px-3 py-1.5 rounded-full text-fg hover:text-primary transition-colors sb-glow-underline'>About</a>
+        <a href='/p/contact.html' class='font-racing text-sm uppercase tracking-wide px-3 py-1.5 rounded-full text-fg hover:text-primary transition-colors sb-glow-underline'>Contact</a>
+      </nav>
+      <div class='flex-1'></div>
+      <button id='sb-nav-search' type='button' aria-label='Search' class='w-9 h-9 rounded-full border border-line/60 hover:border-primary/50 text-fg hover:text-primary transition-colors flex items-center justify-center'>
+        <i data-lucide='search' style='width:18px;height:18px'></i>
+      </button>
+      <button id='sb-theme-toggle' type='button' aria-label='Toggle theme' class='w-9 h-9 rounded-full border border-line/60 hover:border-primary/50 text-fg hover:text-primary transition-colors flex items-center justify-center'>
+        <i data-lucide='moon' style='width:18px;height:18px' class='sb-theme-icon-moon'></i>
+        <i data-lucide='sun' style='width:18px;height:18px' class='sb-theme-icon-sun' hidden='hidden'></i>
+      </button>
+      <a href='https://wa.me/8801518934708' target='_blank' rel='noopener' class='v-pill-cta text-sm py-2.5 px-5'>
+        <i data-lucide='message-circle' style='width:16px;height:16px'></i>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== Mobile Top Bar (sm) ===================== -->
+<header class='fixed top-0 inset-x-0 z-40 md:hidden pt-3 px-3'>
+  <div class='v-capsule rounded-full pl-2 pr-3 py-2 flex items-center gap-3'>
+    <a class='flex items-center gap-2' expr:href='data:blog.homepageUrl'>
+      <div class='relative w-9 h-9 rounded-full bg-gradient-to-br from-primary to-orange-500 flex items-center justify-center text-white font-display font-extrabold text-sm'>SB</div>
+      <div class='leading-tight'>
+        <div class='font-display font-extrabold tracking-wider text-fg text-[13px]'>SHOKHER BIKEWALA</div>
       </div>
-    </header>
+    </a>
+    <div class='flex-1'></div>
+    <button id='sb-mobile-search-btn' type='button' aria-label='Search' class='w-9 h-9 rounded-full border border-line/60 flex items-center justify-center text-fg'>
+      <i data-lucide='search' style='width:18px;height:18px'></i>
+    </button>
+    <button id='sb-mobile-menu-btn' type='button' aria-label='Menu' class='w-9 h-9 rounded-full border border-line/60 flex items-center justify-center text-fg'>
+      <i data-lucide='menu' style='width:18px;height:18px'></i>
+    </button>
+  </div>
+</header>
 
-    <!-- Mobile drawer -->
-    <div id='sb-drawer' class='fixed inset-0 z-50 hidden'>
-      <div class='absolute inset-0 bg-black/40' data-close='1'/>
-      <div class='absolute right-3 top-3 bottom-3 w-[78vw] max-w-xs glass rounded-3xl p-5 pt-16 overflow-y-auto'>
-        <div class='absolute top-4 left-5 right-5 flex items-center gap-2.5'>
-          <div class='w-9 h-9 rounded-lg bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/20 p-1'>
-            <img alt='Logo' class='w-full h-full object-contain' src='https://www.shokherbikewala.com/logo.png'/>
-          </div>
-          <div class='flex flex-col leading-tight'>
-            <span class='font-head text-xs font-bold text-fg'>SHOKHER</span>
-            <span class='font-head text-[9px] text-primary tracking-[0.32em]'>BIKE WALA</span>
-          </div>
-          <button data-close='1' class='ml-auto w-8 h-8 grid place-items-center rounded-full bg-surface-soft border border-line'>
-            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'/><line x1='6' y1='6' x2='18' y2='18'/></svg>
-          </button>
-        </div>
-        <div class='flex flex-col gap-1' id='sb-drawer-links'>
-          <a class='block px-4 py-3 rounded-2xl text-base font-head font-bold uppercase tracking-wider text-fg-muted hover:bg-primary/10 hover:text-primary' expr:href='data:blog.homepageUrl'>Home</a>
-          <a class='block px-4 py-3 rounded-2xl text-base font-head font-bold uppercase tracking-wider text-fg-muted hover:bg-primary/10 hover:text-primary' expr:href='data:blog.homepageUrl + &quot;search/label/product&quot;'>Shop</a>
-          <a class='block px-4 py-3 rounded-2xl text-base font-head font-bold uppercase tracking-wider text-fg-muted hover:bg-primary/10 hover:text-primary' expr:href='data:blog.homepageUrl + &quot;p/categories.html&quot;'>Categories</a>
-          <a class='block px-4 py-3 rounded-2xl text-base font-head font-bold uppercase tracking-wider text-fg-muted hover:bg-primary/10 hover:text-primary' expr:href='data:blog.homepageUrl + &quot;p/about.html&quot;'>About</a>
-          <a class='block px-4 py-3 rounded-2xl text-base font-head font-bold uppercase tracking-wider text-fg-muted hover:bg-primary/10 hover:text-primary' expr:href='data:blog.homepageUrl + &quot;p/contact.html&quot;'>Contact</a>
-          <a class='block px-4 py-3 rounded-2xl text-base font-head font-bold uppercase tracking-wider text-fg-muted hover:bg-primary/10 hover:text-primary' expr:href='data:blog.homepageUrl + &quot;p/checkout.html&quot;'>Checkout</a>
-        </div>
+<!-- Mobile Menu Drawer -->
+<div id='sb-mobile-backdrop' class='v-sheet-backdrop'></div>
+<aside id='sb-mobile-drawer' class='v-sheet'>
+  <div class='flex items-center justify-between mb-3'>
+    <div class='flex items-center gap-2'>
+      <div class='w-10 h-10 rounded-full bg-gradient-to-br from-primary to-orange-500 flex items-center justify-center text-white font-display font-extrabold text-sm'>SB</div>
+      <div>
+        <div class='font-display font-extrabold tracking-wider text-fg'>SHOKHER BIKEWALA</div>
+        <div class='font-racing text-[10px] tracking-[0.25em] uppercase text-fg-soft'>Premium Ride Gear</div>
       </div>
     </div>
+    <button data-close-sheet='true' aria-label='Close' class='w-9 h-9 rounded-full border border-line text-fg flex items-center justify-center'>
+      <i data-lucide='x' style='width:18px;height:18px'></i>
+    </button>
+  </div>
+  <div class='grid grid-cols-3 gap-3 mt-2'>
+    <a expr:href='data:blog.homepageUrl' class='flex flex-col items-center justify-center gap-1 p-4 rounded-xl border border-line bg-bg-2/40 text-fg hover:border-primary/50 hover:text-primary transition-colors'>
+      <i data-lucide='home' style='width:22px;height:22px'></i>
+      <span class='font-racing text-[11px] tracking-widest uppercase'>Home</span>
+    </a>
+    <a href='/search/label/product' class='flex flex-col items-center justify-center gap-1 p-4 rounded-xl border border-line bg-bg-2/40 text-fg hover:border-primary/50 hover:text-primary transition-colors'>
+      <i data-lucide='shopping-bag' style='width:22px;height:22px'></i>
+      <span class='font-racing text-[11px] tracking-widest uppercase'>Shop</span>
+    </a>
+    <a href='/p/categories.html' class='flex flex-col items-center justify-center gap-1 p-4 rounded-xl border border-line bg-bg-2/40 text-fg hover:border-primary/50 hover:text-primary transition-colors'>
+      <i data-lucide='layers' style='width:22px;height:22px'></i>
+      <span class='font-racing text-[11px] tracking-widest uppercase'>Categories</span>
+    </a>
+    <a href='/p/about.html' class='flex flex-col items-center justify-center gap-1 p-4 rounded-xl border border-line bg-bg-2/40 text-fg hover:border-primary/50 hover:text-primary transition-colors'>
+      <i data-lucide='info' style='width:22px;height:22px'></i>
+      <span class='font-racing text-[11px] tracking-widest uppercase'>About</span>
+    </a>
+    <a href='/p/contact.html' class='flex flex-col items-center justify-center gap-1 p-4 rounded-xl border border-line bg-bg-2/40 text-fg hover:border-primary/50 hover:text-primary transition-colors'>
+      <i data-lucide='phone' style='width:22px;height:22px'></i>
+      <span class='font-racing text-[11px] tracking-widest uppercase'>Contact</span>
+    </a>
+    <a href='/p/checkout.html' class='flex flex-col items-center justify-center gap-1 p-4 rounded-xl border border-line bg-bg-2/40 text-fg hover:border-primary/50 hover:text-primary transition-colors'>
+      <i data-lucide='credit-card' style='width:22px;height:22px'></i>
+      <span class='font-racing text-[11px] tracking-widest uppercase'>Checkout</span>
+    </a>
+  </div>
+  <div class='mt-4 flex items-center justify-between p-3 rounded-xl border border-line bg-bg-2/40'>
+    <div class='flex items-center gap-2 text-fg'>
+      <i data-lucide='moon' style='width:18px;height:18px'></i>
+      <span class='font-racing text-sm tracking-wide uppercase'>Theme</span>
+    </div>
+    <button id='sb-theme-toggle-mobile' class='font-racing text-xs tracking-widest uppercase px-3 py-1.5 rounded-full bg-primary/15 text-primary border border-primary/30'>Switch</button>
+  </div>
+  <a href='https://wa.me/8801518934708' target='_blank' rel='noopener' class='mt-4 v-pill-cta w-full justify-center text-sm py-3'>
+    <i data-lucide='message-circle' style='width:16px;height:16px'></i>
+    Chat on WhatsApp
+  </a>
+</aside>
 
-    <!-- ===================== Main ===================== -->
-    <main class='pt-24 sm:pt-28'>
+<!-- Search Overlay -->
+<div id='sb-search-overlay' class='sb-search-overlay'>
+  <form class='sb-search-input-wrap' action='/search' method='get'>
+    <i data-lucide='search' style='width:18px;height:18px' class='text-fg-soft'></i>
+    <input type='text' name='q' placeholder='Search products...' class='sb-search-input' autocomplete='off'/>
+    <button type='button' id='sb-search-close' class='w-8 h-8 rounded-full border border-line text-fg-muted hover:text-primary flex items-center justify-center'>
+      <i data-lucide='x' style='width:16px;height:16px'></i>
+    </button>
+  </form>
+  <div class='max-w-2xl mx-auto mt-6 flex flex-wrap items-center justify-center gap-2'>
+    <span class='font-racing text-[11px] tracking-widest uppercase text-fg-soft'>Popular:</span>
+    <a href='/search?q=helmet' class='v-pill-ghost text-xs py-1.5 px-3'>Helmets</a>
+    <a href='/search?q=jacket' class='v-pill-ghost text-xs py-1.5 px-3'>Jackets</a>
+    <a href='/search?q=gloves' class='v-pill-ghost text-xs py-1.5 px-3'>Gloves</a>
+    <a href='/search?q=boots' class='v-pill-ghost text-xs py-1.5 px-3'>Boots</a>
+  </div>
+</div>
 
-      <!-- HOMEPAGE -->
-      <b:if cond='data:view.isHomepage'>
-        <!-- Hero -->
-        <section class='relative overflow-hidden'>
-          <div class='sb-orb bg-primary/40' style='width:480px;height:480px;top:-160px;left:-120px'/>
-          <div class='sb-orb bg-cyan/30' style='width:420px;height:420px;top:120px;right:-140px'/>
-          <div class='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 grid lg:grid-cols-2 gap-10 items-center'>
-            <div class='space-y-5'>
-              <span class='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-bold tracking-wider uppercase'>
-                <span class='w-1.5 h-1.5 rounded-full bg-primary animate-pulse'/>
-                Premium Bike Accessories
-              </span>
-              <h1 class='text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold leading-[1.05] tracking-tight'>
-                Ride Bold.<br/>
-                <span class='text-primary'>Ride Premium.</span>
-              </h1>
-              <p class='text-fg-muted text-base sm:text-lg max-w-xl'>
-                Helmets, gloves, jackets, lights and exhaust systems for every Bangladeshi rider. Cash on delivery nationwide.
-              </p>
-              <div class='flex flex-col sm:flex-row gap-3 pt-2'>
-                <a expr:href='data:blog.homepageUrl + &quot;search/label/product&quot;' class='inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/25 hover:bg-primary-600 transition min-h-[48px]'>
-                  Shop Now
-                  <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><line x1='5' y1='12' x2='19' y2='12'/><polyline points='12 5 19 12 12 19'/></svg>
-                </a>
-                <a href='https://wa.me/8801518934708' target='_blank' rel='noopener' class='inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-green-600 hover:bg-green-700 text-white font-bold transition min-h-[48px]'>
-                  <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z'/></svg>
-                  WhatsApp Order
-                </a>
-              </div>
-            </div>
-            <div class='relative'>
-              <div class='aspect-square rounded-3xl glass overflow-hidden border border-line p-6 flex items-center justify-center'>
-                <img alt='Hero bike accessory' class='w-full h-full object-contain drop-shadow-2xl' src='https://images.unsplash.com/photo-1622185135505-2d795003994a?auto=format&amp;fit=crop&amp;w=900&amp;q=80'/>
-              </div>
-            </div>
-          </div>
-        </section>
+<!-- ===================== Main content ===================== -->
+<main id='sb-main' class='pt-20 md:pt-28'>
 
-        <div class='sb-divider my-2'/>
-
-        <!-- Categories -->
-        <section class='py-12 sm:py-16'>
-          <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-            <div class='flex items-end justify-between gap-4 mb-6'>
-              <div>
-                <p class='text-xs font-bold uppercase tracking-[0.3em] text-primary mb-1'>Categories</p>
-                <h2 class='text-2xl sm:text-3xl font-display font-bold'>Shop by category</h2>
-              </div>
-              <a expr:href='data:blog.homepageUrl + &quot;p/categories.html&quot;' class='hidden sm:inline-flex items-center gap-1 text-sm font-bold text-primary'>View all
-                <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='9 18 15 12 9 6'/></svg>
-              </a>
-            </div>
-            <div id='sb-categories-grid' class='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4'>
-              <!-- Filled by JS -->
-            </div>
-          </div>
-        </section>
-
-        <div class='sb-divider my-2'/>
-
-        <!-- Featured products -->
-        <section class='py-12 sm:py-16'>
-          <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-            <div class='flex items-end justify-between gap-4 mb-6'>
-              <div>
-                <p class='text-xs font-bold uppercase tracking-[0.3em] text-primary mb-1'>Top picks</p>
-                <h2 class='text-2xl sm:text-3xl font-display font-bold'>Featured products</h2>
-              </div>
-              <a expr:href='data:blog.homepageUrl + &quot;search/label/product&quot;' class='hidden sm:inline-flex items-center gap-1 text-sm font-bold text-primary'>See all
-                <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='9 18 15 12 9 6'/></svg>
-              </a>
-            </div>
-            <div id='sb-products-grid' class='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5'>
-              <!-- Filled by JS -->
-            </div>
-          </div>
-        </section>
-
-        <div class='sb-divider my-2'/>
-
-        <!-- Brand story -->
-        <section class='py-12 sm:py-16'>
-          <div class='max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-            <p class='text-xs font-bold uppercase tracking-[0.3em] text-primary mb-2'>Our story</p>
-            <h2 class='text-2xl sm:text-3xl font-display font-bold mb-3'>Built for Bangladeshi riders</h2>
-            <p class='text-fg-muted max-w-3xl mx-auto'>
-              Shokher Bikewala curates premium, road-tested bike accessories — from full-face helmets to LED kits — and delivers nationwide with cash on delivery. We obsess over fit, finish and price so every ride feels just a little better.
-            </p>
-            <div class='grid grid-cols-3 gap-3 sm:gap-6 mt-8 max-w-2xl mx-auto'>
-              <div class='p-4 rounded-2xl glass border border-line'>
-                <div class='text-2xl sm:text-3xl font-display font-extrabold text-primary'>2K+</div>
-                <div class='text-xs sm:text-sm text-fg-muted mt-1'>Happy riders</div>
-              </div>
-              <div class='p-4 rounded-2xl glass border border-line'>
-                <div class='text-2xl sm:text-3xl font-display font-extrabold text-primary'>100+</div>
-                <div class='text-xs sm:text-sm text-fg-muted mt-1'>Products</div>
-              </div>
-              <div class='p-4 rounded-2xl glass border border-line'>
-                <div class='text-2xl sm:text-3xl font-display font-extrabold text-primary'>64</div>
-                <div class='text-xs sm:text-sm text-fg-muted mt-1'>Districts served</div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </b:if>
-
-      <!-- LABEL SEARCH (category / shop) -->
-      <b:if cond='data:view.isLabelSearch'>
-        <section class='py-8 sm:py-12'>
-          <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-            <p class='text-xs font-bold uppercase tracking-[0.3em] text-primary mb-1'>Collection</p>
-            <h1 class='text-2xl sm:text-3xl font-display font-bold mb-6'>
-              <data:blog.pageName/>
-            </h1>
-            <div id='sb-label-grid' class='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5'>
-              <!-- Filled by JS -->
-            </div>
-          </div>
-        </section>
-      </b:if>
-
-      <!-- SEARCH (text query) -->
-      <b:if cond='data:view.isSearch'>
-        <b:if cond='!data:view.isLabelSearch'>
-          <section class='py-8 sm:py-12'>
-            <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-              <p class='text-xs font-bold uppercase tracking-[0.3em] text-primary mb-1'>Search results</p>
-              <h1 class='text-2xl sm:text-3xl font-display font-bold mb-6'>
-                <data:blog.pageName/>
-              </h1>
-              <div id='sb-search-grid' class='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5'>
-                <!-- Filled by JS -->
-              </div>
-            </div>
-          </section>
-        </b:if>
-      </b:if>
-
-      <!-- POST / PAGE / DETAIL -->
-      <b:section class='main' id='main' name='Main' showaddelement='no'>
-        <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
-          <b:widget-settings>
-            <b:widget-setting name='showDateHeader'>false</b:widget-setting>
-            <b:widget-setting name='postsPerAd'>0</b:widget-setting>
-            <b:widget-setting name='showAuthor'>false</b:widget-setting>
-            <b:widget-setting name='showLabels'>false</b:widget-setting>
-            <b:widget-setting name='showCommentLink'>false</b:widget-setting>
-            <b:widget-setting name='showLocation'>false</b:widget-setting>
-            <b:widget-setting name='showShareButtons'>false</b:widget-setting>
-            <b:widget-setting name='showInlineAds'>false</b:widget-setting>
-            <b:widget-setting name='showTimestamp'>false</b:widget-setting>
-            <b:widget-setting name='showBacklinks'>false</b:widget-setting>
-          </b:widget-settings>
-          <b:includable id='main'>
-            <b:if cond='data:view.isSingleItem'>
+  <!-- ============================================================
+       PRODUCT POST view (data:view.isPost): premium product detail
+       ============================================================ -->
+  <b:if cond='data:view.isPost'>
+    <section class='sb-product-detail sb-section'>
+      <div class='sb-container'>
+        <b:section class='product-post' id='product-post' showaddelement='no'>
+          <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
+            <b:widget-settings>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='style.layout'>1x1</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>true</b:widget-setting>
+            </b:widget-settings>
+            <b:includable id='main'>
               <b:loop values='data:posts' var='post'>
-                <b:include data='post' name='postArticle'/>
-              </b:loop>
-            </b:if>
-          </b:includable>
-
-          <b:includable id='postArticle' var='post'>
-            <article class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
-              <b:if cond='data:view.isPost'>
-                <!-- Product detail layout (post body should contain a .sb-product-meta-raw block) -->
-                <div class='grid lg:grid-cols-2 gap-8 sm:gap-10'>
+                <article class='sb-prod-grid' itemscope='itemscope' itemtype='http://schema.org/Product'>
+                  <!-- Left: gallery + raw post body (hidden meta block + description) -->
                   <div>
-                    <div id='sb-product-gallery' class='aspect-square rounded-2xl overflow-hidden glass border border-line grid place-items-center p-4'>
-                      <img alt='Product' class='w-full h-full object-contain' id='sb-product-main-image' src='https://www.shokherbikewala.com/logo.png'/>
+                    <div class='sb-prod-gallery-main' id='sb-prod-main-img'>
+                      <b:if cond='data:post.featuredImage'>
+                        <img expr:alt='data:post.title' expr:src='data:post.featuredImage' class='w-full h-full object-cover' itemprop='image'/>
+                      </b:if>
                     </div>
-                    <div class='grid grid-cols-4 gap-2 mt-3' id='sb-product-thumbs'>
-                      <!-- JS fills -->
+                    <div class='sb-prod-thumbs mt-3' id='sb-prod-thumbs'></div>
+                    <div class='mt-6 v-capsule rounded-2xl p-5'>
+                      <h2 class='font-display font-extrabold text-fg text-lg mb-2'>Product details</h2>
+                      <div class='sb-product-body prose prose-sm max-w-none text-fg-muted' id='sb-product-body'>
+                        <data:post.body/>
+                      </div>
                     </div>
                   </div>
-                  <div class='space-y-4'>
-                    <div class='flex items-center gap-2 text-xs uppercase tracking-wider text-fg-soft'>
-                      <a expr:href='data:blog.homepageUrl' class='hover:text-primary'>Home</a>
-                      <span>/</span>
-                      <a expr:href='data:blog.homepageUrl + &quot;search/label/product&quot;' class='hover:text-primary'>Shop</a>
+                  <!-- Right: sticky sidebar with price + CTA -->
+                  <aside class='sb-prod-info lg:sticky lg:top-28 lg:self-start'>
+                    <div class='chrome-chip'>
+                      <span class='w-1.5 h-1.5 rounded-full bg-primary sb-pulse-dot'></span>
+                      <b:loop values='data:post.labels' var='label' index='i'>
+                        <b:if cond='data:i == 0'>
+                          <span><data:label.name/></span>
+                        </b:if>
+                      </b:loop>
                     </div>
-                    <h1 class='text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold leading-tight'><data:post.title/></h1>
-
-                    <div class='flex items-baseline gap-3 flex-wrap' id='sb-product-price'>
-                      <!-- JS fills -->
+                    <h1 class='font-display font-extrabold tracking-tight text-fg text-3xl md:text-4xl leading-[1.05]' itemprop='name'><data:post.title/></h1>
+                    <div class='flex items-center gap-2 text-sm'>
+                      <span class='v-stars'>
+                        <i data-lucide='star' style='width:16px;height:16px;fill:#ff8a3a;color:#ff8a3a'></i>
+                        <i data-lucide='star' style='width:16px;height:16px;fill:#ff8a3a;color:#ff8a3a'></i>
+                        <i data-lucide='star' style='width:16px;height:16px;fill:#ff8a3a;color:#ff8a3a'></i>
+                        <i data-lucide='star' style='width:16px;height:16px;fill:#ff8a3a;color:#ff8a3a'></i>
+                        <i data-lucide='star' style='width:16px;height:16px;fill:#ff8a3a;color:#ff8a3a'></i>
+                      </span>
+                      <span class='text-fg-soft'>4.9 (250+ reviews)</span>
                     </div>
-
-                    <div class='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-600 text-xs font-bold' id='sb-product-stock'>
-                      In stock
+                    <div class='flex items-end gap-3' id='sb-prod-price-block'>
+                      <span class='sb-prod-price' id='sb-prod-price'>BDT 0</span>
+                      <span class='sb-prod-price-was' id='sb-prod-price-was' hidden='hidden'></span>
+                      <span class='ml-auto v-badge-dot' id='sb-prod-stock'>In Stock</span>
                     </div>
-
-                    <div class='sb-prose'>
-                      <data:post.body/>
-                    </div>
-
-                    <div class='pt-2 flex flex-col sm:flex-row gap-3'>
-                      <a id='sb-whatsapp-order' href='https://wa.me/8801518934708' target='_blank' rel='noopener' class='flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-green-600 hover:bg-green-700 text-white font-bold min-h-[52px]'>
-                        <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z'/></svg>
+                    <p class='text-fg-muted text-sm leading-relaxed' id='sb-prod-short-desc'>Premium quality, hand-picked by the Shokher Bikewala team. WhatsApp us to confirm specs &amp; pricing.</p>
+                    <div class='grid grid-cols-2 gap-3'>
+                      <a expr:href='&quot;https://wa.me/8801518934708?text=&quot; + data:post.title' target='_blank' rel='noopener' class='btn-ghost'>
+                        <i data-lucide='message-circle' style='width:18px;height:18px'></i>
                         Order via WhatsApp
                       </a>
-                      <a id='sb-buy-now' expr:href='data:blog.homepageUrl + &quot;p/checkout.html&quot;' class='inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary hover:bg-primary-600 text-white font-bold min-h-[52px]'>
-                        <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'/><line x1='3' y1='6' x2='21' y2='6'/><path d='M16 10a4 4 0 0 1-8 0'/></svg>
+                      <a expr:href='&quot;/p/checkout.html?product=&quot; + data:post.title' class='btn-premium'>
+                        <i data-lucide='zap' style='width:18px;height:18px'></i>
                         Buy Now
                       </a>
                     </div>
+                    <div class='grid grid-cols-3 gap-2'>
+                      <div class='sb-trust-cell justify-center'><div class='sb-trust-ico'><i data-lucide='truck' style='width:16px;height:16px'></i></div><span class='sb-trust-label text-[10px]'>Cash on Delivery</span></div>
+                      <div class='sb-trust-cell justify-center'><div class='sb-trust-ico'><i data-lucide='shield-check' style='width:16px;height:16px'></i></div><span class='sb-trust-label text-[10px]'>100% Authentic</span></div>
+                      <div class='sb-trust-cell justify-center'><div class='sb-trust-ico'><i data-lucide='rotate-cw' style='width:16px;height:16px'></i></div><span class='sb-trust-label text-[10px]'>Easy Returns</span></div>
+                    </div>
+                  </aside>
+                </article>
+                <!-- Hidden meta extraction block -->
+                <script class='sb-product-meta-extract'>
+                  /*<![CDATA[*/ window.__SB_PRODUCT_RAW = window.__SB_PRODUCT_RAW || []; /*]]>*/
+                </script>
+              </b:loop>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </div>
+    </section>
+  </b:if>
+
+  <!-- ============================================================
+       STATIC PAGE view (data:view.isPage)
+       ============================================================ -->
+  <b:if cond='data:view.isPage'>
+    <section class='sb-section'>
+      <div class='sb-container'>
+        <b:section class='static-page' id='static-page' showaddelement='no'>
+          <b:widget id='Blog2' locked='true' title='Static Page' type='Blog' version='2' visible='true'>
+            <b:widget-settings>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='style.layout'>1x1</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+            </b:widget-settings>
+            <b:includable id='main'>
+              <b:loop values='data:posts' var='post'>
+                <article class='v-capsule rounded-3xl p-6 md:p-10 max-w-5xl mx-auto'>
+                  <div class='mb-6 text-center'>
+                    <span class='v-eyebrow-long'>Shokher Bikewala</span>
+                    <h1 class='font-display font-extrabold tracking-tight text-fg text-3xl md:text-5xl mt-3'><data:post.title/></h1>
                   </div>
-                </div>
-              </b:if>
+                  <div class='sb-page-body prose prose-sm md:prose max-w-none mx-auto text-fg-muted'>
+                    <data:post.body/>
+                  </div>
+                </article>
+              </b:loop>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </div>
+    </section>
+  </b:if>
 
-              <b:if cond='data:view.isPage'>
-                <h1 class='text-2xl sm:text-3xl font-display font-bold mb-6'><data:post.title/></h1>
-                <div class='sb-prose max-w-4xl'>
-                  <data:post.body/>
-                </div>
-              </b:if>
-            </article>
-          </b:includable>
-        </b:widget>
-      </b:section>
+  <!-- ============================================================
+       HOMEPAGE view: hero + categories + products + brand + etc.
+       Blog widget (hidden) provides post feed via JSON fetcher.
+       ============================================================ -->
+  <b:if cond='data:view.isHomepage'>
 
-    </main>
-
-    <!-- ===================== Footer ===================== -->
-    <footer class='mt-16 border-t border-line bg-surface-soft'>
-      <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-8'>
-        <div>
-          <div class='flex items-center gap-2 mb-3'>
-            <div class='w-9 h-9 rounded-lg bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/20 p-1'>
-              <img alt='Logo' class='w-full h-full object-contain' src='https://www.shokherbikewala.com/logo.png'/>
-            </div>
-            <div class='flex flex-col leading-tight'>
-              <span class='font-head text-sm font-bold'>SHOKHER</span>
-              <span class='font-head text-[10px] text-primary tracking-[0.32em]'>BIKE WALA</span>
-            </div>
+    <!-- HERO -->
+    <section class='sb-cinematic-hero relative'>
+      <div class='absolute inset-0 v-hero-halo pointer-events-none'></div>
+      <div class='sb-hero-floor'></div>
+      <!-- Speed lines -->
+      <div aria-hidden='true' class='absolute inset-0 pointer-events-none overflow-hidden'>
+        <span class='sb-speed-line' style='top:18%; left:0; right:0; width:80%; animation-delay:0s'></span>
+        <span class='sb-speed-line' style='top:32%; left:0; right:0; width:60%; animation-delay:.4s'></span>
+        <span class='sb-speed-line' style='top:54%; left:0; right:0; width:75%; animation-delay:.8s'></span>
+        <span class='sb-speed-line' style='top:68%; left:0; right:0; width:55%; animation-delay:1.2s'></span>
+        <span class='sb-speed-line' style='top:82%; left:0; right:0; width:90%; animation-delay:1.6s'></span>
+      </div>
+      <div class='sb-container relative z-10 text-center'>
+        <div class='v-reveal v-reveal-up'>
+          <div class='sb-eyebrow-bar mb-5 justify-center'>
+            <span class='sb-eyebrow-bar-line'></span>
+            <span class='font-racing text-[11px] tracking-[0.32em] uppercase text-primary sb-flicker'>Premium Ride Gear</span>
+            <span class='sb-eyebrow-bar-line'></span>
           </div>
-          <p class='text-sm text-fg-muted'>Premium bike accessories with cash on delivery across Bangladesh.</p>
+          <h1 class='sb-cinematic-title text-4xl sm:text-6xl md:text-7xl lg:text-8xl mx-auto max-w-5xl'>
+            <span class='sb-cinematic-line text-gradient-headline'>Ride Faster</span>
+            <span class='sb-cinematic-line sb-cinematic-line-accent'>Look Sharper</span>
+            <span class='sb-cinematic-line text-gradient-headline'>Live Bolder</span>
+          </h1>
+          <p class='sb-cinematic-copy mt-6 text-base md:text-lg mx-auto'>Premium helmets, jackets, gloves &amp; accessories — hand-picked for riders who want gear as fast as their bike.</p>
         </div>
-        <div>
-          <p class='text-xs font-bold uppercase tracking-wider text-fg-soft mb-3'>Shop</p>
-          <ul class='space-y-2 text-sm'>
-            <li><a expr:href='data:blog.homepageUrl + &quot;search/label/product&quot;' class='text-fg-muted hover:text-primary'>All products</a></li>
-            <li><a expr:href='data:blog.homepageUrl + &quot;search/label/helmets&quot;' class='text-fg-muted hover:text-primary'>Helmets</a></li>
-            <li><a expr:href='data:blog.homepageUrl + &quot;search/label/gloves&quot;' class='text-fg-muted hover:text-primary'>Gloves</a></li>
-            <li><a expr:href='data:blog.homepageUrl + &quot;search/label/jackets&quot;' class='text-fg-muted hover:text-primary'>Jackets</a></li>
-          </ul>
+        <div class='v-reveal v-reveal-up mt-8 flex flex-wrap items-center justify-center gap-3' style='transition-delay:.18s'>
+          <a href='/search/label/product' class='v-pill-cta'>
+            <i data-lucide='shopping-bag' style='width:18px;height:18px'></i>
+            Shop Now
+            <i data-lucide='arrow-right' style='width:18px;height:18px'></i>
+          </a>
+          <a href='https://wa.me/8801518934708' target='_blank' rel='noopener' class='v-pill-ghost'>
+            <i data-lucide='message-circle' style='width:16px;height:16px'></i>
+            WhatsApp
+          </a>
         </div>
-        <div>
-          <p class='text-xs font-bold uppercase tracking-wider text-fg-soft mb-3'>Pages</p>
-          <ul class='space-y-2 text-sm'>
-            <li><a expr:href='data:blog.homepageUrl + &quot;p/about.html&quot;' class='text-fg-muted hover:text-primary'>About</a></li>
-            <li><a expr:href='data:blog.homepageUrl + &quot;p/contact.html&quot;' class='text-fg-muted hover:text-primary'>Contact</a></li>
-            <li><a expr:href='data:blog.homepageUrl + &quot;p/checkout.html&quot;' class='text-fg-muted hover:text-primary'>Checkout</a></li>
-          </ul>
+        <!-- Trust strip -->
+        <div class='v-reveal v-reveal-up mt-10 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 max-w-3xl mx-auto' style='transition-delay:.3s'>
+          <div class='sb-trust-cell'><div class='sb-trust-ico'><i data-lucide='shield-check' style='width:18px;height:18px'></i></div><span class='sb-trust-label'>100% Authentic</span></div>
+          <div class='sb-trust-cell'><div class='sb-trust-ico'><i data-lucide='truck' style='width:18px;height:18px'></i></div><span class='sb-trust-label'>Fast Delivery</span></div>
+          <div class='sb-trust-cell'><div class='sb-trust-ico'><i data-lucide='rotate-cw' style='width:18px;height:18px'></i></div><span class='sb-trust-label'>Easy Returns</span></div>
+          <div class='sb-trust-cell'><div class='sb-trust-ico'><i data-lucide='headphones' style='width:18px;height:18px'></i></div><span class='sb-trust-label'>24/7 Support</span></div>
         </div>
-        <div>
-          <p class='text-xs font-bold uppercase tracking-wider text-fg-soft mb-3'>Follow</p>
-          <div class='flex items-center gap-2'>
-            <a href='https://wa.me/8801518934708' target='_blank' rel='noopener' aria-label='WhatsApp' class='w-9 h-9 grid place-items-center rounded-full bg-bg border border-line hover:border-primary/40 hover:text-primary text-fg-muted'>
-              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z'/></svg>
-            </a>
-            <a href='https://www.facebook.com/share/1CvH4aQ5kU/?mibextid=wwXIfr' target='_blank' rel='noopener' aria-label='Facebook' class='w-9 h-9 grid place-items-center rounded-full bg-bg border border-line hover:border-primary/40 hover:text-primary text-fg-muted'>
-              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z'/></svg>
-            </a>
-            <a href='https://www.instagram.com/shokherbikewala' target='_blank' rel='noopener' aria-label='Instagram' class='w-9 h-9 grid place-items-center rounded-full bg-bg border border-line hover:border-primary/40 hover:text-primary text-fg-muted'>
-              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='2' y='2' width='20' height='20' rx='5' ry='5'/><path d='M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z'/><line x1='17.5' y1='6.5' x2='17.51' y2='6.5'/></svg>
-            </a>
-            <a href='https://www.tiktok.com/@shokherbikewala' target='_blank' rel='noopener' aria-label='TikTok' class='w-9 h-9 grid place-items-center rounded-full bg-bg border border-line hover:border-primary/40 hover:text-primary text-fg-muted'>
-              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5'/></svg>
-            </a>
+      </div>
+      <a href='#sb-categories' class='scroll-cue hidden md:flex'>
+        <span class='font-racing text-[10px] tracking-[0.3em] uppercase'>Scroll</span>
+        <span class='scroll-cue-tube'></span>
+      </a>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section id='sb-categories' class='sb-section'>
+      <div class='sb-container'>
+        <div class='text-center mb-12 v-reveal v-reveal-up'>
+          <span class='v-eyebrow-long'>Explore by</span>
+          <h2 class='sb-cinematic-title-md text-3xl md:text-5xl mt-3 text-gradient-headline'>Categories</h2>
+          <p class='sb-cinematic-copy mt-3 mx-auto'>Choose your gear category and find what fits your ride.</p>
+        </div>
+        <div class='sb-grid-cats v-reveal v-reveal-up' style='transition-delay:.12s'>
+          <a href='/search/label/Helmets' class='v-cat-card group p-5 flex flex-col items-center text-center'>
+            <div class='w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-orange-500/10 flex items-center justify-center text-primary mb-3 group-hover:scale-110 transition-transform'>
+              <i data-lucide='hard-hat' style='width:28px;height:28px'></i>
+            </div>
+            <div class='font-display font-extrabold tracking-tight text-fg text-lg'>Helmets</div>
+            <div class='font-racing text-xs uppercase tracking-widest text-fg-soft mt-1'>Head safety</div>
+            <span class='mt-3 inline-flex items-center gap-1 text-primary font-racing text-xs uppercase tracking-widest opacity-80 group-hover:opacity-100'>Explore <i data-lucide='arrow-right' style='width:14px;height:14px'></i></span>
+          </a>
+          <a href='/search/label/Jackets' class='v-cat-card group p-5 flex flex-col items-center text-center'>
+            <div class='w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-orange-500/10 flex items-center justify-center text-primary mb-3 group-hover:scale-110 transition-transform'>
+              <i data-lucide='shirt' style='width:28px;height:28px'></i>
+            </div>
+            <div class='font-display font-extrabold tracking-tight text-fg text-lg'>Jackets</div>
+            <div class='font-racing text-xs uppercase tracking-widest text-fg-soft mt-1'>All-weather</div>
+            <span class='mt-3 inline-flex items-center gap-1 text-primary font-racing text-xs uppercase tracking-widest opacity-80 group-hover:opacity-100'>Explore <i data-lucide='arrow-right' style='width:14px;height:14px'></i></span>
+          </a>
+          <a href='/search/label/Gloves' class='v-cat-card group p-5 flex flex-col items-center text-center'>
+            <div class='w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-orange-500/10 flex items-center justify-center text-primary mb-3 group-hover:scale-110 transition-transform'>
+              <i data-lucide='hand' style='width:28px;height:28px'></i>
+            </div>
+            <div class='font-display font-extrabold tracking-tight text-fg text-lg'>Gloves</div>
+            <div class='font-racing text-xs uppercase tracking-widest text-fg-soft mt-1'>Grip + protect</div>
+            <span class='mt-3 inline-flex items-center gap-1 text-primary font-racing text-xs uppercase tracking-widest opacity-80 group-hover:opacity-100'>Explore <i data-lucide='arrow-right' style='width:14px;height:14px'></i></span>
+          </a>
+          <a href='/search/label/Boots' class='v-cat-card group p-5 flex flex-col items-center text-center'>
+            <div class='w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-orange-500/10 flex items-center justify-center text-primary mb-3 group-hover:scale-110 transition-transform'>
+              <i data-lucide='footprints' style='width:28px;height:28px'></i>
+            </div>
+            <div class='font-display font-extrabold tracking-tight text-fg text-lg'>Boots</div>
+            <div class='font-racing text-xs uppercase tracking-widest text-fg-soft mt-1'>Ride-ready</div>
+            <span class='mt-3 inline-flex items-center gap-1 text-primary font-racing text-xs uppercase tracking-widest opacity-80 group-hover:opacity-100'>Explore <i data-lucide='arrow-right' style='width:14px;height:14px'></i></span>
+          </a>
+          <a href='/search/label/Accessories' class='v-cat-card group p-5 flex flex-col items-center text-center'>
+            <div class='w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-orange-500/10 flex items-center justify-center text-primary mb-3 group-hover:scale-110 transition-transform'>
+              <i data-lucide='package' style='width:28px;height:28px'></i>
+            </div>
+            <div class='font-display font-extrabold tracking-tight text-fg text-lg'>Accessories</div>
+            <div class='font-racing text-xs uppercase tracking-widest text-fg-soft mt-1'>Extras &amp; gear</div>
+            <span class='mt-3 inline-flex items-center gap-1 text-primary font-racing text-xs uppercase tracking-widest opacity-80 group-hover:opacity-100'>Explore <i data-lucide='arrow-right' style='width:14px;height:14px'></i></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class='sb-energy-divider'></div>
+
+    <!-- FEATURED PRODUCTS (from Blogger feed; rendered client-side) -->
+    <section id='sb-featured' class='sb-section'>
+      <div class='sb-container'>
+        <div class='text-center mb-10 v-reveal v-reveal-up'>
+          <span class='v-eyebrow-long'>Hot Picks</span>
+          <h2 class='sb-cinematic-title-md text-3xl md:text-5xl mt-3'>
+            <span class='text-gradient-headline'>Featured </span><span class='sb-cinematic-line-accent'>Products</span>
+          </h2>
+          <p class='sb-cinematic-copy mt-3 mx-auto'>Hand-picked premium gear our riders love most.</p>
+        </div>
+        <div id='sb-featured-grid' class='sb-grid-products v-reveal v-reveal-up' style='transition-delay:.12s'>
+          <div class='v-product-card sb-skeleton aspect-[3/4]'></div>
+          <div class='v-product-card sb-skeleton aspect-[3/4]'></div>
+          <div class='v-product-card sb-skeleton aspect-[3/4]'></div>
+          <div class='v-product-card sb-skeleton aspect-[3/4]'></div>
+          <div class='v-product-card sb-skeleton aspect-[3/4] hidden md:block'></div>
+          <div class='v-product-card sb-skeleton aspect-[3/4] hidden md:block'></div>
+          <div class='v-product-card sb-skeleton aspect-[3/4] hidden lg:block'></div>
+          <div class='v-product-card sb-skeleton aspect-[3/4] hidden lg:block'></div>
+        </div>
+        <div class='mt-10 text-center'>
+          <a href='/search/label/product' class='v-pill-ghost'>
+            View All Products
+            <i data-lucide='arrow-right' style='width:14px;height:14px'></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class='sb-energy-divider'></div>
+
+    <!-- BRAND STORY / FEATURES -->
+    <section class='sb-section'>
+      <div class='sb-container'>
+        <div class='text-center mb-12 v-reveal v-reveal-up'>
+          <span class='v-eyebrow-long'>Why Shokher Bikewala</span>
+          <h2 class='sb-cinematic-title-md text-3xl md:text-5xl mt-3 text-gradient-headline'>Built for Riders, by Riders</h2>
+          <p class='sb-cinematic-copy mt-3 mx-auto'>Six reasons why Bangladesh riders trust us for their gear.</p>
+        </div>
+        <div class='grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5'>
+          <div class='v-reveal v-reveal-up premium-card p-5 md:p-6 text-center' style='transition-delay:.05s'>
+            <div class='w-12 h-12 rounded-2xl bg-primary/15 text-primary mx-auto mb-3 flex items-center justify-center'><i data-lucide='zap' style='width:22px;height:22px'></i></div>
+            <h3 class='font-display font-extrabold text-fg text-base mb-1'>Lightning Fast</h3>
+            <p class='text-fg-muted text-xs md:text-sm'>Order today, get it within 1-3 days countrywide.</p>
+          </div>
+          <div class='v-reveal v-reveal-up premium-card p-5 md:p-6 text-center' style='transition-delay:.1s'>
+            <div class='w-12 h-12 rounded-2xl bg-primary/15 text-primary mx-auto mb-3 flex items-center justify-center'><i data-lucide='shield-check' style='width:22px;height:22px'></i></div>
+            <h3 class='font-display font-extrabold text-fg text-base mb-1'>100% Authentic</h3>
+            <p class='text-fg-muted text-xs md:text-sm'>Sourced direct from authorized distributors.</p>
+          </div>
+          <div class='v-reveal v-reveal-up premium-card p-5 md:p-6 text-center' style='transition-delay:.15s'>
+            <div class='w-12 h-12 rounded-2xl bg-primary/15 text-primary mx-auto mb-3 flex items-center justify-center'><i data-lucide='truck' style='width:22px;height:22px'></i></div>
+            <h3 class='font-display font-extrabold text-fg text-base mb-1'>Free Delivery</h3>
+            <p class='text-fg-muted text-xs md:text-sm'>On orders above BDT 5,000 across Bangladesh.</p>
+          </div>
+          <div class='v-reveal v-reveal-up premium-card p-5 md:p-6 text-center' style='transition-delay:.2s'>
+            <div class='w-12 h-12 rounded-2xl bg-primary/15 text-primary mx-auto mb-3 flex items-center justify-center'><i data-lucide='wrench' style='width:22px;height:22px'></i></div>
+            <h3 class='font-display font-extrabold text-fg text-base mb-1'>Expert Advice</h3>
+            <p class='text-fg-muted text-xs md:text-sm'>Talk to real riders before you buy.</p>
+          </div>
+          <div class='v-reveal v-reveal-up premium-card p-5 md:p-6 text-center' style='transition-delay:.25s'>
+            <div class='w-12 h-12 rounded-2xl bg-primary/15 text-primary mx-auto mb-3 flex items-center justify-center'><i data-lucide='headphones' style='width:22px;height:22px'></i></div>
+            <h3 class='font-display font-extrabold text-fg text-base mb-1'>24/7 Support</h3>
+            <p class='text-fg-muted text-xs md:text-sm'>WhatsApp us anytime, fast responses.</p>
+          </div>
+          <div class='v-reveal v-reveal-up premium-card p-5 md:p-6 text-center' style='transition-delay:.3s'>
+            <div class='w-12 h-12 rounded-2xl bg-primary/15 text-primary mx-auto mb-3 flex items-center justify-center'><i data-lucide='rotate-cw' style='width:22px;height:22px'></i></div>
+            <h3 class='font-display font-extrabold text-fg text-base mb-1'>Easy Returns</h3>
+            <p class='text-fg-muted text-xs md:text-sm'>7-day return policy on unused products.</p>
           </div>
         </div>
       </div>
-      <div class='border-t border-line py-4 text-center text-xs text-fg-soft'>
-        &#169; <span id='sb-year'>2025</span> Shokher Bikewala. All rights reserved.
+    </section>
+
+    <div class='sb-energy-divider'></div>
+
+    <!-- COMMUNITY (social grid) -->
+    <section class='sb-section'>
+      <div class='sb-container'>
+        <div class='text-center mb-12 v-reveal v-reveal-up'>
+          <span class='v-eyebrow-long'>Join the ride</span>
+          <h2 class='sb-cinematic-title-md text-3xl md:text-5xl mt-3'>
+            <span class='text-gradient-headline'>Our </span><span class='sb-cinematic-line-accent'>Community</span>
+          </h2>
+          <p class='sb-cinematic-copy mt-3 mx-auto'>Follow us, share your ride, get featured.</p>
+        </div>
+        <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+          <a href='https://www.instagram.com/shokherbikewala' target='_blank' rel='noopener' class='sb-social-card v-reveal v-reveal-up' style='transition-delay:.05s'>
+            <div class='flex items-center justify-between mb-3 relative z-10'>
+              <div class='flex items-center gap-2'><div class='w-9 h-9 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 text-white flex items-center justify-center'><i data-lucide='instagram' style='width:18px;height:18px'></i></div><div><div class='font-display font-bold text-fg text-sm'>@shokherbikewala</div><div class='font-racing text-[10px] uppercase tracking-widest text-fg-soft'>Instagram</div></div></div>
+              <span class='v-pill-ghost text-[10px] py-1 px-2'>Follow</span>
+            </div>
+            <div class='grid grid-cols-3 gap-1.5 rounded-xl overflow-hidden'>
+              <div class='aspect-square bg-gradient-to-br from-primary/30 to-orange-500/20'></div>
+              <div class='aspect-square bg-gradient-to-br from-cyan/30 to-blue-500/20'></div>
+              <div class='aspect-square bg-gradient-to-br from-orange-500/30 to-yellow-500/20'></div>
+              <div class='aspect-square bg-gradient-to-br from-orange-600/30 to-red-500/20'></div>
+              <div class='aspect-square bg-gradient-to-br from-yellow-500/30 to-orange-500/20'></div>
+              <div class='aspect-square bg-gradient-to-br from-primary/30 to-pink-500/20'></div>
+            </div>
+            <div class='mt-3 font-racing text-xs uppercase tracking-widest text-fg-muted'>1.2K+ followers</div>
+          </a>
+          <a href='https://www.facebook.com/shokherbikewala' target='_blank' rel='noopener' class='sb-social-card v-reveal v-reveal-up' style='transition-delay:.1s'>
+            <div class='flex items-center justify-between mb-3 relative z-10'>
+              <div class='flex items-center gap-2'><div class='w-9 h-9 rounded-xl bg-[#1877F2] text-white flex items-center justify-center'><i data-lucide='facebook' style='width:18px;height:18px'></i></div><div><div class='font-display font-bold text-fg text-sm'>Shokher Bikewala</div><div class='font-racing text-[10px] uppercase tracking-widest text-fg-soft'>Facebook</div></div></div>
+              <span class='v-pill-ghost text-[10px] py-1 px-2'>Like</span>
+            </div>
+            <div class='flex items-center gap-2 mb-3 relative z-10'>
+              <div class='flex'>
+                <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+                <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+                <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+                <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+                <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+              </div>
+              <span class='font-racing text-sm tracking-wide text-fg'>4.9</span>
+            </div>
+            <p class='text-fg-muted text-xs italic relative z-10'>Best ride gear shop in Bangladesh. Authentic stock, fair price.</p>
+            <div class='mt-3 font-racing text-xs uppercase tracking-widest text-fg-muted relative z-10'>5K+ likes</div>
+          </a>
+          <a href='https://www.tiktok.com/@shokherbikewala' target='_blank' rel='noopener' class='sb-social-card v-reveal v-reveal-up' style='transition-delay:.15s'>
+            <div class='flex items-center justify-between mb-3 relative z-10'>
+              <div class='flex items-center gap-2'><div class='w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center'><i data-lucide='music' style='width:18px;height:18px'></i></div><div><div class='font-display font-bold text-fg text-sm'>@shokherbikewala</div><div class='font-racing text-[10px] uppercase tracking-widest text-fg-soft'>TikTok</div></div></div>
+              <span class='v-pill-ghost text-[10px] py-1 px-2'>Watch</span>
+            </div>
+            <div class='aspect-[9/16] rounded-xl bg-gradient-to-br from-black via-zinc-800 to-black flex items-center justify-center text-white relative z-10 overflow-hidden'>
+              <div class='absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-cyan/20'></div>
+              <i data-lucide='play' style='width:42px;height:42px;fill:#fff' class='relative'></i>
+            </div>
+            <div class='mt-3 grid grid-cols-3 gap-2 text-center relative z-10'>
+              <div><div class='font-racing text-xs tracking-widest text-fg'>820</div><div class='text-[10px] uppercase tracking-widest text-fg-soft'>Likes</div></div>
+              <div><div class='font-racing text-xs tracking-widest text-fg'>120</div><div class='text-[10px] uppercase tracking-widest text-fg-soft'>Comments</div></div>
+              <div><div class='font-racing text-xs tracking-widest text-fg'>45</div><div class='text-[10px] uppercase tracking-widest text-fg-soft'>Shares</div></div>
+            </div>
+          </a>
+          <a href='https://wa.me/8801518934708' target='_blank' rel='noopener' class='sb-social-card v-reveal v-reveal-up' style='transition-delay:.2s'>
+            <div class='flex items-center justify-between mb-3 relative z-10'>
+              <div class='flex items-center gap-2'><div class='w-9 h-9 rounded-xl bg-gradient-to-br from-[#25D366] to-[#128C7E] text-white flex items-center justify-center'><i data-lucide='message-circle' style='width:18px;height:18px'></i></div><div><div class='font-display font-bold text-fg text-sm'>WhatsApp</div><div class='font-racing text-[10px] uppercase tracking-widest text-fg-soft'>Direct chat</div></div></div>
+              <span class='v-pill-ghost text-[10px] py-1 px-2'>Chat</span>
+            </div>
+            <p class='text-fg-muted text-xs leading-relaxed relative z-10'>Talk to a real human. We answer within minutes during business hours (Sat-Thu 10am - 9pm).</p>
+            <div class='mt-3 font-display font-extrabold text-fg text-lg tracking-tight relative z-10'>+880 1518-934708</div>
+          </a>
+        </div>
       </div>
-    </footer>
+    </section>
 
-    <!-- ===================== Floating WhatsApp ===================== -->
-    <a href='https://wa.me/8801518934708' target='_blank' rel='noopener' aria-label='Chat on WhatsApp'
-       class='fixed bottom-5 right-4 z-30 w-14 h-14 grid place-items-center rounded-full bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-500/30 transition'>
-      <svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z'/></svg>
-    </a>
+    <div class='sb-energy-divider'></div>
 
-    <!-- ===================== Hidden config (read by JS) ===================== -->
-    <script id='sb-config' type='application/json'>
-    {
-      "blogId": "BLOG_ID_HERE",
-      "feedUrl": "/feeds/posts/summary",
-      "productLabel": "product",
-      "categories": [
-        { "name": "Helmets", "slug": "helmets", "image": "https://images.unsplash.com/photo-1622185135505-2d795003994a?auto=format&amp;fit=crop&amp;w=600&amp;q=80" },
-        { "name": "Gloves", "slug": "gloves", "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&amp;fit=crop&amp;w=600&amp;q=80" },
-        { "name": "Jackets", "slug": "jackets", "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&amp;fit=crop&amp;w=600&amp;q=80" },
-        { "name": "Lights", "slug": "led-lights", "image": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&amp;fit=crop&amp;w=600&amp;q=80" },
-        { "name": "Exhaust", "slug": "exhaust-systems", "image": "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&amp;fit=crop&amp;w=600&amp;q=80" }
-      ]
+    <!-- TESTIMONIALS -->
+    <section class='sb-section'>
+      <div class='sb-container'>
+        <div class='text-center mb-12 v-reveal v-reveal-up'>
+          <span class='v-eyebrow-long'>Real riders, real reviews</span>
+          <h2 class='sb-cinematic-title-md text-3xl md:text-5xl mt-3 text-gradient-headline'>What Our Riders Say</h2>
+        </div>
+        <div class='grid grid-cols-1 md:grid-cols-3 gap-4'>
+          <div class='premium-card p-6 v-reveal v-reveal-up' style='transition-delay:.05s'>
+            <div class='flex mb-3'>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+            </div>
+            <p class='text-fg-muted italic mb-4 text-sm'>Fast delivery, premium quality helmet. Exactly as shown in the picture. Highly recommended!</p>
+            <div class='flex items-center gap-3'>
+              <div class='w-10 h-10 rounded-full bg-gradient-to-br from-primary/40 to-orange-500/30 flex items-center justify-center font-display font-extrabold text-primary'>R</div>
+              <div><div class='font-display font-bold text-fg text-sm'>Rakib Ahmed</div><div class='text-xs text-fg-soft'>Dhaka</div></div>
+            </div>
+          </div>
+          <div class='premium-card p-6 v-reveal v-reveal-up' style='transition-delay:.1s'>
+            <div class='flex mb-3'>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+            </div>
+            <p class='text-fg-muted italic mb-4 text-sm'>Authentic gear, fair pricing. The team helped me pick the right jacket size over WhatsApp. Great service.</p>
+            <div class='flex items-center gap-3'>
+              <div class='w-10 h-10 rounded-full bg-gradient-to-br from-cyan/40 to-blue-500/30 flex items-center justify-center font-display font-extrabold text-cyan'>S</div>
+              <div><div class='font-display font-bold text-fg text-sm'>Sajid Hossain</div><div class='text-xs text-fg-soft'>Chittagong</div></div>
+            </div>
+          </div>
+          <div class='premium-card p-6 v-reveal v-reveal-up' style='transition-delay:.15s'>
+            <div class='flex mb-3'>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+              <i data-lucide='star' style='width:18px;height:18px;fill:#ff8a3a;color:#ff8a3a'></i>
+            </div>
+            <p class='text-fg-muted italic mb-4 text-sm'>Best motorbike accessories shop. Got my full kit (helmet, jacket, gloves, boots) for a great combined deal.</p>
+            <div class='flex items-center gap-3'>
+              <div class='w-10 h-10 rounded-full bg-gradient-to-br from-yellow-500/40 to-orange-500/30 flex items-center justify-center font-display font-extrabold text-gold'>F</div>
+              <div><div class='font-display font-bold text-fg text-sm'>Faruk Hasan</div><div class='text-xs text-fg-soft'>Sylhet</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class='sb-energy-divider'></div>
+
+    <!-- FAQ -->
+    <section class='sb-section'>
+      <div class='sb-container max-w-3xl'>
+        <div class='text-center mb-10 v-reveal v-reveal-up'>
+          <span class='v-eyebrow-long'>Need help?</span>
+          <h2 class='sb-cinematic-title-md text-3xl md:text-5xl mt-3 text-gradient-headline'>Frequently Asked</h2>
+        </div>
+        <div class='space-y-3'>
+          <div class='sb-faq-card v-reveal v-reveal-up' style='transition-delay:.05s'>
+            <button class='sb-faq-trigger' data-faq-trigger='true' type='button'><span class='sb-faq-q'>How long does delivery take?</span><span class='sb-faq-icon'><i data-lucide='plus' style='width:16px;height:16px'></i></span></button>
+            <div class='sb-faq-a'>Inside Dhaka: same-day or next-day. Outside Dhaka: 2-3 working days via courier. Free delivery on orders above BDT 5,000.</div>
+          </div>
+          <div class='sb-faq-card v-reveal v-reveal-up' style='transition-delay:.1s'>
+            <button class='sb-faq-trigger' data-faq-trigger='true' type='button'><span class='sb-faq-q'>Do you provide Cash on Delivery (COD)?</span><span class='sb-faq-icon'><i data-lucide='plus' style='width:16px;height:16px'></i></span></button>
+            <div class='sb-faq-a'>Yes. COD available across Bangladesh. You can also pay via bKash/Nagad/Rocket or bank transfer for advance payment.</div>
+          </div>
+          <div class='sb-faq-card v-reveal v-reveal-up' style='transition-delay:.15s'>
+            <button class='sb-faq-trigger' data-faq-trigger='true' type='button'><span class='sb-faq-q'>Are the products authentic?</span><span class='sb-faq-icon'><i data-lucide='plus' style='width:16px;height:16px'></i></span></button>
+            <div class='sb-faq-a'>100%. We source all gear directly from authorized distributors. Every product comes with manufacturer warranty where applicable.</div>
+          </div>
+          <div class='sb-faq-card v-reveal v-reveal-up' style='transition-delay:.2s'>
+            <button class='sb-faq-trigger' data-faq-trigger='true' type='button'><span class='sb-faq-q'>What is your return policy?</span><span class='sb-faq-icon'><i data-lucide='plus' style='width:16px;height:16px'></i></span></button>
+            <div class='sb-faq-a'>7-day return on unused products in original packaging. Contact us within 7 days of delivery via WhatsApp.</div>
+          </div>
+          <div class='sb-faq-card v-reveal v-reveal-up' style='transition-delay:.25s'>
+            <button class='sb-faq-trigger' data-faq-trigger='true' type='button'><span class='sb-faq-q'>How do I choose the right size?</span><span class='sb-faq-icon'><i data-lucide='plus' style='width:16px;height:16px'></i></span></button>
+            <div class='sb-faq-a'>WhatsApp us your measurements (head, chest, height) and we will suggest the right size. We have a sizing guide for each product page.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </b:if>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class='relative mt-12 pt-16 pb-10 border-t border-line/40'>
+  <div class='sb-container'>
+    <div class='grid grid-cols-2 md:grid-cols-4 gap-8 mb-10'>
+      <!-- Brand -->
+      <div class='col-span-2 md:col-span-1'>
+        <a class='flex items-center gap-2 mb-3' expr:href='data:blog.homepageUrl'>
+          <div class='w-10 h-10 rounded-full bg-gradient-to-br from-primary to-orange-500 flex items-center justify-center text-white font-display font-extrabold text-sm'>SB</div>
+          <div>
+            <div class='font-display font-extrabold tracking-wider text-fg text-sm'>SHOKHER BIKEWALA</div>
+            <div class='font-racing text-[10px] tracking-[0.28em] uppercase text-fg-soft -mt-0.5'>Premium Ride Gear</div>
+          </div>
+        </a>
+        <p class='text-fg-muted text-sm mb-4 leading-relaxed'>Bangladesh's most trusted source for premium motorbike accessories &amp; gear. Hand-picked by riders, for riders.</p>
+        <div class='flex items-center gap-2'>
+          <a href='https://www.instagram.com/shokherbikewala' target='_blank' rel='noopener' aria-label='Instagram' class='w-9 h-9 rounded-full border border-line/60 hover:border-primary/50 hover:text-primary flex items-center justify-center text-fg-muted transition-colors'><i data-lucide='instagram' style='width:16px;height:16px'></i></a>
+          <a href='https://www.facebook.com/shokherbikewala' target='_blank' rel='noopener' aria-label='Facebook' class='w-9 h-9 rounded-full border border-line/60 hover:border-primary/50 hover:text-primary flex items-center justify-center text-fg-muted transition-colors'><i data-lucide='facebook' style='width:16px;height:16px'></i></a>
+          <a href='https://www.tiktok.com/@shokherbikewala' target='_blank' rel='noopener' aria-label='TikTok' class='w-9 h-9 rounded-full border border-line/60 hover:border-primary/50 hover:text-primary flex items-center justify-center text-fg-muted transition-colors'><i data-lucide='music' style='width:16px;height:16px'></i></a>
+          <a href='https://wa.me/8801518934708' target='_blank' rel='noopener' aria-label='WhatsApp' class='w-9 h-9 rounded-full border border-line/60 hover:border-primary/50 hover:text-primary flex items-center justify-center text-fg-muted transition-colors'><i data-lucide='message-circle' style='width:16px;height:16px'></i></a>
+        </div>
+      </div>
+      <!-- Shop -->
+      <div>
+        <div class='font-display font-extrabold text-fg text-sm tracking-wider uppercase mb-3'>Shop</div>
+        <ul class='space-y-2 text-sm'>
+          <li><a href='/search/label/Helmets' class='text-fg-muted hover:text-primary transition-colors'>Helmets</a></li>
+          <li><a href='/search/label/Jackets' class='text-fg-muted hover:text-primary transition-colors'>Jackets</a></li>
+          <li><a href='/search/label/Gloves' class='text-fg-muted hover:text-primary transition-colors'>Gloves</a></li>
+          <li><a href='/search/label/Boots' class='text-fg-muted hover:text-primary transition-colors'>Boots</a></li>
+          <li><a href='/search/label/Accessories' class='text-fg-muted hover:text-primary transition-colors'>Accessories</a></li>
+        </ul>
+      </div>
+      <!-- Company -->
+      <div>
+        <div class='font-display font-extrabold text-fg text-sm tracking-wider uppercase mb-3'>Company</div>
+        <ul class='space-y-2 text-sm'>
+          <li><a href='/p/about.html' class='text-fg-muted hover:text-primary transition-colors'>About Us</a></li>
+          <li><a href='/p/contact.html' class='text-fg-muted hover:text-primary transition-colors'>Contact</a></li>
+          <li><a href='/p/categories.html' class='text-fg-muted hover:text-primary transition-colors'>Categories</a></li>
+          <li><a href='/p/checkout.html' class='text-fg-muted hover:text-primary transition-colors'>Checkout</a></li>
+        </ul>
+      </div>
+      <!-- Contact -->
+      <div>
+        <div class='font-display font-extrabold text-fg text-sm tracking-wider uppercase mb-3'>Contact</div>
+        <ul class='space-y-2 text-sm text-fg-muted'>
+          <li class='flex items-center gap-2'><i data-lucide='phone' style='width:14px;height:14px' class='text-primary'></i> +880 1518-934708</li>
+          <li class='flex items-center gap-2'><i data-lucide='message-circle' style='width:14px;height:14px' class='text-primary'></i> WhatsApp: 1518-934708</li>
+          <li class='flex items-start gap-2'><i data-lucide='map-pin' style='width:14px;height:14px' class='text-primary mt-1'></i> Dhaka, Bangladesh</li>
+          <li class='flex items-center gap-2'><i data-lucide='clock' style='width:14px;height:14px' class='text-primary'></i> Sat-Thu 10am - 9pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class='pt-6 border-t border-line/40 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-fg-soft'>
+      <div>&#169; <script>document.write(new Date().getFullYear())</script> Shokher Bikewala. All rights reserved.</div>
+      <div class='flex items-center gap-3'>
+        <span>Cash on Delivery</span>
+        <span class='w-1 h-1 rounded-full bg-fg-soft/40'></span>
+        <span>Authentic Products</span>
+        <span class='w-1 h-1 rounded-full bg-fg-soft/40'></span>
+        <span>Fast Shipping</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== Mobile Bottom Dock ===================== -->
+<div class='v-tabbar-safari-fix md:hidden' id='sb-mobile-dock'>
+  <div class='v-tabbar mx-3 mb-3 rounded-2xl'>
+    <nav class='flex items-center justify-around'>
+      <a expr:href='data:blog.homepageUrl' class='v-mobile-nav-action' data-mobile-tab='home'>
+        <i data-lucide='home' style='width:22px;height:22px'></i>
+        <span class='font-racing text-[10px] tracking-widest uppercase'>Home</span>
+      </a>
+      <a href='/search/label/product' class='v-mobile-nav-action' data-mobile-tab='shop'>
+        <i data-lucide='shopping-bag' style='width:22px;height:22px'></i>
+        <span class='font-racing text-[10px] tracking-widest uppercase'>Shop</span>
+      </a>
+      <a href='/p/categories.html' class='v-mobile-nav-action' data-mobile-tab='cats'>
+        <i data-lucide='layers' style='width:22px;height:22px'></i>
+        <span class='font-racing text-[10px] tracking-widest uppercase'>Categories</span>
+      </a>
+      <a href='/p/checkout.html' class='v-mobile-nav-action' data-mobile-tab='cart'>
+        <i data-lucide='shopping-cart' style='width:22px;height:22px'></i>
+        <span class='font-racing text-[10px] tracking-widest uppercase'>Cart</span>
+      </a>
+      <button type='button' id='sb-mobile-more-btn' class='v-mobile-nav-action'>
+        <i data-lucide='menu' style='width:22px;height:22px'></i>
+        <span class='font-racing text-[10px] tracking-widest uppercase'>More</span>
+      </button>
+    </nav>
+  </div>
+</div>
+
+<!-- WhatsApp Floating Action Button -->
+<a href='https://wa.me/8801518934708' target='_blank' rel='noopener' aria-label='Chat on WhatsApp' class='v-fab v-fab-whatsapp'>
+  <i data-lucide='message-circle' style='width:22px;height:22px'></i>
+</a>
+
+<script>/*<![CDATA[*/
+(function(){
+  var d = document;
+  var $ = function(sel, root){ return (root||d).querySelector(sel); };
+  var $$ = function(sel, root){ return Array.prototype.slice.call((root||d).querySelectorAll(sel)); };
+
+  // ---- Theme persistence ----
+  var THEME_KEY = 'sb-theme';
+  function applyTheme(t){
+    d.documentElement.setAttribute('data-theme', t);
+    if (t === 'dark') d.documentElement.classList.add('dark');
+    else d.documentElement.classList.remove('dark');
+    var sun = $('.sb-theme-icon-sun');
+    var moon = $('.sb-theme-icon-moon');
+    if (sun && moon){
+      if (t === 'dark'){ sun.removeAttribute('hidden'); moon.setAttribute('hidden','hidden'); }
+      else { moon.removeAttribute('hidden'); sun.setAttribute('hidden','hidden'); }
     }
-    </script>
+  }
+  try { applyTheme(localStorage.getItem(THEME_KEY) || 'light'); } catch(e){ applyTheme('light'); }
+  function toggleTheme(){
+    var cur = d.documentElement.getAttribute('data-theme') || 'light';
+    var next = cur === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem(THEME_KEY, next); } catch(e){}
+    applyTheme(next);
+  }
+  d.addEventListener('click', function(ev){
+    var t = ev.target.closest && ev.target.closest('#sb-theme-toggle, #sb-theme-toggle-mobile');
+    if (t){ ev.preventDefault(); toggleTheme(); }
+  });
 
-    <!-- ===================== App logic ===================== -->
-    <script>
-    //<![CDATA[
-    (function () {
-      var CONFIG = {};
-      try { CONFIG = JSON.parse(document.getElementById('sb-config').textContent); } catch (e) {}
+  // ---- Page loader hide ----
+  function hideLoader(){
+    var l = $('#sb-page-loader');
+    if (l) { l.classList.add('hide'); setTimeout(function(){ if (l.parentNode) l.parentNode.removeChild(l); }, 700); }
+  }
+  if (d.readyState === 'complete') setTimeout(hideLoader, 380);
+  else window.addEventListener('load', function(){ setTimeout(hideLoader, 380); });
 
-      // ===== Theme =====
-      var root = document.documentElement;
-      var saved = localStorage.getItem('sb-theme') || 'light';
-      root.setAttribute('data-theme', saved);
-      function syncThemeIcons() {
-        var theme = root.getAttribute('data-theme');
-        var sun = document.getElementById('sb-icon-sun');
-        var moon = document.getElementById('sb-icon-moon');
-        if (sun && moon) {
-          sun.style.display = theme === 'dark' ? 'none' : '';
-          moon.style.display = theme === 'dark' ? '' : 'none';
-        }
-      }
-      document.addEventListener('click', function (e) {
-        if (e.target.closest('#sb-theme-toggle')) {
-          var t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-          root.setAttribute('data-theme', t);
-          localStorage.setItem('sb-theme', t);
-          syncThemeIcons();
-        }
+  // ---- Mobile drawer ----
+  var drawer = $('#sb-mobile-drawer'), backdrop = $('#sb-mobile-backdrop');
+  function openDrawer(){ if(drawer){ drawer.classList.add('open'); } if(backdrop){ backdrop.classList.add('open'); } d.body.style.overflow = 'hidden'; }
+  function closeDrawer(){ if(drawer){ drawer.classList.remove('open'); } if(backdrop){ backdrop.classList.remove('open'); } d.body.style.overflow = ''; }
+  d.addEventListener('click', function(ev){
+    var t = ev.target;
+    if (t.closest && t.closest('#sb-mobile-menu-btn, #sb-mobile-more-btn')){ ev.preventDefault(); openDrawer(); }
+    if (t.closest && (t.closest('[data-close-sheet]') || t.closest('#sb-mobile-backdrop'))){ closeDrawer(); }
+  });
+
+  // ---- Search overlay ----
+  var searchOverlay = $('#sb-search-overlay');
+  function openSearch(){ if(searchOverlay){ searchOverlay.classList.add('open'); var inp = searchOverlay.querySelector('input'); if(inp){ setTimeout(function(){ inp.focus(); }, 80); } } }
+  function closeSearch(){ if(searchOverlay){ searchOverlay.classList.remove('open'); } }
+  d.addEventListener('click', function(ev){
+    var t = ev.target;
+    if (t.closest && t.closest('#sb-nav-search, #sb-mobile-search-btn')){ ev.preventDefault(); openSearch(); }
+    if (t.closest && t.closest('#sb-search-close')){ closeSearch(); }
+  });
+  d.addEventListener('keydown', function(ev){ if (ev.key === 'Escape'){ closeSearch(); closeDrawer(); } });
+
+  // ---- FAQ accordion ----
+  d.addEventListener('click', function(ev){
+    var btn = ev.target.closest && ev.target.closest('[data-faq-trigger]');
+    if (!btn) return;
+    ev.preventDefault();
+    var card = btn.closest('.sb-faq-card');
+    if (card) card.classList.toggle('open');
+  });
+
+  // ---- Reveal animations ----
+  function bindReveals(root){
+    var els = $$('.v-reveal', root || d);
+    if (!('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
       });
-      syncThemeIcons();
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  }
+  bindReveals();
 
-      // ===== Loader =====
-      window.addEventListener('load', function () {
-        setTimeout(function () {
-          var el = document.getElementById('sb-loader');
-          if (el) el.classList.add('hide');
-        }, 200);
-      });
+  // ---- Active mobile dock highlight ----
+  (function(){
+    var p = location.pathname;
+    var key = 'home';
+    if (/\/search\/label\/product/.test(p)) key = 'shop';
+    else if (/categories\.html/.test(p)) key = 'cats';
+    else if (/checkout\.html/.test(p)) key = 'cart';
+    var el = d.querySelector('[data-mobile-tab="' + key + '"]');
+    if (el) el.classList.add('is-active');
+  })();
 
-      // ===== Scrolled navbar shadow =====
-      var hdr = document.getElementById('sb-header');
-      function onScroll() { if (hdr) hdr.classList.toggle('shadow-lg', window.scrollY > 30); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-
-      // ===== Mobile drawer =====
-      var drawer = document.getElementById('sb-drawer');
-      function setDrawer(open) {
-        if (!drawer) return;
-        drawer.classList.toggle('hidden', !open);
-        document.body.style.overflow = open ? 'hidden' : '';
-      }
-      document.addEventListener('click', function (e) {
-        if (e.target.closest('#sb-burger')) setDrawer(true);
-        if (e.target.closest('[data-close="1"]')) setDrawer(false);
-      });
-
-      // ===== Active nav link =====
-      var path = location.pathname;
-      document.querySelectorAll('.sb-nav-link').forEach(function (a) {
-        var dp = a.getAttribute('data-path') || '';
-        if (path === '/' && dp === '/') a.classList.add('active');
-        else if (dp !== '/' && path.indexOf(dp) === 0) a.classList.add('active');
-      });
-
-      // ===== Year =====
-      var yearEl = document.getElementById('sb-year');
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-      // ===== Reveal on scroll =====
-      var io = ('IntersectionObserver' in window)
-        ? new IntersectionObserver(function (entries) {
-          entries.forEach(function (en) {
-            if (en.isIntersecting) en.target.classList.add('show');
-          });
-        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 })
-        : null;
-      function watch(el) { if (io) io.observe(el); else el.classList.add('show'); }
-
-      // ===== Render utilities =====
-      function fmtPrice(n) {
-        if (n == null || isNaN(n)) return '';
-        return 'BDT ' + Number(n).toLocaleString();
-      }
-
-      function extractMeta(html) {
-        // Try parsing a hidden <pre class="sb-product-meta-raw"> JSON block first.
-        try {
-          var parser = new DOMParser();
-          var doc = parser.parseFromString(html, 'text/html');
-          var raw = doc.querySelector('.sb-product-meta-raw');
-          if (raw) {
-            var json = raw.textContent.trim();
-            if (json) return JSON.parse(json);
-          }
-        } catch (e) {}
-        // Fallback: try [key: value] markers in the content
-        var meta = {};
-        var rx = /\[(\w+)\s*:\s*([^\]]+)\]/g, m;
-        while ((m = rx.exec(html)) !== null) meta[m[1].toLowerCase()] = m[2].trim();
-        if (meta.price) meta.price = Number(meta.price);
-        if (meta.discount_price) meta.discount_price = Number(meta.discount_price);
-        return meta;
-      }
-
-      function postToProduct(entry) {
-        var title = (entry.title && entry.title.$t) || '';
-        var url = '';
-        (entry.link || []).forEach(function (l) { if (l.rel === 'alternate') url = l.href; });
-        var thumb = (entry.media$thumbnail && entry.media$thumbnail.url) || '';
-        if (thumb) thumb = thumb.replace(/\/s72-c\//, '/s600/');
-        var summary = (entry.summary && entry.summary.$t) || (entry.content && entry.content.$t) || '';
-        var meta = extractMeta(summary);
-        var labels = (entry.category || []).map(function (c) { return c.term; });
-        return {
-          title: title,
-          url: url,
-          image: meta.image || thumb,
-          images: meta.images || (thumb ? [thumb] : []),
-          price: meta.price,
-          discount_price: meta.discount_price,
-          badge: meta.badge,
-          category: meta.category,
-          labels: labels,
-          summary: summary,
-        };
-      }
-
-      function fetchFeed(label, max, cb) {
-        var url = (location.origin) + (CONFIG.feedUrl || '/feeds/posts/summary') +
-          (label ? '/-/' + encodeURIComponent(label) : '') +
-          '?alt=json&max-results=' + (max || 12);
-        fetch(url, { credentials: 'omit' })
-          .then(function (r) { return r.json(); })
-          .then(function (j) {
-            var entries = (j && j.feed && j.feed.entry) || [];
-            cb(entries.map(postToProduct));
-          })
-          .catch(function () { cb([]); });
-      }
-
-      function productCard(p) {
-        var price = p.discount_price != null ? p.discount_price : p.price;
-        var hasDiscount = p.discount_price != null && p.price != null && p.discount_price < p.price;
-        var badge = p.badge ? '<span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-primary text-white text-[10px] font-bold uppercase tracking-wider">' + p.badge + '</span>' : '';
-        var img = p.image || 'https://www.shokherbikewala.com/logo.png';
-        return (
-          '<a href="' + p.url + '" class="sb-product-card sb-reveal group block rounded-2xl glass border border-line overflow-hidden">' +
-            '<div class="relative aspect-square bg-bg-2 overflow-hidden">' +
-              badge +
-              '<img alt="' + p.title.replace(/"/g, '&quot;') + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="' + img + '"/>' +
-            '</div>' +
-            '<div class="p-3 sm:p-4">' +
-              '<h3 class="text-sm sm:text-base font-bold leading-snug line-clamp-2 text-fg min-h-[2.5em]">' + p.title + '</h3>' +
-              '<div class="mt-1.5 flex items-baseline gap-2">' +
-                (price != null ? '<span class="text-primary font-extrabold">' + fmtPrice(price) + '</span>' : '<span class="text-fg-soft text-xs">Price on request</span>') +
-                (hasDiscount ? '<span class="text-xs text-fg-soft line-through">' + fmtPrice(p.price) + '</span>' : '') +
-              '</div>' +
-            '</div>' +
-          '</a>'
-        );
-      }
-
-      function categoryCard(c) {
-        var labelUrl = location.origin + '/search/label/' + encodeURIComponent(c.slug);
-        return (
-          '<a href="' + labelUrl + '" class="sb-product-card sb-reveal group block rounded-2xl glass border border-line overflow-hidden">' +
-            '<div class="aspect-[4/3] bg-bg-2 overflow-hidden">' +
-              '<img alt="' + c.name + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="' + c.image + '"/>' +
-            '</div>' +
-            '<div class="p-3 text-center">' +
-              '<div class="font-bold text-fg text-sm sm:text-base">' + c.name + '</div>' +
-              '<div class="text-[11px] text-fg-soft mt-0.5">Shop now &#8594;</div>' +
-            '</div>' +
-          '</a>'
-        );
-      }
-
-      function renderGrid(targetId, items, renderer, emptyMsg) {
-        var grid = document.getElementById(targetId);
-        if (!grid) return;
-        if (!items.length) {
-          grid.innerHTML = '<p class="col-span-full text-center text-fg-soft py-12">' + (emptyMsg || 'Nothing here yet — check back soon.') + '</p>';
+  // ---- Product feed fetch (homepage only) ----
+  function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]; }); }
+  function extractMeta(content){
+    // Look for hidden product meta JSON in post body
+    var m = content && content.match(/<pre[^>]*class=["'][^"']*sb-product-meta-raw[^"']*["'][^>]*>([\s\S]*?)<\/pre>/i);
+    if (!m) return {};
+    try { var json = m[1].replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&'); return JSON.parse(json); } catch(e){ return {}; }
+  }
+  function extractFirstImg(content){
+    var m = content && content.match(/<img[^>]+src=["']([^"']+)["']/i);
+    return m ? m[1] : '';
+  }
+  function badgeOf(meta){
+    if (meta.badge) return meta.badge;
+    if (meta.discount && Number(meta.discount) > 0) return Number(meta.discount) + '% OFF';
+    return '';
+  }
+  function priceHtml(meta){
+    var price = meta.price ? Number(meta.price) : 0;
+    var was = meta.was || (meta.discount && price ? Math.round(price / (1 - Number(meta.discount)/100)) : 0);
+    var out = '<span class="v-price-now">BDT ' + price.toLocaleString() + '</span>';
+    if (was && was > price) out += ' <span class="v-price-old">BDT ' + Number(was).toLocaleString() + '</span>';
+    return out;
+  }
+  function renderCard(post){
+    var title = (post.title && post.title.$t) || 'Product';
+    var content = (post.content && post.content.$t) || (post.summary && post.summary.$t) || '';
+    var meta = extractMeta(content);
+    var img = meta.image || (post['media$thumbnail'] && post['media$thumbnail'].url) || extractFirstImg(content) || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect fill="%23f3f3f5" width="400" height="400"/></svg>';
+    if (img.indexOf('s72-c') !== -1) img = img.replace(/\/s72(-c)?\//, '/s640/').replace(/=s72(-c)?/, '=s640');
+    // post URL
+    var url = '#';
+    if (post.link){
+      for (var i = 0; i < post.link.length; i++){ if (post.link[i].rel === 'alternate'){ url = post.link[i].href; break; } }
+    }
+    var badge = badgeOf(meta);
+    var category = (post.category && post.category.length) ? (post.category.find(function(c){ return c.term !== 'product'; }) || {}).term || '' : '';
+    return ''
+      + '<a class="v-product-card group block relative" href="' + escapeHtml(url) + '">'
+      +   '<button type="button" class="sb-wishlist-btn" aria-label="Wishlist" onclick="event.preventDefault();this.classList.toggle(\'is-on\');"><i data-lucide="heart" style="width:14px;height:14px"></i></button>'
+      +   (badge ? '<span class="v-product-badge">' + escapeHtml(badge) + '</span>' : '')
+      +   '<div class="v-product-media"><img loading="lazy" src="' + escapeHtml(img) + '" alt="' + escapeHtml(title) + '"/></div>'
+      +   '<div class="v-product-body">'
+      +     (category ? '<div class="v-eyebrow text-[10px]">' + escapeHtml(category) + '</div>' : '')
+      +     '<h3 class="v-product-title">' + escapeHtml(title) + '</h3>'
+      +     '<div class="v-stars mt-1">'
+      +       '<i data-lucide="star" style="width:13px;height:13px;fill:#ff8a3a;color:#ff8a3a"></i>'
+      +       '<i data-lucide="star" style="width:13px;height:13px;fill:#ff8a3a;color:#ff8a3a"></i>'
+      +       '<i data-lucide="star" style="width:13px;height:13px;fill:#ff8a3a;color:#ff8a3a"></i>'
+      +       '<i data-lucide="star" style="width:13px;height:13px;fill:#ff8a3a;color:#ff8a3a"></i>'
+      +       '<i data-lucide="star" style="width:13px;height:13px;fill:#ff8a3a;color:#ff8a3a"></i>'
+      +       '<span class="ml-1 text-[11px] text-fg-soft">4.9</span>'
+      +     '</div>'
+      +     '<div class="v-price-row mt-2">' + priceHtml(meta) + '</div>'
+      +   '</div>'
+      + '</a>';
+  }
+  function loadProducts(){
+    var grid = $('#sb-featured-grid');
+    if (!grid) return;
+    var url = '/feeds/posts/default/-/product?alt=json&max-results=8';
+    var s = d.createElement('script');
+    var cb = 'sbFeedCB_' + Date.now();
+    window[cb] = function(data){
+      try {
+        var entries = (data && data.feed && data.feed.entry) || [];
+        if (!entries.length){
+          grid.innerHTML = '<div class="col-span-full text-center text-fg-muted py-10 font-racing text-sm uppercase tracking-widest">No products yet. Add a post with label "product" in Blogger.</div>';
           return;
         }
-        grid.innerHTML = items.map(renderer).join('');
-        grid.querySelectorAll('.sb-reveal').forEach(watch);
-      }
+        grid.innerHTML = entries.map(renderCard).join('');
+        if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+      } catch(e){ console.error(e); }
+    };
+    s.src = url + '&callback=' + cb;
+    s.async = true;
+    d.body.appendChild(s);
+  }
+  if ($('#sb-featured-grid')) loadProducts();
 
-      // ===== Homepage =====
-      var catGrid = document.getElementById('sb-categories-grid');
-      if (catGrid && Array.isArray(CONFIG.categories)) {
-        renderGrid('sb-categories-grid', CONFIG.categories, categoryCard);
-      }
-      var prodGrid = document.getElementById('sb-products-grid');
-      if (prodGrid) {
-        fetchFeed(CONFIG.productLabel || 'product', 8, function (items) {
-          renderGrid('sb-products-grid', items, productCard, 'No products yet — add a Blogger post with label "product".');
-        });
-      }
+  // ---- Product detail post: extract meta, hide raw block, render price/stock/gallery ----
+  function hydrateProductDetail(){
+    var body = $('#sb-product-body');
+    if (!body) return;
+    var rawEl = body.querySelector('pre.sb-product-meta-raw, pre[class*="sb-product-meta-raw"]');
+    var meta = {};
+    if (rawEl){
+      try { meta = JSON.parse(rawEl.textContent); } catch(e){}
+      rawEl.style.display = 'none';
+    }
+    if (meta.price){
+      var p = $('#sb-prod-price'); if (p) p.textContent = 'BDT ' + Number(meta.price).toLocaleString();
+    }
+    var wasVal = meta.was || (meta.discount && meta.price ? Math.round(Number(meta.price) / (1 - Number(meta.discount)/100)) : 0);
+    if (wasVal && Number(wasVal) > Number(meta.price)){
+      var w = $('#sb-prod-price-was'); if (w){ w.textContent = 'BDT ' + Number(wasVal).toLocaleString(); w.removeAttribute('hidden'); }
+    }
+    var stockEl = $('#sb-prod-stock');
+    if (stockEl){
+      if (meta.stock === false || meta.stock === 'out' || meta.stock === 0){ stockEl.textContent = 'Out of stock'; stockEl.classList.add('text-red-500'); }
+      else { stockEl.textContent = 'In Stock'; }
+    }
+    if (meta.short){
+      var sd = $('#sb-prod-short-desc'); if (sd) sd.textContent = meta.short;
+    }
+    // Gallery thumbnails
+    var gallery = (meta.images && meta.images.length) ? meta.images : [];
+    var mainImg = $('#sb-prod-main-img img');
+    if (!gallery.length && mainImg) gallery = [mainImg.getAttribute('src')];
+    var thumbs = $('#sb-prod-thumbs');
+    if (thumbs && gallery.length){
+      thumbs.innerHTML = gallery.map(function(src, i){
+        return '<div class="sb-prod-thumb ' + (i===0 ? 'active' : '') + '" data-thumb="' + i + '"><img loading="lazy" src="' + src + '" alt=""/></div>';
+      }).join('');
+      thumbs.addEventListener('click', function(ev){
+        var t = ev.target.closest && ev.target.closest('[data-thumb]');
+        if (!t) return;
+        var i = +t.getAttribute('data-thumb');
+        if (mainImg) mainImg.setAttribute('src', gallery[i]);
+        thumbs.querySelectorAll('.sb-prod-thumb').forEach(function(el){ el.classList.remove('active'); });
+        t.classList.add('active');
+      });
+    }
+  }
+  hydrateProductDetail();
 
-      // ===== Label search =====
-      var labelGrid = document.getElementById('sb-label-grid');
-      if (labelGrid) {
-        // Extract label from URL
-        var m = location.pathname.match(/\/search\/label\/([^/?]+)/);
-        var label = m ? decodeURIComponent(m[1]) : (CONFIG.productLabel || 'product');
-        fetchFeed(label, 24, function (items) {
-          renderGrid('sb-label-grid', items, productCard, 'No products in this collection yet.');
-        });
-      }
+  // ---- Lucide icons init ----
+  if (window.lucide && window.lucide.createIcons){
+    try { window.lucide.createIcons(); } catch(e){}
+  } else {
+    window.addEventListener('load', function(){ if (window.lucide && window.lucide.createIcons) try { window.lucide.createIcons(); } catch(e){} });
+  }
+})();
+/*]]>*/</script>
 
-      // ===== Search query =====
-      var searchGrid = document.getElementById('sb-search-grid');
-      if (searchGrid) {
-        var q = new URLSearchParams(location.search).get('q') || '';
-        var qLower = q.toLowerCase();
-        fetchFeed(CONFIG.productLabel || 'product', 50, function (items) {
-          var filtered = items.filter(function (p) {
-            return p.title.toLowerCase().indexOf(qLower) !== -1;
-          });
-          renderGrid('sb-search-grid', filtered, productCard, 'No results for "' + q + '".');
-        });
-      }
-
-      // ===== Product detail enrichment =====
-      var galleryMain = document.getElementById('sb-product-main-image');
-      if (galleryMain) {
-        // Parse meta from the rendered post body in the DOM
-        var bodyEl = document.querySelector('.sb-prose');
-        var meta = bodyEl ? extractMeta(bodyEl.innerHTML) : {};
-        // Title is rendered by Blogger; price/images/etc come from meta.
-        var firstImg = bodyEl && bodyEl.querySelector('img');
-        var images = (meta.images && meta.images.length)
-          ? meta.images
-          : (meta.image ? [meta.image] : (firstImg ? [firstImg.src] : []));
-        if (images.length) {
-          galleryMain.src = images[0];
-          var thumbs = document.getElementById('sb-product-thumbs');
-          if (thumbs && images.length > 1) {
-            thumbs.innerHTML = images.map(function (src, i) {
-              return '<button type="button" data-src="' + src + '" class="aspect-square rounded-lg overflow-hidden border border-line bg-bg-2 hover:border-primary/60' + (i === 0 ? ' ring-2 ring-primary' : '') + '"><img src="' + src + '" alt="" class="w-full h-full object-cover"/></button>';
-            }).join('');
-            thumbs.addEventListener('click', function (e) {
-              var b = e.target.closest('button[data-src]');
-              if (!b) return;
-              galleryMain.src = b.getAttribute('data-src');
-              thumbs.querySelectorAll('button').forEach(function (x) { x.classList.remove('ring-2', 'ring-primary'); });
-              b.classList.add('ring-2', 'ring-primary');
-            });
-          }
-        }
-
-        // Price
-        var priceEl = document.getElementById('sb-product-price');
-        if (priceEl) {
-          var p = meta.price, dp = meta.discount_price;
-          if (dp != null && p != null && dp < p) {
-            priceEl.innerHTML =
-              '<span class="text-3xl font-display font-extrabold text-primary">' + fmtPrice(dp) + '</span>' +
-              '<span class="text-base text-fg-soft line-through">' + fmtPrice(p) + '</span>' +
-              '<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-bold">' + Math.round(((p - dp) / p) * 100) + '% off</span>';
-          } else if (p != null) {
-            priceEl.innerHTML = '<span class="text-3xl font-display font-extrabold text-primary">' + fmtPrice(p) + '</span>';
-          } else {
-            priceEl.innerHTML = '<span class="text-fg-soft">Price on request</span>';
-          }
-        }
-
-        // Stock
-        if (String(meta.in_stock).toLowerCase() === 'false') {
-          var stockEl = document.getElementById('sb-product-stock');
-          if (stockEl) {
-            stockEl.className = 'inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 text-red-600 text-xs font-bold';
-            stockEl.textContent = 'Out of stock';
-          }
-        }
-
-        // Hook Buy Now -> /p/checkout.html?product=<slug>
-        var slugFromUrl = (location.pathname.split('/').pop() || '').replace(/\.html$/, '');
-        var buyBtn = document.getElementById('sb-buy-now');
-        if (buyBtn) {
-          var sep = buyBtn.href.indexOf('?') === -1 ? '?' : '&';
-          buyBtn.href = buyBtn.href + sep + 'product=' + encodeURIComponent(slugFromUrl) +
-            '&title=' + encodeURIComponent(document.title.split(' - ')[0]) +
-            (meta.price != null ? '&price=' + encodeURIComponent(meta.discount_price != null ? meta.discount_price : meta.price) : '');
-        }
-
-        // Hook WhatsApp text
-        var wa = document.getElementById('sb-whatsapp-order');
-        if (wa) {
-          var title = document.title.split(' - ')[0];
-          var price = meta.discount_price != null ? meta.discount_price : meta.price;
-          var msg = 'Hi! I want to order: ' + title + (price != null ? ' (' + fmtPrice(price) + ')' : '') + '\nLink: ' + location.href;
-          wa.href = 'https://wa.me/8801518934708?text=' + encodeURIComponent(msg);
-        }
-      }
-    })();
-    //]]>
-    </script>
-  </body>
+</body>
 </html>
